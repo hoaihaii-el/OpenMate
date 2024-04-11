@@ -1,93 +1,39 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-lg-5 col-md-12">
     <div class="card">
-      <div class="card-header">
-        <h5 class="card-title">Notifications</h5>
-        <p class="card-category">Handcrafted by our friend
-          <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the
-          <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a>
-        </p>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card card-plain">
-              <div class="card-header">
-                <h5 class="card-title">Notifications Style</h5>
-              </div>
-              <div class="card-body">
-                <div class="alert alert-info">
-                  <span>This is a plain notification</span>
+      <table style="cursor: pointer;">
+        <tbody>
+          <tr *ngFor="let noti of notifications" (click)="onSelect(noti)">
+            <div class="card-header" style="padding-top: 4px;">
+              <div class="card-title" style="font-size: 24px;">{{noti.name}}</div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div [ngSwitch]="noti.level">
+                    <div class="card-category text-danger" style="font-size: 18px;" *ngSwitchCase="'Must Read'">
+                      {{noti.level}}</div>
+                    <div class="card-category text-warning" style="font-size: 18px;" *ngSwitchCase="'Important'">
+                      {{noti.level}}</div>
+                    <div class="card-category text-success" style="font-size: 18px;" *ngSwitchCase="'Normal'">
+                      {{noti.level}}</div>
+                  </div>
                 </div>
-                <div class="alert alert-info alert-dismissible fade show">
-                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-                    <i class="nc-icon nc-simple-remove"></i>
-                  </button>
-                  <span>This is a notification with close button.</span>
-                </div>
-                <div class="alert alert-info alert-with-icon alert-dismissible fade show" data-notify="container">
-                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-                    <i class="nc-icon nc-simple-remove"></i>
-                  </button>
-                  <span data-notify="icon" class="nc-icon nc-bell-55"></span>
-                  <span data-notify="message">This is a notification with close button and icon.</span>
-                </div>
-                <div class="alert alert-info alert-with-icon alert-dismissible fade show" data-notify="container">
-                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-                    <i class="nc-icon nc-simple-remove"></i>
-                  </button>
-                  <span data-notify="icon" class="nc-icon nc-chart-pie-36"></span>
-                  <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
+                <div class="col-md-6">
+                  <div class="card-category" style="text-align: right; font-size: 18px;">{{noti.date}}</div>
                 </div>
               </div>
+              <hr>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card card-plain">
-              <div class="card-header">
-                <h5 class="card-title">Notification states</h5>
-              </div>
-              <div class="card-body">
-                <div class="alert alert-primary alert-dismissible fade show">
-                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-                    <i class="nc-icon nc-simple-remove"></i>
-                  </button>
-                  <span>
-                    <b> Primary - </b> This is a regular notification made with ".alert-primary"</span>
-                </div>
-                <div class="alert alert-info alert-dismissible fade show">
-                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-                    <i class="nc-icon nc-simple-remove"></i>
-                  </button>
-                  <span>
-                    <b> Info - </b> This is a regular notification made with ".alert-info"</span>
-                </div>
-                <div class="alert alert-success alert-dismissible fade show">
-                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-                    <i class="nc-icon nc-simple-remove"></i>
-                  </button>
-                  <span>
-                    <b> Success - </b> This is a regular notification made with ".alert-success"</span>
-                </div>
-                <div class="alert alert-warning alert-dismissible fade show">
-                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-                    <i class="nc-icon nc-simple-remove"></i>
-                  </button>
-                  <span>
-                    <b> Warning - </b> This is a regular notification made with ".alert-warning"</span>
-                </div>
-                <div class="alert alert-danger alert-dismissible fade show">
-                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-                    <i class="nc-icon nc-simple-remove"></i>
-                  </button>
-                  <span>
-                    <b> Danger - </b> This is a regular notification made with ".alert-danger"</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-lg-7 col-md-12">
+    <div class="card" style="padding: 15px;">
+      <h5 class="card-title">{{currentNoti.name}}</h5>
+      <div class="card-category">{{currentNoti.date}}</div>
+      <hr>
+      <p style="white-space: pre-wrap;">{{currentNoti.content}}</p>
     </div>
   </div>
 </div>
@@ -111,7 +57,8 @@
                   <button class="btn btn-primary btn-block" (click)="showNotification('top','left')">Top Left</button>
                 </div>
                 <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" (click)="showNotification('top','center')">Top Center</button>
+                  <button class="btn btn-primary btn-block" (click)="showNotification('top','center')">Top
+                    Center</button>
                 </div>
                 <div class="col-md-4">
                   <button class="btn btn-primary btn-block" (click)="showNotification('top','right')">Top Right</button>
@@ -123,13 +70,16 @@
             <div class="col-lg-8 ml-auto mr-auto">
               <div class="row">
                 <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" (click)="showNotification('bottom','left')">Bottom Left</button>
+                  <button class="btn btn-primary btn-block" (click)="showNotification('bottom','left')">Bottom
+                    Left</button>
                 </div>
                 <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" (click)="showNotification('bottom','center')">Bottom Center</button>
+                  <button class="btn btn-primary btn-block" (click)="showNotification('bottom','center')">Bottom
+                    Center</button>
                 </div>
                 <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" (click)="showNotification('bottom','right')">Bottom Right</button>
+                  <button class="btn btn-primary btn-block" (click)="showNotification('bottom','right')">Bottom
+                    Right</button>
                 </div>
               </div>
             </div>
