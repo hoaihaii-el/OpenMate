@@ -6,4 +6,14 @@ import { Component } from '@angular/core';
     templateUrl: 'userinfos.component.html'
 })
 
-export class UserInfosComponent { }
+export class UserInfosComponent {
+    public modalTitle: String = 'Thêm nhân viên';
+    public showModal: Boolean = false;
+    openModal() {
+        this.showModal = true;
+    }
+
+    closeModal() {
+        this.showModal = false;
+    }
+}

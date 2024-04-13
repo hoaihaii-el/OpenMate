@@ -8,11 +8,12 @@ import { Component } from '@angular/core';
 
 export class DevicesComponent {
     public modalTitle: String = 'Thêm thiết bị';
+    public showModal: Boolean = false;
     openModal() {
-        document.getElementById('exampleModal').style.display = 'block';
+        this.showModal = true;
     }
 
     closeModal() {
-        document.getElementById('exampleModal').style.display = 'none';
+        this.showModal = false;
     }
 }

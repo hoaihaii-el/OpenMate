@@ -15,8 +15,7 @@
                     </form>
                 </div>
                 <div class="col-2">
-                    <button type="button" class="btn" style="margin: 0;" data-toggle="modal" data-target="#exampleModal"
-                        (click)="openModal()">
+                    <button type="button" class="btn" style="margin: 0;" (click)="openModal()">
                         New device
                     </button>
                 </div>
@@ -173,8 +172,9 @@
     </div>
 </div>
 
-<div class="modal fade" id="exampleModal" style="z-index: 1050; opacity: 100; top: 100px; overflow: visible;"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal"
+    style="display: block; z-index: 1050; opacity: 100; top: 100px; overflow: visible;"
+    aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="showModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
