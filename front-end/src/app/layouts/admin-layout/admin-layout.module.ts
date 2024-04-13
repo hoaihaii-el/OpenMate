@@ -13,6 +13,9 @@ import { IconsComponent } from '../../pages/icons/icons.component';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 import { TimeSheetComponent } from '../../pages/timesheet/timesheet.component';
 import { OtherUserComponent } from '../../pages/otheruser/otheruser.component';
+import { UserInfosComponent } from 'app/pages/userinfos/userinfos.component';
+import { DevicesComponent } from 'app/pages/devices/devices.component';
+import { NewPostComponent } from 'app/pages/newpost/newpost.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -31,7 +34,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     IconsComponent,
     NotificationsComponent,
     TimeSheetComponent,
-    OtherUserComponent
+    OtherUserComponent,
+    UserInfosComponent,
+    DevicesComponent,
+    NewPostComponent
   ]
 })
 
