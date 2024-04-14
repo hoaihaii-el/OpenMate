@@ -1,32 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { Task } from 'app/models/task.model';
 
 @Component({
-    moduleId: module.id,
-    selector: 'fixedplugin-cmp',
-    templateUrl: 'fixedplugin.component.html'
+  moduleId: module.id,
+  selector: 'fixedplugin-cmp',
+  templateUrl: 'fixedplugin.component.html'
 })
 
-export class FixedPluginComponent implements OnInit{
-
-  public sidebarColor: string = "white";
-  public sidebarActiveColor: string = "danger";
-
-  public state: boolean = true;
-
-  changeSidebarColor(color){
-    var sidebar = <HTMLElement>document.querySelector('.sidebar');
-
-    this.sidebarColor = color;
-    if(sidebar != undefined){
-        sidebar.setAttribute('data-color',color);
-    }
+export class FixedPluginComponent implements OnInit {
+  public tasks: Task[];
+  ngOnInit() {
+    this.tasks = [
+      { name: 'Task1', time: '13:00', done: false },
+      { name: 'Task2', time: '14:00', done: false },
+      { name: 'Task3', time: '15:00', done: false }
+    ]
   }
-  changeSidebarActiveColor(color){
-    var sidebar = <HTMLElement>document.querySelector('.sidebar');
-    this.sidebarActiveColor = color;
-    if(sidebar != undefined){
-        sidebar.setAttribute('data-active-color',color);
-    }
+
+  addNewTask(nameInput: HTMLInputElement, timeInput: HTMLInputElement) {
+    this.tasks.push({ name: nameInput.value, time: timeInput.value, done: false });
+    nameInput.value = '';
+    timeInput.value = '';
   }
-  ngOnInit(){}
 }

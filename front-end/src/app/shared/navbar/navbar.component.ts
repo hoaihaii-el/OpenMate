@@ -43,6 +43,13 @@ export class NavbarComponent implements OnInit {
         return this.listTitles[item].title;
       }
     }
+
+    if (titlee.includes('sheet')) return 'Time Sheets';
+    if (titlee.includes('theruser')) return 'Other Users';
+    if (titlee.includes('post')) return 'New Post';
+    if (titlee.includes('vices')) return 'Devices';
+    if (titlee.includes('info')) return 'Users Info'
+
     return titlee;
   }
   sidebarToggle() {

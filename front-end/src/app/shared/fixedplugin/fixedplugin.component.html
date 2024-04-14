@@ -1,7 +1,7 @@
 <div class="fixed-plugin">
     <div class="show-dropdown" ngbDropdown>
         <a href="javascript:void(0)" ngbDropdownToggle id="dropdownConfig">
-            <p style="color: white; font-size: 25px; padding-top: 10px;">10</p>
+            <p style="color: white; font-size: 25px; padding-top: 10px;">{{tasks.length}}</p>
         </a>
         <div class="card" ngbDropdownMenu style="width: 750px">
             <ul class="list-group list-group-flush">
@@ -12,16 +12,17 @@
                         <div class="col-2" style="text-align: center;">Done?</div>
                     </div>
                 </li>
-                <li class="list-group-item" style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
+                <li *ngFor="let task of tasks" class="list-group-item"
+                    style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
                     <div class="row">
-                        <div class="col-8">Task1</div>
-                        <div class="col-2" style="text-align: center;">13:00</div>
+                        <div class="col-8">{{task.name}}</div>
+                        <div class="col-2" style="text-align: center;">{{task.time}}</div>
                         <div class="col-2" style="text-align: center;">
-                            <input type="checkbox">
+                            <input type="checkbox" [(ngModel)]="task.done">
                         </div>
                     </div>
                 </li>
-                <li class="list-group-item" style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
+                <!-- <li class="list-group-item" style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
                     <div class="row">
                         <div class="col-8">Task2</div>
                         <div class="col-2" style="text-align: center;">14:00</div>
@@ -38,15 +39,18 @@
                             <input type="checkbox">
                         </div>
                     </div>
-                </li>
+                </li> -->
                 <li class="list-group-item" style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
                     <div class="row">
                         <div class="col-8">
-                            <input type="text" class="form-control" placeholder="New task">
+                            <input type="text" class="form-control" placeholder="New task" #taskInput>
                         </div>
-                        <div class="col-2" style="text-align: center;">15:15</div>
+                        <div class="col-2">
+                            <input type="text" class="form-control" placeholder="Start" #startInput>
+                        </div>
                         <div class="col-2" style="text-align: center;">
-                            <input type="button" class="form-control text-success" value="Add task">
+                            <input type="button" class="form-control text-success"
+                                (click)="addNewTask(taskInput, startInput)" value="Add task">
                         </div>
                     </div>
                 </li>

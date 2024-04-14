@@ -16,6 +16,7 @@ import { OtherUserComponent } from '../../pages/otheruser/otheruser.component';
 import { UserInfosComponent } from 'app/pages/userinfos/userinfos.component';
 import { DevicesComponent } from 'app/pages/devices/devices.component';
 import { NewPostComponent } from 'app/pages/newpost/newpost.component';
+import { RequestsComponent } from 'app/pages/requests/requests.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -37,7 +38,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     OtherUserComponent,
     UserInfosComponent,
     DevicesComponent,
-    NewPostComponent
+    NewPostComponent,
+    RequestsComponent
   ]
 })
 

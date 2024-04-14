@@ -11,6 +11,7 @@ import { OtherUserComponent } from 'app/pages/otheruser/otheruser.component';
 import { UserInfosComponent } from 'app/pages/userinfos/userinfos.component';
 import { DevicesComponent } from 'app/pages/devices/devices.component';
 import { NewPostComponent } from 'app/pages/newpost/newpost.component';
+import { RequestsComponent } from 'app/pages/requests/requests.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
@@ -23,5 +24,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'otheruser', component: OtherUserComponent },
     { path: 'userinfos', component: UserInfosComponent },
     { path: 'devices', component: DevicesComponent },
-    { path: 'newpost', component: NewPostComponent }
+    { path: 'newpost', component: NewPostComponent },
+    { path: 'requests', component: RequestsComponent }
 ];
