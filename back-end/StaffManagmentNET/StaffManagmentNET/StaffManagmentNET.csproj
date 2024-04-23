@@ -25,11 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\" />
     <Folder Include="Responses\" />
     <Folder Include="ViewModels\" />
     <Folder Include="StaticServices\" />
     <Folder Include="Services\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>
