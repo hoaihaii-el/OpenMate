@@ -20,6 +20,9 @@ namespace StaffManagmentNET.Repositories
         DbSet<ChatRoom>? ChatRooms { get; set; }
         DbSet<ChatRoomDetail>? ChatRoomsDetail { get; set; }
         DbSet<Message>? Messages { get; set; }
+        DbSet<Request>? Requests { get; set; }
+        DbSet<RequestCreateDetail> RequestCreateDetails { get; set; }
+        DbSet<RequestAcceptDetail> RequestAcceptDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -27,6 +30,7 @@ namespace StaffManagmentNET.Repositories
             builder.Entity<TimeSheet>().HasKey(t => new { t.Date, t.StaffID });
             builder.Entity<TaskDetail>().HasKey(t => new { t.Date, t.StaffID });
             builder.Entity<ChatRoomDetail>().HasKey(r => new { r.StaffID, r.RoomID });
+            builder.Entity<RequestAcceptDetail>().HasKey(r => new { r.DetailID, r.ManagerID });
 
             base.OnModelCreating(builder);
         }
