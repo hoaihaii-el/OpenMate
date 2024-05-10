@@ -1,50 +1,61 @@
-<div class="card">
-    <div class="card-header">
-        <h5 class="card-title">Hướng dẫn</h5>
+<div class="wrapper">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+        <sidebar-cmp></sidebar-cmp>
     </div>
-    <div style="padding-left: 20px; padding-right: 20px;">
-        <p>Sử dụng tag &lt;hl&gt; để highlight.<br>Sử dụng tag
-            &lt;link&gt; để gắn link.</p>
-    </div>
-    <div class="card-header">
-        <h5 class="card-title">Tạo bài viết mới</h5>
-    </div>
-    <div class="card-body">
-        <form>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Tiêu đề</label>
-                        <input type="text" class="form-control" placeholder="Tiêu đề">
-                    </div>
+    <div class="main-panel">
+        <navbar-cmp></navbar-cmp>
+        <div class="content">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Hướng dẫn</h5>
+                </div>
+                <div style="padding-left: 20px; padding-right: 20px;">
+                    <p>Sử dụng tag &lt;hl&gt; để highlight.<br>Sử dụng tag
+                        &lt;link&gt; để gắn link.</p>
+                </div>
+                <div class="card-header">
+                    <h5 class="card-title">Tạo bài viết mới</h5>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Tiêu đề</label>
+                                    <input type="text" class="form-control" placeholder="Tiêu đề">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Mức độ</label>
+                                    <select class="custom-select">
+                                        <option value="1">Must Read</option>
+                                        <option value="2">Important</option>
+                                        <option value="3">Normal</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Nội dung</label>
+                                    <textarea class="form-control" style="height: 300px; max-height: 500px;"
+                                        placeholder="Content here"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="update ml-auto mr-auto">
+                                <button type="submit" class="btn btn-primary btn-round">Create</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Mức độ</label>
-                        <select class="custom-select">
-                            <option value="1">Must Read</option>
-                            <option value="2">Important</option>
-                            <option value="3">Normal</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Nội dung</label>
-                        <textarea class="form-control" style="height: 300px; max-height: 500px;"
-                            placeholder="Content here"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="update ml-auto mr-auto">
-                    <button type="submit" class="btn btn-primary btn-round">Create</button>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
+<fixedplugin-cmp></fixedplugin-cmp>

@@ -1,5 +1,4 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-import Chart from 'chart.js';
 import { Notification } from 'app/models/notifications.model';
 
 @Component({

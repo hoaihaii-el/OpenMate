@@ -1,238 +1,262 @@
-<div class="row">
-    <div class="col-12">
-        <div class="card" style="padding: 15px;">
+<div class="wrapper">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+        <sidebar-cmp></sidebar-cmp>
+    </div>
+    <div class="main-panel">
+        <navbar-cmp></navbar-cmp>
+        <div class="content">
             <div class="row">
-                <div class="col-10">
-                    <form>
-                        <div class="input-group no-border">
-                            <input type="text" value="" class="form-control" placeholder="Search...">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <i class="nc-icon nc-zoom-split"></i>
-                                </div>
+                <div class="col-12">
+                    <div class="card" style="padding: 15px;">
+                        <div class="row">
+                            <div class="col-10">
+                                <form>
+                                    <div class="input-group no-border">
+                                        <input type="text" value="" class="form-control" placeholder="Search...">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <i class="nc-icon nc-zoom-split"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-2">
+                                <button type="button" class="btn" style="margin: 0;" (click)="openModal()">
+                                    New device
+                                </button>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="col-2">
-                    <button type="button" class="btn" style="margin: 0;" (click)="openModal()">
-                        New device
-                    </button>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead class="text-primary">
-                            <th>#Code</th>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Owner</th>
-                            <th>Status</th>
-                            <th></th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>11101</td>
-                                <td>Sony LG</td>
-                                <td>Screen</td>
-                                <td>Hoai Hai</td>
-                                <td>Normal</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>11102</td>
-                                <td>Sony 1101</td>
-                                <td>Headphone</td>
-                                <td>Hoai Hai</td>
-                                <td>Normal</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>11103</td>
-                                <td>Dell xps</td>
-                                <td>Laptop</td>
-                                <td>Hoai Hai</td>
-                                <td>Normal</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>11104</td>
-                                <td>Dell 1</td>
-                                <td>Screen</td>
-                                <td>Hoai Nhan</td>
-                                <td>Normal</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>11105</td>
-                                <td>Macbook air M1</td>
-                                <td>Laptop</td>
-                                <td>Hoai Nhan</td>
-                                <td>Normal</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>11106</td>
-                                <td>Samsung 1</td>
-                                <td>Headphone</td>
-                                <td>Hong Nhung</td>
-                                <td>Normal</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>11107</td>
-                                <td>MSI Modern</td>
-                                <td>Laptop</td>
-                                <td>Hong Nhung</td>
-                                <td>Normal</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>11108</td>
-                                <td>Lenovo</td>
-                                <td>Headphone</td>
-                                <td>No data</td>
-                                <td>Normal</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>11109</td>
-                                <td>Lenovo</td>
-                                <td>Headphone</td>
-                                <td>No data</td>
-                                <td>Normal</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>11110</td>
-                                <td>Lenovo</td>
-                                <td>Headphone</td>
-                                <td>No data</td>
-                                <td>Normal</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>11111</td>
-                                <td>Lenovo</td>
-                                <td>Headphone</td>
-                                <td>No data</td>
-                                <td>Normal</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="exampleModal"
-    style="display: block; z-index: 1050; opacity: 100; top: 100px; overflow: visible;"
-    aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="showModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-12">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Tên thiết bị</label>
-                                        <input type="text" class="form-control" placeholder="Tên thiết bị">
-                                    </div>
-                                </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="text-primary">
+                                        <th>#Code</th>
+                                        <th>Name</th>
+                                        <th>Type</th>
+                                        <th>Owner</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>11101</td>
+                                            <td>Sony LG</td>
+                                            <td>Screen</td>
+                                            <td>Hoai Hai</td>
+                                            <td>Normal</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>11102</td>
+                                            <td>Sony 1101</td>
+                                            <td>Headphone</td>
+                                            <td>Hoai Hai</td>
+                                            <td>Normal</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>11103</td>
+                                            <td>Dell xps</td>
+                                            <td>Laptop</td>
+                                            <td>Hoai Hai</td>
+                                            <td>Normal</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>11104</td>
+                                            <td>Dell 1</td>
+                                            <td>Screen</td>
+                                            <td>Hoai Nhan</td>
+                                            <td>Normal</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>11105</td>
+                                            <td>Macbook air M1</td>
+                                            <td>Laptop</td>
+                                            <td>Hoai Nhan</td>
+                                            <td>Normal</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>11106</td>
+                                            <td>Samsung 1</td>
+                                            <td>Headphone</td>
+                                            <td>Hong Nhung</td>
+                                            <td>Normal</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>11107</td>
+                                            <td>MSI Modern</td>
+                                            <td>Laptop</td>
+                                            <td>Hong Nhung</td>
+                                            <td>Normal</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>11108</td>
+                                            <td>Lenovo</td>
+                                            <td>Headphone</td>
+                                            <td>No data</td>
+                                            <td>Normal</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>11109</td>
+                                            <td>Lenovo</td>
+                                            <td>Headphone</td>
+                                            <td>No data</td>
+                                            <td>Normal</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>11110</td>
+                                            <td>Lenovo</td>
+                                            <td>Headphone</td>
+                                            <td>No data</td>
+                                            <td>Normal</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>11111</td>
+                                            <td>Lenovo</td>
+                                            <td>Headphone</td>
+                                            <td>No data</td>
+                                            <td>Normal</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Loại thiết bị</label>
-                                        <select class="custom-select">
-                                            <option value="1">Screen</option>
-                                            <option value="2">Headphone</option>
-                                            <option value="3">Mouse</option>
-                                            <option value="4">Keyboard</option>
-                                            <option value="5">Computer</option>
-                                            <option value="6">Laptop</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Mã người sở hữu</label>
-                                        <input type="text" class="form-control" placeholder="Mã người sở hữu">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Tình trạng</label>
-                                        <input type="text" class="form-control" placeholder="Tình trạng">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Thêm</button>
+
+            <div class="modal fade" id="exampleModal"
+                style="display: block; z-index: 1050; opacity: 100; top: 100px; overflow: visible;"
+                aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="showModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                (click)="closeModal()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Tên thiết bị</label>
+                                                    <input type="text" class="form-control" placeholder="Tên thiết bị">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Loại thiết bị</label>
+                                                    <select class="custom-select">
+                                                        <option value="1">Screen</option>
+                                                        <option value="2">Headphone</option>
+                                                        <option value="3">Mouse</option>
+                                                        <option value="4">Keyboard</option>
+                                                        <option value="5">Computer</option>
+                                                        <option value="6">Laptop</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Mã người sở hữu</label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Mã người sở hữu">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Tình trạng</label>
+                                                    <input type="text" class="form-control" placeholder="Tình trạng">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Thêm</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<fixedplugin-cmp></fixedplugin-cmp>

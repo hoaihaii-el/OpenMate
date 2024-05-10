@@ -1,88 +1,100 @@
-<div class="row">
-  <div class="col-lg-5 col-md-12">
-    <div class="card">
-      <table style="cursor: pointer;">
-        <tbody>
-          <tr *ngFor="let noti of notifications" (click)="onSelect(noti)">
-            <div class="card-header" style="padding-top: 4px;">
-              <div class="card-title" style="font-size: 24px;">{{noti.name}}</div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div [ngSwitch]="noti.level">
-                    <div class="card-category text-danger" style="font-size: 18px;" *ngSwitchCase="'Must Read'">
-                      {{noti.level}}</div>
-                    <div class="card-category text-warning" style="font-size: 18px;" *ngSwitchCase="'Important'">
-                      {{noti.level}}</div>
-                    <div class="card-category text-success" style="font-size: 18px;" *ngSwitchCase="'Normal'">
-                      {{noti.level}}</div>
+<div class="wrapper">
+  <div class="sidebar" data-color="white" data-active-color="danger">
+    <sidebar-cmp></sidebar-cmp>
+  </div>
+  <div class="main-panel">
+    <navbar-cmp></navbar-cmp>
+    <div class="content">
+      <div class="row">
+        <div class="col-lg-5 col-md-12">
+          <div class="card">
+            <table style="cursor: pointer;">
+              <tbody>
+                <tr *ngFor="let noti of notifications" (click)="onSelect(noti)">
+                  <div class="card-header" style="padding-top: 4px;">
+                    <div class="card-title" style="font-size: 24px;">{{noti.name}}</div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div [ngSwitch]="noti.level">
+                          <div class="card-category text-danger" style="font-size: 18px;" *ngSwitchCase="'Must Read'">
+                            {{noti.level}}</div>
+                          <div class="card-category text-warning" style="font-size: 18px;" *ngSwitchCase="'Important'">
+                            {{noti.level}}</div>
+                          <div class="card-category text-success" style="font-size: 18px;" *ngSwitchCase="'Normal'">
+                            {{noti.level}}</div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="card-category" style="text-align: right; font-size: 18px;">{{noti.date}}</div>
+                      </div>
+                    </div>
+                    <hr>
+                  </div>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-lg-7 col-md-12">
+          <div class="card" style="padding: 15px;">
+            <h5 class="card-title">{{currentNoti.name}}</h5>
+            <div class="card-category">{{currentNoti.date}}</div>
+            <hr>
+            <p style="white-space: pre-wrap;">{{currentNoti.content}}</p>
+            <p style="white-space: pre-wrap;">{{currentNoti.content}}</p>
+            <p style="white-space: pre-wrap;">{{currentNoti.content}}</p>
+            <p style="white-space: pre-wrap;">{{currentNoti.content}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="places-buttons">
+                <div class="row">
+                  <div class="col-md-6 ml-auto mr-auto text-center">
+                    <h4 class="card-title">
+                      Notifications Places
+                      <p class="category">Click to view notifications</p>
+                    </h4>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="card-category" style="text-align: right; font-size: 18px;">{{noti.date}}</div>
+                <div class="row">
+                  <div class="col-lg-8 ml-auto mr-auto">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <button class="btn btn-primary btn-block" (click)="showNotification('top','left')">Top
+                          Left</button>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-primary btn-block" (click)="showNotification('top','center')">Top
+                          Center</button>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-primary btn-block" (click)="showNotification('top','right')">Top
+                          Right</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <hr>
-            </div>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="col-lg-7 col-md-12">
-    <div class="card" style="padding: 15px;">
-      <h5 class="card-title">{{currentNoti.name}}</h5>
-      <div class="card-category">{{currentNoti.date}}</div>
-      <hr>
-      <p style="white-space: pre-wrap;">{{currentNoti.content}}</p>
-      <p style="white-space: pre-wrap;">{{currentNoti.content}}</p>
-      <p style="white-space: pre-wrap;">{{currentNoti.content}}</p>
-      <p style="white-space: pre-wrap;">{{currentNoti.content}}</p>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-body">
-        <div class="places-buttons">
-          <div class="row">
-            <div class="col-md-6 ml-auto mr-auto text-center">
-              <h4 class="card-title">
-                Notifications Places
-                <p class="category">Click to view notifications</p>
-              </h4>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-8 ml-auto mr-auto">
-              <div class="row">
-                <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" (click)="showNotification('top','left')">Top Left</button>
-                </div>
-                <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" (click)="showNotification('top','center')">Top
-                    Center</button>
-                </div>
-                <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" (click)="showNotification('top','right')">Top Right</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-8 ml-auto mr-auto">
-              <div class="row">
-                <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" (click)="showNotification('bottom','left')">Bottom
-                    Left</button>
-                </div>
-                <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" (click)="showNotification('bottom','center')">Bottom
-                    Center</button>
-                </div>
-                <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" (click)="showNotification('bottom','right')">Bottom
-                    Right</button>
+                <div class="row">
+                  <div class="col-lg-8 ml-auto mr-auto">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <button class="btn btn-primary btn-block" (click)="showNotification('bottom','left')">Bottom
+                          Left</button>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-primary btn-block" (click)="showNotification('bottom','center')">Bottom
+                          Center</button>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="btn btn-primary btn-block" (click)="showNotification('bottom','right')">Bottom
+                          Right</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -92,3 +104,4 @@
     </div>
   </div>
 </div>
+<fixedplugin-cmp></fixedplugin-cmp>

@@ -11,15 +11,37 @@ import { FixedPluginModule } from './shared/fixedplugin/fixedplugin.module';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
 
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from "./layouts/login/login.component";
+import { DashboardComponent } from "./pages/dashboard/dashboard.component";
+import { UserComponent } from './pages/user/user.component';
+import { TableComponent } from './pages/table/table.component';
+import { TypographyComponent } from './pages/typography/typography.component';
+import { IconsComponent } from './pages/icons/icons.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { OtherUserComponent } from './pages/otheruser/otheruser.component';
+import { TimeSheetComponent } from './pages/timesheet/timesheet.component';
+import { UserInfosComponent } from './pages/userinfos/userinfos.component';
+import { DevicesComponent } from './pages/devices/devices.component';
+import { NewPostComponent } from './pages/newpost/newpost.component';
+import { RequestsComponent } from './pages/requests/requests.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminLayoutComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent,
+    UserComponent,
+    TableComponent,
+    TypographyComponent,
+    IconsComponent,
+    NotificationsComponent,
+    TimeSheetComponent,
+    OtherUserComponent,
+    UserInfosComponent,
+    DevicesComponent,
+    NewPostComponent,
+    RequestsComponent
   ],
   imports: [
     BrowserAnimationsModule,

@@ -1,137 +1,151 @@
-<div class="row">
-    <div class="col-12">
-        <div class="card" style="padding: 15px; height: 600px;" [ngSwitch]="currentAction">
-            <div class="row" *ngSwitchCase="'All'">
-                <div class="col-4" style="text-align: center;">
-                    <a class="text-primary" style="cursor: pointer;" (click)="changeAction('All')">All requests</a>
-                </div>
-                <div class="col-4" style="text-align: center;">
-                    <a style="cursor: pointer;" (click)="changeAction('Your')">Your requests</a>
-                </div>
-                <div class="col-4" style="text-align: center;">
-                    <a style="cursor: pointer;" (click)="changeAction('Need')">Need to accept</a>
-                </div>
-            </div>
-            <div class="row" *ngSwitchCase="'Your'">
-                <div class="col-4" style="text-align: center;">
-                    <a style="cursor: pointer;" (click)="changeAction('All')">All requests</a>
-                </div>
-                <div class="col-4" style="text-align: center;">
-                    <a class="text-primary" style="cursor: pointer;" (click)="changeAction('Your')">Your requests</a>
-                </div>
-                <div class="col-4" style="text-align: center;">
-                    <a style="cursor: pointer;" (click)="changeAction('Need')">Need to accept</a>
-                </div>
-            </div>
-            <div class="row" *ngSwitchCase="'Need'">
-                <div class="col-4" style="text-align: center;">
-                    <a style="cursor: pointer;" (click)="changeAction('All')">All requests</a>
-                </div>
-                <div class="col-4" style="text-align: center;">
-                    <a style="cursor: pointer;" (click)="changeAction('Your')">Your requests</a>
-                </div>
-                <div class="col-4" style="text-align: center;">
-                    <a class="text-primary" style="cursor: pointer;" (click)="changeAction('Need')">Need to accept</a>
-                </div>
-            </div>
-            <div class="card-body" *ngSwitchCase="'All'">
-                <div class="table-responsive">
-                    <table class="table" style="max-height: 480px;">
-                        <thead class="text-primary">
-                            <th>#Code</th>
-                            <th>Request Name</th>
-                            <th>Request Type</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>#1101</td>
-                                <td>Xin nghỉ phép có lương</td>
-                                <td>Process</td>
-                            </tr>
-                            <tr>
-                                <td>#1102</td>
-                                <td>Xin nghỉ phép không lương</td>
-                                <td>Process</td>
-                            </tr>
-                            <tr>
-                                <td>#1103</td>
-                                <td>Thuyên chuyển vị trí</td>
-                                <td>Process</td>
-                            </tr>
-                            <tr>
-                                <td>#1104</td>
-                                <td>Mua khóa học trên Coursera</td>
-                                <td>Education</td>
-                            </tr>
-                            <tr>
-                                <td>#1105</td>
-                                <td>Xác nhận chứng chỉ</td>
-                                <td>Education</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+<div class="wrapper">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+        <sidebar-cmp></sidebar-cmp>
+    </div>
+    <div class="main-panel">
+        <navbar-cmp></navbar-cmp>
+        <div class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card" style="padding: 15px; height: 600px;" [ngSwitch]="currentAction">
+                        <div class="row" *ngSwitchCase="'All'">
+                            <div class="col-4" style="text-align: center;">
+                                <a class="text-primary" style="cursor: pointer;" (click)="changeAction('All')">All
+                                    requests</a>
+                            </div>
+                            <div class="col-4" style="text-align: center;">
+                                <a style="cursor: pointer;" (click)="changeAction('Your')">Your requests</a>
+                            </div>
+                            <div class="col-4" style="text-align: center;">
+                                <a style="cursor: pointer;" (click)="changeAction('Need')">Need to accept</a>
+                            </div>
+                        </div>
+                        <div class="row" *ngSwitchCase="'Your'">
+                            <div class="col-4" style="text-align: center;">
+                                <a style="cursor: pointer;" (click)="changeAction('All')">All requests</a>
+                            </div>
+                            <div class="col-4" style="text-align: center;">
+                                <a class="text-primary" style="cursor: pointer;" (click)="changeAction('Your')">Your
+                                    requests</a>
+                            </div>
+                            <div class="col-4" style="text-align: center;">
+                                <a style="cursor: pointer;" (click)="changeAction('Need')">Need to accept</a>
+                            </div>
+                        </div>
+                        <div class="row" *ngSwitchCase="'Need'">
+                            <div class="col-4" style="text-align: center;">
+                                <a style="cursor: pointer;" (click)="changeAction('All')">All requests</a>
+                            </div>
+                            <div class="col-4" style="text-align: center;">
+                                <a style="cursor: pointer;" (click)="changeAction('Your')">Your requests</a>
+                            </div>
+                            <div class="col-4" style="text-align: center;">
+                                <a class="text-primary" style="cursor: pointer;" (click)="changeAction('Need')">Need to
+                                    accept</a>
+                            </div>
+                        </div>
+                        <div class="card-body" *ngSwitchCase="'All'">
+                            <div class="table-responsive">
+                                <table class="table" style="max-height: 480px;">
+                                    <thead class="text-primary">
+                                        <th>#Code</th>
+                                        <th>Request Name</th>
+                                        <th>Request Type</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#1101</td>
+                                            <td>Xin nghỉ phép có lương</td>
+                                            <td>Process</td>
+                                        </tr>
+                                        <tr>
+                                            <td>#1102</td>
+                                            <td>Xin nghỉ phép không lương</td>
+                                            <td>Process</td>
+                                        </tr>
+                                        <tr>
+                                            <td>#1103</td>
+                                            <td>Thuyên chuyển vị trí</td>
+                                            <td>Process</td>
+                                        </tr>
+                                        <tr>
+                                            <td>#1104</td>
+                                            <td>Mua khóa học trên Coursera</td>
+                                            <td>Education</td>
+                                        </tr>
+                                        <tr>
+                                            <td>#1105</td>
+                                            <td>Xác nhận chứng chỉ</td>
+                                            <td>Education</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
-            <div class="card-body" *ngSwitchCase="'Your'">
-                <div class="table-responsive">
-                    <table class="table" style="max-height: 480px;">
-                        <thead class="text-primary">
-                            <th>Request Name</th>
-                            <th>Create Time</th>
-                            <th>Last Activity</th>
-                            <th>Status</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Xin nghỉ phép có lương</td>
-                                <td>14:00 10/04/2024</td>
-                                <td>Hoai Hai has accepted your request</td>
-                                <td>Pending</td>
-                            </tr>
-                            <tr>
-                                <td>Xin nghỉ phép không lương</td>
-                                <td>15:00 08/04/2024</td>
-                                <td>Hoai Hai has accepted your request</td>
-                                <td>Done</td>
-                            </tr>
-                            <tr>
-                                <td>Xin nghỉ phép có lương</td>
-                                <td>11:00 04/04/2024</td>
-                                <td>Hoai Hai has accepted your request</td>
-                                <td>Done</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                        <div class="card-body" *ngSwitchCase="'Your'">
+                            <div class="table-responsive">
+                                <table class="table" style="max-height: 480px;">
+                                    <thead class="text-primary">
+                                        <th>Request Name</th>
+                                        <th>Create Time</th>
+                                        <th>Last Activity</th>
+                                        <th>Status</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Xin nghỉ phép có lương</td>
+                                            <td>14:00 10/04/2024</td>
+                                            <td>Hoai Hai has accepted your request</td>
+                                            <td>Pending</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Xin nghỉ phép không lương</td>
+                                            <td>15:00 08/04/2024</td>
+                                            <td>Hoai Hai has accepted your request</td>
+                                            <td>Done</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Xin nghỉ phép có lương</td>
+                                            <td>11:00 04/04/2024</td>
+                                            <td>Hoai Hai has accepted your request</td>
+                                            <td>Done</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
-            <div class="card-body" *ngSwitchCase="'Need'">
-                <div class="table-responsive">
-                    <table class="table" style="max-height: 480px;">
-                        <thead class="text-primary">
-                            <th>Request Name</th>
-                            <th>Create Time</th>
-                            <th>Requester</th>
-                            <th>Status</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Xin nghỉ phép có lương</td>
-                                <td>14:00 14/04/2024</td>
-                                <td>Hoai Nhan</td>
-                                <td>Pending</td>
-                            </tr>
-                            <tr>
-                                <td>Xin nghỉ phép không lương</td>
-                                <td>14:00 12/04/2024</td>
-                                <td>Hong Nhung</td>
-                                <td>Done</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <div class="card-body" *ngSwitchCase="'Need'">
+                            <div class="table-responsive">
+                                <table class="table" style="max-height: 480px;">
+                                    <thead class="text-primary">
+                                        <th>Request Name</th>
+                                        <th>Create Time</th>
+                                        <th>Requester</th>
+                                        <th>Status</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Xin nghỉ phép có lương</td>
+                                            <td>14:00 14/04/2024</td>
+                                            <td>Hoai Nhan</td>
+                                            <td>Pending</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Xin nghỉ phép không lương</td>
+                                            <td>14:00 12/04/2024</td>
+                                            <td>Hong Nhung</td>
+                                            <td>Done</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<fixedplugin-cmp></fixedplugin-cmp>

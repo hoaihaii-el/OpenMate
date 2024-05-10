@@ -1,190 +1,201 @@
-<div class="row">
-  <div class="col-md-4">
-    <div class="card card-user">
-      <div class="card-body">
-        <div class="author">
-          <a>
-            <img class="avatar border-gray" style="margin-top: 80px;" src="assets/img/angular.png">
-            <h5 class="title">Lê Hoài Hải</h5>
-          </a>
-          <p class="description">
-            Team Leader - Senior
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Thông tin cơ bản</h4>
-      </div>
-      <div class="card-body">
-        <ul class="list-unstyled team-members">
-          <li>
-            <div class="row">
-              <div class="col-6">
-                Ngày sinh
-                <br />
-                <span class="text-muted">
-                  <small>21/05/2003</small>
-                </span>
-              </div>
-              <div class="col-6">
-                Giới tính
-                <br />
-                <span class="text-muted">
-                  <small>Nam</small>
-                </span>
-              </div>
-            </div>
-          </li>
-          <hr>
-          <li>
-            <div class="row">
-              <div class="col-6">
-                Số điện thoại
-                <br />
-                <span class="text-muted">
-                  <small>0123456789</small>
-                </span>
-              </div>
-              <div class="col-6">
-                Email cá nhân
-                <br />
-                <span class="text-muted">
-                  <small>hoaihai.el@gmail.com</small>
-                </span>
-              </div>
-            </div>
-          </li>
-          <hr>
-          <li>
-            <div class="row">
-              <div class="col-6">
-                Ngày vào làm
-                <br />
-                <span class="text-muted">
-                  <small>01/01/2024</small>
-                </span>
-              </div>
-              <div class="col-6">
-                Email công ty
-                <br />
-                <span class="text-muted">
-                  <small>hoaihai.123@gmail.com</small>
-                </span>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+<div class="wrapper">
+  <div class="sidebar" data-color="white" data-active-color="danger">
+    <sidebar-cmp></sidebar-cmp>
   </div>
-  <div class="col-md-8">
-    <div class="card card-user">
-      <div class="card-header">
-        <h5 class="card-title">Chỉnh sửa thông tin cá nhân</h5>
-      </div>
-      <div class="card-body">
-        <form>
-          <div class="row">
-            <div class="col-md-5 pr-1">
-              <div class="form-group">
-                <label>Họ tên</label>
-                <input type="text" class="form-control" placeholder="Họ tên" value="Lê Hoài Hải">
-              </div>
-            </div>
-            <div class="col-md-3 px-1">
-              <div class="form-group">
-                <label>Ngày sinh</label>
-                <input type="text" class="form-control" placeholder="Ngày sinh" value="21/05/2003">
-              </div>
-            </div>
-            <div class="col-md-4 pl-1">
-              <div class="form-group">
-                <label>Giới tính</label>
-                <input type="text" class="form-control" placeholder="Email" value="Nam">
+  <div class="main-panel">
+    <navbar-cmp></navbar-cmp>
+    <div class="content">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card card-user">
+            <div class="card-body">
+              <div class="author">
+                <a>
+                  <img class="avatar border-gray" style="margin-top: 80px;" src="assets/img/angular.png">
+                  <h5 class="title">Lê Hoài Hải</h5>
+                </a>
+                <p class="description">
+                  Team Leader - Senior
+                </p>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6 pr-1">
-              <div class="form-group">
-                <label>Phòng ban</label>
-                <input type="text" class="form-control" placeholder="Phòng ban" value="Solution">
-              </div>
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Thông tin cơ bản</h4>
             </div>
-            <div class="col-md-6 pl-1">
-              <div class="form-group">
-                <label>Ngày vào làm</label>
-                <input type="text" class="form-control" placeholder="Ngày vào làm" value="01/01/2024">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label>Địa chỉ liên hệ</label>
-                <input type="text" class="form-control" placeholder="Địa chỉ" value="Bình An, Dĩ An, Bình Dương">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4 pr-1">
-              <div class="form-group">
-                <label>CCCD</label>
-                <input type="text" class="form-control" disabled="" placeholder="CCCD" value="0123456789">
-              </div>
-            </div>
-            <div class="col-md-4 px-1">
-              <div class="form-group">
-                <label>Ngày cấp</label>
-                <input type="text" class="form-control" disabled="" placeholder="Ngày cấp" value="09/09/2021">
-              </div>
-            </div>
-            <div class="col-md-4 pl-1">
-              <div class="form-group">
-                <label>Nơi cấp</label>
-                <input type="text" class="form-control" disabled="" placeholder="Nơi cấp" value="Quảng Trị">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="update ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary btn-round">Update Profile</button>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="card-header">
-        <h5 class="card-title">Người liên hệ khẩn cấp</h5>
-      </div>
-      <div class="card-body" style="height: fit-content;">
-        <div class="row">
-          <div class="col-md-4 pr-1">
-            <div class="form-group">
-              <label>Họ tên</label>
-              <input type="text" class="form-control" placeholder="Họ tên" value="LHH">
-            </div>
-          </div>
-          <div class="col-md-4 px-1">
-            <div class="form-group">
-              <label>Số điện thoại</label>
-              <input type="text" class="form-control" placeholder="Số điện thoại" value="0987654321">
-            </div>
-          </div>
-          <div class="col-md-4 pl-1">
-            <div class="form-group">
-              <label>Mối quan hệ</label>
-              <input type="text" class="form-control" placeholder="Mối quan hệ" value="Anh/Chị">
+            <div class="card-body">
+              <ul class="list-unstyled team-members">
+                <li>
+                  <div class="row">
+                    <div class="col-6">
+                      Ngày sinh
+                      <br />
+                      <span class="text-muted">
+                        <small>21/05/2003</small>
+                      </span>
+                    </div>
+                    <div class="col-6">
+                      Giới tính
+                      <br />
+                      <span class="text-muted">
+                        <small>Nam</small>
+                      </span>
+                    </div>
+                  </div>
+                </li>
+                <hr>
+                <li>
+                  <div class="row">
+                    <div class="col-6">
+                      Số điện thoại
+                      <br />
+                      <span class="text-muted">
+                        <small>0123456789</small>
+                      </span>
+                    </div>
+                    <div class="col-6">
+                      Email cá nhân
+                      <br />
+                      <span class="text-muted">
+                        <small>hoaihai.el@gmail.com</small>
+                      </span>
+                    </div>
+                  </div>
+                </li>
+                <hr>
+                <li>
+                  <div class="row">
+                    <div class="col-6">
+                      Ngày vào làm
+                      <br />
+                      <span class="text-muted">
+                        <small>01/01/2024</small>
+                      </span>
+                    </div>
+                    <div class="col-6">
+                      Email công ty
+                      <br />
+                      <span class="text-muted">
+                        <small>hoaihai.123@gmail.com</small>
+                      </span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="update ml-auto mr-auto">
-            <button type="submit" class="btn btn-primary btn-round">Update</button>
+        <div class="col-md-8">
+          <div class="card card-user">
+            <div class="card-header">
+              <h5 class="card-title">Chỉnh sửa thông tin cá nhân</h5>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="row">
+                  <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                      <label>Họ tên</label>
+                      <input type="text" class="form-control" placeholder="Họ tên" value="Lê Hoài Hải">
+                    </div>
+                  </div>
+                  <div class="col-md-3 px-1">
+                    <div class="form-group">
+                      <label>Ngày sinh</label>
+                      <input type="text" class="form-control" placeholder="Ngày sinh" value="21/05/2003">
+                    </div>
+                  </div>
+                  <div class="col-md-4 pl-1">
+                    <div class="form-group">
+                      <label>Giới tính</label>
+                      <input type="text" class="form-control" placeholder="Email" value="Nam">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                      <label>Phòng ban</label>
+                      <input type="text" class="form-control" placeholder="Phòng ban" value="Solution">
+                    </div>
+                  </div>
+                  <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                      <label>Ngày vào làm</label>
+                      <input type="text" class="form-control" placeholder="Ngày vào làm" value="01/01/2024">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Địa chỉ liên hệ</label>
+                      <input type="text" class="form-control" placeholder="Địa chỉ" value="Bình An, Dĩ An, Bình Dương">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 pr-1">
+                    <div class="form-group">
+                      <label>CCCD</label>
+                      <input type="text" class="form-control" disabled="" placeholder="CCCD" value="0123456789">
+                    </div>
+                  </div>
+                  <div class="col-md-4 px-1">
+                    <div class="form-group">
+                      <label>Ngày cấp</label>
+                      <input type="text" class="form-control" disabled="" placeholder="Ngày cấp" value="09/09/2021">
+                    </div>
+                  </div>
+                  <div class="col-md-4 pl-1">
+                    <div class="form-group">
+                      <label>Nơi cấp</label>
+                      <input type="text" class="form-control" disabled="" placeholder="Nơi cấp" value="Quảng Trị">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="update ml-auto mr-auto">
+                    <button type="submit" class="btn btn-primary btn-round">Update Profile</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="card-header">
+              <h5 class="card-title">Người liên hệ khẩn cấp</h5>
+            </div>
+            <div class="card-body" style="height: fit-content;">
+              <div class="row">
+                <div class="col-md-4 pr-1">
+                  <div class="form-group">
+                    <label>Họ tên</label>
+                    <input type="text" class="form-control" placeholder="Họ tên" value="LHH">
+                  </div>
+                </div>
+                <div class="col-md-4 px-1">
+                  <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="text" class="form-control" placeholder="Số điện thoại" value="0987654321">
+                  </div>
+                </div>
+                <div class="col-md-4 pl-1">
+                  <div class="form-group">
+                    <label>Mối quan hệ</label>
+                    <input type="text" class="form-control" placeholder="Mối quan hệ" value="Anh/Chị">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="update ml-auto mr-auto">
+                  <button type="submit" class="btn btn-primary btn-round">Update</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<fixedplugin-cmp></fixedplugin-cmp>

@@ -9,8 +9,7 @@
             <input type="text" class="form-control" placeholder="Mật khẩu">
         </div>
         <div class="update ml-auto mr-auto">
-            <button type="submit" [routerLink]="['/home']" class="btn btn-primary btn-round">Đăng
-                nhập</button>
+            <button type="submit" (click)="checkLogin()" class="btn btn-primary btn-round">Đăng nhập</button>
         </div>
     </form>
 </div>
