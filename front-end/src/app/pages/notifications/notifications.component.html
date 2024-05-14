@@ -6,40 +6,34 @@
     <navbar-cmp></navbar-cmp>
     <div class="content">
       <div class="row">
-        <div class="col-lg-5 col-md-12">
-          <div class="card">
-            <table style="cursor: pointer;">
-              <tbody>
-                <tr *ngFor="let noti of notifications" (click)="onSelect(noti)">
-                  <div class="card-header" style="padding-top: 4px;">
-                    <div class="card-title" style="font-size: 24px;">{{noti.name}}</div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div [ngSwitch]="noti.level">
-                          <div class="card-category text-danger" style="font-size: 18px;" *ngSwitchCase="'Must Read'">
-                            {{noti.level}}</div>
-                          <div class="card-category text-warning" style="font-size: 18px;" *ngSwitchCase="'Important'">
-                            {{noti.level}}</div>
-                          <div class="card-category text-success" style="font-size: 18px;" *ngSwitchCase="'Normal'">
-                            {{noti.level}}</div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="card-category" style="text-align: right; font-size: 18px;">{{noti.date}}</div>
-                      </div>
-                    </div>
-                    <hr>
+        <div class="col-lg-5 col-md-5">
+          <div class="box" style="height: 600px; overflow: auto;">
+            <div class="noti-box" *ngFor="let noti of notifications" (click)="onSelect(noti)">
+              <p class="noti-name">{{noti.name}}</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <div [ngSwitch]="noti.level">
+                    <div class="noti-level text-danger" *ngSwitchCase="'Must Read'">
+                      {{noti.level}}</div>
+                    <div class="noti-level text-warning" *ngSwitchCase="'Important'">
+                      {{noti.level}}</div>
+                    <div class="noti-level text-success" *ngSwitchCase="'Normal'">
+                      {{noti.level}}</div>
                   </div>
-                </tr>
-              </tbody>
-            </table>
+                </div>
+                <div class="col-md-6">
+                  <div class="noti-date">{{noti.date}}</div>
+                </div>
+              </div>
+              <hr>
+            </div>
           </div>
         </div>
-        <div class="col-lg-7 col-md-12">
-          <div class="card" style="padding: 15px;">
-            <h5 class="card-title">{{currentNoti.name}}</h5>
-            <div class="card-category">{{currentNoti.date}}</div>
-            <hr>
+        <div class="col-lg-7 col-md-7">
+          <div class="main-box">
+            <h5 class="noti-name">{{currentNoti.name}}</h5>
+            <div class="noti-level">{{currentNoti.date}}</div>
+            <hr style="margin-bottom: 15px;">
             <p style="white-space: pre-wrap;">{{currentNoti.content}}</p>
             <p style="white-space: pre-wrap;">{{currentNoti.content}}</p>
             <p style="white-space: pre-wrap;">{{currentNoti.content}}</p>

@@ -1,0 +1,105 @@
+.messages-array {
+    background-color: white;
+    border-radius: 10px;
+    height: 630px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.message-detail {
+    background-color: white;
+    border-radius: 10px;
+    height: 630px;
+    padding: 10px 20px;
+}
+
+.message-active {
+    background-color: #CDE8E5;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+}
+
+.user-img {
+    display: inline-block;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    //background-color: #CDE8E5;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.user-img img {
+    width: auto;
+    height: 100%;
+}
+
+.message-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.user-name {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding-left: 15px;
+}
+
+.messages {
+    height: 520px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.message-box-rev {
+    position: sticky;
+    width: 100%;
+    text-align: left;
+    margin: 3px 0;
+}
+
+.message-rev {
+    padding: 10px 20px;
+    background-color: #7AB2B2;
+    border-radius: 5px;
+    display: inline-block;
+    width: auto;
+}
+
+.message-box-send {
+    position: sticky;
+    width: 100%;
+    text-align: right;
+    margin: 3px 0;
+}
+
+.message-send {
+    padding: 10px 20px;
+    background-color: #CDE8E5;
+    border-radius: 5px;
+    display: inline-block;
+    width: auto;
+}
+
+.not-read {
+    color: red;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+
+.input-message {
+    height: 50px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}

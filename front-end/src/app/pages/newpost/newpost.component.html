@@ -7,13 +7,6 @@
         <div class="content">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Hướng dẫn</h5>
-                </div>
-                <div style="padding-left: 20px; padding-right: 20px;">
-                    <p>Sử dụng tag &lt;hl&gt; để highlight.<br>Sử dụng tag
-                        &lt;link&gt; để gắn link.</p>
-                </div>
-                <div class="card-header">
                     <h5 class="card-title">Tạo bài viết mới</h5>
                 </div>
                 <div class="card-body">
@@ -38,14 +31,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Nội dung</label>
-                                    <textarea class="form-control" style="height: 300px; max-height: 500px;"
-                                        placeholder="Content here"></textarea>
-                                </div>
-                            </div>
+                        <div>
+                            <label>Nội dung</label>
+                            <ckeditor style="height: 400px;" [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
                         </div>
                         <div class="row">
                             <div class="update ml-auto mr-auto">

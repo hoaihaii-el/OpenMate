@@ -1,325 +1,361 @@
-<div class="row">
-    <div class="col-12">
-        <div class="card" style="padding: 15px;">
+<div class="wrapper">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+        <sidebar-cmp></sidebar-cmp>
+    </div>
+    <div class="main-panel">
+        <navbar-cmp></navbar-cmp>
+        <div class="content">
             <div class="row">
-                <div class="col-10">
-                    <form>
-                        <div class="input-group no-border">
-                            <input type="text" value="" class="form-control" placeholder="Search by name...">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <i class="nc-icon nc-zoom-split"></i>
-                                </div>
+                <div class="col-12">
+                    <div class="card" style="padding: 15px;">
+                        <div class="row">
+                            <div class="col-10">
+                                <form>
+                                    <div class="input-group no-border">
+                                        <input type="text" value="" class="form-control"
+                                            placeholder="Search by name...">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <i class="nc-icon nc-zoom-split"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-2">
+                                <button type="button" class="btn" style="margin: 0;" (click)="openModal()">
+                                    Thêm nhân viên
+                                </button>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="col-2">
-                    <button type="button" class="btn" style="margin: 0;" (click)="openModal()">
-                        Thêm nhân viên
-                    </button>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead class="text-primary">
-                            <th>#Code</th>
-                            <th>Full Name</th>
-                            <th>Title</th>
-                            <th>Level</th>
-                            <th>Division</th>
-                            <th></th>
-                            <th></th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>2401</td>
-                                <td>Le Hoai Hai</td>
-                                <td>Team Leader</td>
-                                <td>Senior</td>
-                                <td>Shark1</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-simple-remove text-danger" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2402</td>
-                                <td>Hoai Nhan</td>
-                                <td>Staff</td>
-                                <td>Junior</td>
-                                <td>Shark1</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-simple-remove text-danger" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2403</td>
-                                <td>Le Hong Nhung</td>
-                                <td>Manager</td>
-                                <td>Senior</td>
-                                <td>Marketing</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-simple-remove text-danger" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2404</td>
-                                <td>Lan Anh</td>
-                                <td>Part-time</td>
-                                <td>No</td>
-                                <td>Human Resource</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-simple-remove text-danger" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2405</td>
-                                <td>Thai Tuan</td>
-                                <td>Team Leader</td>
-                                <td>Junior</td>
-                                <td>Human Resource</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-simple-remove text-danger" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2406</td>
-                                <td>Thai Tuan</td>
-                                <td>Team Leader</td>
-                                <td>Junior</td>
-                                <td>Human Resource</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-simple-remove text-danger" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2407</td>
-                                <td>Thai Tuan</td>
-                                <td>Team Leader</td>
-                                <td>Junior</td>
-                                <td>Human Resource</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-simple-remove text-danger" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2408</td>
-                                <td>Thai Tuan</td>
-                                <td>Team Leader</td>
-                                <td>Junior</td>
-                                <td>Human Resource</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-simple-remove text-danger" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2409</td>
-                                <td>Le Hoai Hai</td>
-                                <td>8:00 - 18:00</td>
-                                <td>1hr</td>
-                                <td>9hrs</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-simple-remove text-danger" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2410</td>
-                                <td>Le Hoai Hai</td>
-                                <td>8:00 - 18:00</td>
-                                <td>1hr</td>
-                                <td>9hrs</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-simple-remove text-danger" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2411</td>
-                                <td>Le Hoai Hai</td>
-                                <td>8:00 - 18:00</td>
-                                <td>1hr</td>
-                                <td>9hrs</td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a style="cursor: pointer;">
-                                        <i class="nc-icon nc-simple-remove text-danger" style="font-size: 20px;"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="exampleModal"
-    style="display: block; z-index: 1050; opacity: 100; top: 100px; overflow: visible;"
-    aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="showModal">
-    <div class="modal-dialog" style="max-width: 80%;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-12">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-5 pr-1">
-                                    <div class="form-group">
-                                        <label>Họ tên</label>
-                                        <input type="text" class="form-control" placeholder="Họ tên"
-                                            value="Lê Hoài Hải">
-                                    </div>
-                                </div>
-                                <div class="col-md-3 px-1">
-                                    <div class="form-group">
-                                        <label>Ngày sinh</label>
-                                        <input type="text" class="form-control" placeholder="Ngày sinh"
-                                            value="21/05/2003">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 pl-1">
-                                    <div class="form-group">
-                                        <label>Giới tính</label>
-                                        <select class="custom-select">
-                                            <option value="1">Nam</option>
-                                            <option value="2">Nữ</option>
-                                        </select>
-                                    </div>
-                                </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="text-primary">
+                                        <th>#Code</th>
+                                        <th>Full Name</th>
+                                        <th>Title</th>
+                                        <th>Level</th>
+                                        <th>Division</th>
+                                        <th></th>
+                                        <th></th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2401</td>
+                                            <td>Le Hoai Hai</td>
+                                            <td>Team Leader</td>
+                                            <td>Senior</td>
+                                            <td>Shark1</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-simple-remove text-danger"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2402</td>
+                                            <td>Hoai Nhan</td>
+                                            <td>Staff</td>
+                                            <td>Junior</td>
+                                            <td>Shark1</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-simple-remove text-danger"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2403</td>
+                                            <td>Le Hong Nhung</td>
+                                            <td>Manager</td>
+                                            <td>Senior</td>
+                                            <td>Marketing</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-simple-remove text-danger"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2404</td>
+                                            <td>Lan Anh</td>
+                                            <td>Part-time</td>
+                                            <td>No</td>
+                                            <td>Human Resource</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-simple-remove text-danger"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2405</td>
+                                            <td>Thai Tuan</td>
+                                            <td>Team Leader</td>
+                                            <td>Junior</td>
+                                            <td>Human Resource</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-simple-remove text-danger"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2406</td>
+                                            <td>Thai Tuan</td>
+                                            <td>Team Leader</td>
+                                            <td>Junior</td>
+                                            <td>Human Resource</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-simple-remove text-danger"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2407</td>
+                                            <td>Thai Tuan</td>
+                                            <td>Team Leader</td>
+                                            <td>Junior</td>
+                                            <td>Human Resource</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-simple-remove text-danger"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2408</td>
+                                            <td>Thai Tuan</td>
+                                            <td>Team Leader</td>
+                                            <td>Junior</td>
+                                            <td>Human Resource</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-simple-remove text-danger"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2409</td>
+                                            <td>Le Hoai Hai</td>
+                                            <td>8:00 - 18:00</td>
+                                            <td>1hr</td>
+                                            <td>9hrs</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-simple-remove text-danger"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2410</td>
+                                            <td>Le Hoai Hai</td>
+                                            <td>8:00 - 18:00</td>
+                                            <td>1hr</td>
+                                            <td>9hrs</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-simple-remove text-danger"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2411</td>
+                                            <td>Le Hoai Hai</td>
+                                            <td>8:00 - 18:00</td>
+                                            <td>1hr</td>
+                                            <td>9hrs</td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-tap-01 text-warning"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a style="cursor: pointer;">
+                                                    <i class="nc-icon nc-simple-remove text-danger"
+                                                        style="font-size: 20px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="row">
-                                <div class="col-md-8 pr-1">
-                                    <div class="form-group">
-                                        <label>Phòng ban</label>
-                                        <input type="text" class="form-control" placeholder="Phòng ban"
-                                            value="Solution">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 pl-1">
-                                    <div class="form-group">
-                                        <label>Ngày vào làm</label>
-                                        <input type="text" class="form-control" placeholder="Ngày vào làm"
-                                            value="01/01/2024">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4 pr-1">
-                                    <div class="form-group">
-                                        <label>Title</label>
-                                        <input type="text" class="form-control" placeholder="Title">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 px-1">
-                                    <div class="form-group">
-                                        <label>Level</label>
-                                        <input type="text" class="form-control" placeholder="Level">
-                                    </div>
-                                </div>
-                                <div class="col-md-4 pl-1">
-                                    <div class="form-group">
-                                        <label>Mã người quản lý</label>
-                                        <input type="text" class="form-control" placeholder="Mã người quản lý">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Địa chỉ liên hệ</label>
-                                        <input type="text" class="form-control" placeholder="Địa chỉ"
-                                            value="Bình An, Dĩ An, Bình Dương">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Thêm</button>
+
+            <div class="modal fade" id="exampleModal"
+                style="display: block; z-index: 1050; opacity: 100; top: 100px; overflow: visible;"
+                aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="showModal">
+                <div class="modal-dialog" style="max-width: 80%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                (click)="closeModal()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-5 pr-1">
+                                                <div class="form-group">
+                                                    <label>Họ tên</label>
+                                                    <input type="text" class="form-control" placeholder="Họ tên"
+                                                        value="Lê Hoài Hải">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 px-1">
+                                                <div class="form-group">
+                                                    <label>Ngày sinh</label>
+                                                    <input type="text" class="form-control" placeholder="Ngày sinh"
+                                                        value="21/05/2003">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-1">
+                                                <div class="form-group">
+                                                    <label>Giới tính</label>
+                                                    <select class="custom-select">
+                                                        <option value="1">Nam</option>
+                                                        <option value="2">Nữ</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8 pr-1">
+                                                <div class="form-group">
+                                                    <label>Phòng ban</label>
+                                                    <input type="text" class="form-control" placeholder="Phòng ban"
+                                                        value="Solution">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-1">
+                                                <div class="form-group">
+                                                    <label>Ngày vào làm</label>
+                                                    <input type="text" class="form-control" placeholder="Ngày vào làm"
+                                                        value="01/01/2024">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                    <label>Title</label>
+                                                    <input type="text" class="form-control" placeholder="Title">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 px-1">
+                                                <div class="form-group">
+                                                    <label>Level</label>
+                                                    <input type="text" class="form-control" placeholder="Level">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-1">
+                                                <div class="form-group">
+                                                    <label>Mã người quản lý</label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Mã người quản lý">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Địa chỉ liên hệ</label>
+                                                    <input type="text" class="form-control" placeholder="Địa chỉ"
+                                                        value="Bình An, Dĩ An, Bình Dương">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Thêm</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<fixedplugin-cmp></fixedplugin-cmp>

@@ -7,6 +7,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { FooterModule } from './shared/footer/footer.module';
 import { NavbarModule } from './shared/navbar/navbar.module';
 import { FixedPluginModule } from './shared/fixedplugin/fixedplugin.module';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
@@ -24,6 +25,7 @@ import { UserInfosComponent } from './pages/userinfos/userinfos.component';
 import { DevicesComponent } from './pages/devices/devices.component';
 import { NewPostComponent } from './pages/newpost/newpost.component';
 import { RequestsComponent } from './pages/requests/requests.component';
+import { MessagesComponent } from "./pages/messages/messages.component";
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { RequestsComponent } from './pages/requests/requests.component';
     UserInfosComponent,
     DevicesComponent,
     NewPostComponent,
-    RequestsComponent
+    RequestsComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -52,7 +55,8 @@ import { RequestsComponent } from './pages/requests/requests.component';
     NavbarModule,
     ToastrModule.forRoot(),
     FooterModule,
-    FixedPluginModule
+    FixedPluginModule,
+    CKEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

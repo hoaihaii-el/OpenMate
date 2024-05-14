@@ -13,6 +13,7 @@ import { UserInfosComponent } from './pages/userinfos/userinfos.component';
 import { DevicesComponent } from './pages/devices/devices.component';
 import { NewPostComponent } from './pages/newpost/newpost.component';
 import { RequestsComponent } from './pages/requests/requests.component';
+import { MessagesComponent } from './pages/messages/messages.component';
 
 export const AppRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -28,5 +29,6 @@ export const AppRoutes: Routes = [
   { path: 'userinfos', component: UserInfosComponent },
   { path: 'devices', component: DevicesComponent },
   { path: 'newpost', component: NewPostComponent },
-  { path: 'requests', component: RequestsComponent }
+  { path: 'requests', component: RequestsComponent },
+  { path: 'messages', component: MessagesComponent }
 ]

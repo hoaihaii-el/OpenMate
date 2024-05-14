@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
     selector: 'newpost-cmp',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
     templateUrl: 'newpost.component.html'
 })
 
-export class NewPostComponent { }
+export class NewPostComponent {
+    public Editor = ClassicEditor;
+}

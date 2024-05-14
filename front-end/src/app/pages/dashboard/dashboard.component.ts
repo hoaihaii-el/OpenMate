@@ -4,7 +4,8 @@ import { Notification } from 'app/models/notifications.model';
 @Component({
   selector: 'dashboard-cmp',
   moduleId: module.id,
-  templateUrl: 'dashboard.component.html'
+  templateUrl: 'dashboard.component.html',
+  styleUrls: ['dashboard.component.scss']
 })
 
 export class DashboardComponent implements OnInit {
@@ -16,7 +17,8 @@ export class DashboardComponent implements OnInit {
     this.notifications = [
       { id: 1, name: 'Thông báo thay đổi nhân sự team The First Shark', level: 'Must Read', date: '29/03/2024', content: '123' },
       { id: 2, name: 'Thông báo thay đổi quy định quản lý cơ sở vật chất', level: 'Important', date: '28/03/2024', content: '123' },
-      { id: 3, name: 'Thông báo về giải đấu VINASA Cup', level: 'Normal', date: '27/03/2024', content: '123' }
+      { id: 3, name: 'Thông báo về giải đấu VINASA Cup', level: 'Normal', date: '27/03/2024', content: '123' },
+      { id: 4, name: 'Thông báo về giải đấu VINASA Cup', level: 'Must Read', date: '27/03/2024', content: '123' }
     ];
 
     this.checkIn = "__:__";

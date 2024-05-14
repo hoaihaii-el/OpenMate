@@ -7,119 +7,160 @@
     <div class="content">
       <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card card-stats">
-            <div class="card-body ">
-              <div class="row">
-                <div class="col-5 col-md-4">
-                  <button style="border: none; background: none; outline: none;" (click)="doCheckIn()">
-                    <div class="icon-big text-center icon-warning">
-                      <i class="nc-icon nc-button-play text-success"></i>
-                    </div>
-                  </button>
-                </div>
-                <div class="col-7 col-md-8">
-                  <div class="numbers">
-                    <p class="card-title">Check-in</p>
-                    <p class="card-category">{{checkIn}}</p>
-                  </div>
-                </div>
-              </div>
+          <div class="row box">
+            <div class="col-4" style="align-items: center; display: flex; justify-content: center;">
+              <i class="nc-icon nc-button-play text-success icon" (click)="doCheckIn()"></i>
+            </div>
+            <div class="col-8">
+              <p class="txt">Check-in</p>
+              <p class="txt">{{checkIn}}</p>
             </div>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card card-stats">
-            <div class="card-body ">
-              <div class="row">
-                <div class="col-5 col-md-4">
-                  <button style="border: none; background: none; outline: none;" (click)="doCheckOut()">
-                    <div class="icon-big text-center icon-warning">
-                      <i class="nc-icon nc-button-pause text-danger"></i>
-                    </div>
-                  </button>
-                </div>
-                <div class="col-7 col-md-8">
-                  <div class="numbers">
-                    <p class="card-title">Check-out</p>
-                    <p class="card-category">{{checkOut}}</p>
-                  </div>
-                </div>
-              </div>
+          <div class="row box">
+            <div class="col-4" style="align-items: center; display: flex; justify-content: center;">
+              <i class="nc-icon nc-button-pause text-danger icon" (click)="doCheckOut()"></i>
+            </div>
+            <div class="col-8">
+              <p class="txt">Check-out</p>
+              <p class="txt">{{checkOut}}</p>
             </div>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card card-stats">
-            <div class="card-body ">
-              <div class="row">
-                <div class="col-12 col-md-12">
-                  <div class="numbers">
-                    <p class="card-title">Working-type</p>
-                    <p class="card-category">Office
-                    <p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="box">
+            <p class="txt">Working-type</p>
+            <p class="txt">Office</p>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card card-stats">
-            <div class="card-body ">
-              <div class="row">
-                <div class="col-6 col-md-6">
-                  <div class="numbers" style="text-align: left;">
-                    <p class="card-title">Total:</p>
-                    <p class="card-category">Avg:
-                    <p>
-                  </div>
-                </div>
-                <div class="col-6 col-md-6">
-                  <div class="numbers">
-                    <p class="card-title">8.0hrs</p>
-                    <p class="card-category">8.5hrs
-                    <p>
-                  </div>
-                </div>
+          <div class="row box">
+            <div class="col-6 col-md-6">
+              <div style="text-align: left;">
+                <p class="txt">Today:</p>
+                <p class="txt">Average:
+                <p>
+              </div>
+            </div>
+            <div class="col-6 col-md-6">
+              <div>
+                <p class="txt">8.0hrs</p>
+                <p class="txt">8.5hrs
+                <p>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
-          <div class="card" style="min-height: 530px;">
-            <div class="card-header ">
-              <h5 class="card-title">Notifications</h5>
+        <div class="col-lg-6 col-md-6">
+          <div class="box" style="height: 490px; overflow: auto;">
+            <p class="txt" style="margin-bottom: 10px;">New Notifications</p>
+            <hr style="margin-bottom: 10px;">
+            <div class="noti-box" *ngFor="let noti of notifications" (click)="onSelect(noti)">
+              <p class="noti-name">{{noti.name}}</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <div [ngSwitch]="noti.level">
+                    <div class="noti-level text-danger" *ngSwitchCase="'Must Read'">
+                      {{noti.level}}</div>
+                    <div class="noti-level text-warning" *ngSwitchCase="'Important'">
+                      {{noti.level}}</div>
+                    <div class="noti-level text-success" *ngSwitchCase="'Normal'">
+                      {{noti.level}}</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="noti-date">{{noti.date}}</div>
+                </div>
+              </div>
               <hr>
             </div>
-            <table style="cursor: pointer;">
-              <tbody>
-                <tr *ngFor="let noti of notifications" (click)="onSelect(noti)">
-                  <div class="card-header" style="padding-top: 4px;">
-                    <div class="card-title" style="font-size: 24px;">{{noti.name}}</div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div [ngSwitch]="noti.level">
-                          <div class="card-category text-danger" style="font-size: 18px;" *ngSwitchCase="'Must Read'">
-                            {{noti.level}}</div>
-                          <div class="card-category text-warning" style="font-size: 18px;" *ngSwitchCase="'Important'">
-                            {{noti.level}}</div>
-                          <div class="card-category text-success" style="font-size: 18px;" *ngSwitchCase="'Normal'">
-                            {{noti.level}}</div>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="card-category" style="text-align: right; font-size: 18px;">{{noti.date}}</div>
-                      </div>
-                    </div>
-                    <hr>
-                  </div>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
+        <div class="col-lg-6 col-md-6">
+          <div class="box" style="min-height: 490px;">
+            <p class="txt" style="margin-bottom: 10px; margin-left: 10px; text-align: left;">Features</p>
+            <hr style="margin-bottom: 20px;">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/timesheet']">
+                  <div class="icon-box">
+                    <i class="fa-regular fa-clock feature-icon"></i>
+                  </div>
+                  <h5 class="feature-name">TimeSheets</h5>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/requests']">
+                  <div class="icon-box">
+                    <i class="fa-regular fa-newspaper feature-icon"></i>
+                  </div>
+                  <h5 class="feature-name">Requests</h5>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/otheruser']">
+                  <div class="icon-box">
+                    <i class="fa-solid fa-users feature-icon"></i>
+                  </div>
+                  <h5 class="feature-name">OtherUser</h5>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/devices']">
+                  <div class="icon-box">
+                    <i class="fa-solid fa-computer feature-icon"></i>
+                  </div>
+                  <h5 class="feature-name">Devices</h5>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/newpost']">
+                  <div class="icon-box">
+                    <i class="fa-regular fa-paper-plane feature-icon"></i>
+                  </div>
+                  <h5 class="feature-name">NewPost</h5>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/userinfos']">
+                  <div class="icon-box">
+                    <i class="fa-regular fa-user feature-icon"></i>
+                  </div>
+                  <h5 class="feature-name">UsersInfo</h5>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/userinfos']">
+                  <div class="icon-box">
+                    <i class="fa-solid fa-list-check feature-icon"></i>
+                  </div>
+                  <h5 class="feature-name">UsersTasks</h5>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/userinfos']">
+                  <div class="icon-box">
+                    <i class="fa-solid fa-network-wired feature-icon"></i>
+                  </div>
+                  <h5 class="feature-name">Structure</h5>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/userinfos']">
+                  <div class="icon-box">
+                    <i class="fa-regular fa-flag feature-icon"></i>
+                  </div>
+                  <h5 class="feature-name">DailyReport</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row">
         <div class="col-md-6">
           <div class="card" style="min-height: 530px;">
             <div class="card-header ">
@@ -196,7 +237,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

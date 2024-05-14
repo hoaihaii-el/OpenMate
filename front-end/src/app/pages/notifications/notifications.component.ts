@@ -5,7 +5,8 @@ import { Notification } from 'app/models/notifications.model';
 @Component({
   selector: 'notifications-cmp',
   moduleId: module.id,
-  templateUrl: 'notifications.component.html'
+  templateUrl: 'notifications.component.html',
+  styleUrls: ['notifications.component.scss']
 })
 
 export class NotificationsComponent implements OnInit {
