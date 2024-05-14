@@ -25,7 +25,7 @@ namespace StaffManagmentNET.Models
 
         [MaxLength(20)]
         public string PersonalEmail { get; set; } = "";
-
+        public string AvatarURL { get; set; } = "";
 
 
         [MaxLength(10)]

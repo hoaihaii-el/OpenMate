@@ -1,28 +1,29 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using StaffManagmentNET.Models;
 
 namespace StaffManagmentNET.Repositories
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<AppUser>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
         }
 
-        DbSet<Staff>? Staffs { get; set; }
-        DbSet<FamilyInfo>? FamilyInfoes { get; set; }
-        DbSet<TimeSheet>? TimeSheets { get; set; }
-        DbSet<TaskDetail>? TaskDetails { get; set; }
-        DbSet<Device>? Devices { get; set; }
-        DbSet<Division>? Divisions { get; set; }
-        DbSet<Notification>? Notifications { get; set; }
-        DbSet<ChatRoom>? ChatRooms { get; set; }
-        DbSet<ChatRoomDetail>? ChatRoomsDetail { get; set; }
-        DbSet<Message>? Messages { get; set; }
-        DbSet<Request>? Requests { get; set; }
-        DbSet<RequestCreateDetail> RequestCreateDetails { get; set; }
-        DbSet<RequestAcceptDetail> RequestAcceptDetails { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
+        public DbSet<FamilyInfo> FamilyInfoes { get; set; }
+        public DbSet<TimeSheet> TimeSheets { get; set; }
+        public DbSet<TaskDetail> TaskDetails { get; set; }
+        public DbSet<Device> Devices { get; set; }
+        public DbSet<Division> Divisions { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<ChatRoom> ChatRooms { get; set; }
+        public DbSet<ChatRoomDetail> ChatRoomsDetail { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<Request> Requests { get; set; }
+        public DbSet<RequestCreateDetail> RequestCreateDetails { get; set; }
+        public DbSet<RequestAcceptDetail> RequestAcceptDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
