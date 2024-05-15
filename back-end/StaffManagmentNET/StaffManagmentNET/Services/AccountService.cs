@@ -110,6 +110,9 @@ namespace StaffManagmentNET.Services
             staff.Manager = await _context.Staffs.FindAsync(staff.ManagerID);
             staff.Division = await _context.Divisions.FindAsync(staff.DivisionID);
 
+            _context.Staffs.Add(staff);
+            await _context.SaveChangesAsync();
+
             return staff;
         }
 

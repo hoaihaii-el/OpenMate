@@ -13,6 +13,7 @@ namespace StaffManagmentNET.Models
         public DateTime CheckOut { get; set; }
         public int LunchBreakHour { get; set; } = 1;
         public string WorkingType { get; set; } = "";
+        public double Total { get; set; }
 
         [ForeignKey("StaffID")]
         public Staff? Staff { get; set; }
