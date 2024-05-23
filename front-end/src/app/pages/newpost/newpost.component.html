@@ -15,7 +15,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Tiêu đề</label>
-                                    <input type="text" class="form-control" placeholder="Tiêu đề">
+                                    <input type="text" class="form-control" placeholder="Tiêu đề" [(ngModel)]="title">
                                 </div>
                             </div>
                         </div>
@@ -23,21 +23,23 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Mức độ</label>
-                                    <select class="custom-select">
-                                        <option value="1">Must Read</option>
-                                        <option value="2">Important</option>
-                                        <option value="3">Normal</option>
+                                    <select class="custom-select" [(ngModel)]="level">
+                                        <option value=1>Must Read</option>
+                                        <option value=2>Important</option>
+                                        <option value=3>Normal</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div>
                             <label>Nội dung</label>
-                            <ckeditor style="height: 400px;" [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+                            <ckeditor style="height: 400px;" [editor]="Editor" [(ngModel)]="model.editorData">
+                            </ckeditor>
                         </div>
                         <div class="row">
                             <div class="update ml-auto mr-auto">
-                                <button type="submit" class="btn btn-primary btn-round">Create</button>
+                                <button type="submit" class="btn btn-primary btn-round"
+                                    (click)="uplodaNewpost()">Create</button>
                             </div>
                         </div>
                     </form>

@@ -378,10 +378,8 @@ namespace StaffManagmentNET.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreatorID")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Level")
                         .IsRequired()
@@ -393,8 +391,6 @@ namespace StaffManagmentNET.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("NotiID");
-
-                    b.HasIndex("CreatorID");
 
                     b.ToTable("Notifications");
                 });
@@ -519,6 +515,10 @@ namespace StaffManagmentNET.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("AvatarURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CompanyEmail")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -572,8 +572,6 @@ namespace StaffManagmentNET.Migrations
                     b.HasKey("StaffID");
 
                     b.HasIndex("DivisionID");
-
-                    b.HasIndex("ManagerID");
 
                     b.ToTable("Staffs");
                 });
@@ -631,6 +629,13 @@ namespace StaffManagmentNET.Migrations
 
                     b.Property<int>("LunchBreakHour")
                         .HasColumnType("int");
+
+                    b.Property<string>("Off")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Total")
+                        .HasColumnType("float");
 
                     b.Property<string>("WorkingType")
                         .IsRequired()
@@ -754,17 +759,6 @@ namespace StaffManagmentNET.Migrations
                     b.Navigation("Sender");
                 });
 
-            modelBuilder.Entity("StaffManagmentNET.Models.Notification", b =>
-                {
-                    b.HasOne("StaffManagmentNET.Models.Staff", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Creator");
-                });
-
             modelBuilder.Entity("StaffManagmentNET.Models.RequestAcceptDetail", b =>
                 {
                     b.HasOne("StaffManagmentNET.Models.Staff", "Manager")
@@ -803,15 +797,7 @@ namespace StaffManagmentNET.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StaffManagmentNET.Models.Staff", "Manager")
-                        .WithMany()
-                        .HasForeignKey("ManagerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Division");
-
-                    b.Navigation("Manager");
                 });
 
             modelBuilder.Entity("StaffManagmentNET.Models.TaskDetail", b =>

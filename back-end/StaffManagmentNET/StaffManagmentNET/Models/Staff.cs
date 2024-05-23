@@ -33,8 +33,6 @@ namespace StaffManagmentNET.Models
         [MaxLength(50)]
         public string DivisionID { get; set; } = "";
 
-        [ForeignKey("ManagerID")]
-        public Staff? Manager { get; set; }
         [ForeignKey("DivisionID")]
         public Division? Division { get; set; }
     }

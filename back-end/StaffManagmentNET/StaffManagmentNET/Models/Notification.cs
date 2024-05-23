@@ -11,10 +11,6 @@ namespace StaffManagmentNET.Models
         public string Content { get; set; } = "";
         [MaxLength(50)]
         public string Level { get; set; } = "";
-        [MaxLength(10)]
-        public string CreatorID { get; set; } = "";
-
-        [ForeignKey("CreatorID")]
-        public Staff? Creator { get; set; }
+        public DateTime Date { get; set; }
     }
 }

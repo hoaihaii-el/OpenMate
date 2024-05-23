@@ -14,6 +14,10 @@ import { DevicesComponent } from './pages/devices/devices.component';
 import { NewPostComponent } from './pages/newpost/newpost.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { MessagesComponent } from './pages/messages/messages.component';
+import { RequestDetailComponent } from './pages/requestdetail/requestdetail.component';
+import { UserTaskComponent } from './pages/usertask/usertask.component';
+import { SalaryComponent } from './pages/salary/salary.component';
+import { StructureComponent } from './pages/structure/structure.component';
 
 export const AppRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -30,5 +34,9 @@ export const AppRoutes: Routes = [
   { path: 'devices', component: DevicesComponent },
   { path: 'newpost', component: NewPostComponent },
   { path: 'requests', component: RequestsComponent },
-  { path: 'messages', component: MessagesComponent }
+  { path: 'messages', component: MessagesComponent },
+  { path: 'requestdetail', component: RequestDetailComponent },
+  { path: 'usertask', component: UserTaskComponent },
+  { path: 'salary', component: SalaryComponent },
+  { path: 'structure', component: StructureComponent }
 ]

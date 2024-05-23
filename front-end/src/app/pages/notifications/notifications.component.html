@@ -9,7 +9,7 @@
         <div class="col-lg-5 col-md-5">
           <div class="box" style="height: 600px; overflow: auto;">
             <div class="noti-box" *ngFor="let noti of notifications" (click)="onSelect(noti)">
-              <p class="noti-name">{{noti.name}}</p>
+              <p class="noti-name">{{noti.notiName}}</p>
               <div class="row">
                 <div class="col-md-6">
                   <div [ngSwitch]="noti.level">
@@ -31,67 +31,10 @@
         </div>
         <div class="col-lg-7 col-md-7">
           <div class="main-box">
-            <h5 class="noti-name">{{currentNoti.name}}</h5>
+            <h5 class="noti-name">{{currentNoti.notiName}}</h5>
             <div class="noti-level">{{currentNoti.date}}</div>
             <hr style="margin-bottom: 15px;">
-            <p style="white-space: pre-wrap;">{{currentNoti.content}}</p>
-            <p style="white-space: pre-wrap;">{{currentNoti.content}}</p>
-            <p style="white-space: pre-wrap;">{{currentNoti.content}}</p>
-            <p style="white-space: pre-wrap;">{{currentNoti.content}}</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-body">
-              <div class="places-buttons">
-                <div class="row">
-                  <div class="col-md-6 ml-auto mr-auto text-center">
-                    <h4 class="card-title">
-                      Notifications Places
-                      <p class="category">Click to view notifications</p>
-                    </h4>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-8 ml-auto mr-auto">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <button class="btn btn-primary btn-block" (click)="showNotification('top','left')">Top
-                          Left</button>
-                      </div>
-                      <div class="col-md-4">
-                        <button class="btn btn-primary btn-block" (click)="showNotification('top','center')">Top
-                          Center</button>
-                      </div>
-                      <div class="col-md-4">
-                        <button class="btn btn-primary btn-block" (click)="showNotification('top','right')">Top
-                          Right</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-8 ml-auto mr-auto">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <button class="btn btn-primary btn-block" (click)="showNotification('bottom','left')">Bottom
-                          Left</button>
-                      </div>
-                      <div class="col-md-4">
-                        <button class="btn btn-primary btn-block" (click)="showNotification('bottom','center')">Bottom
-                          Center</button>
-                      </div>
-                      <div class="col-md-4">
-                        <button class="btn btn-primary btn-block" (click)="showNotification('bottom','right')">Bottom
-                          Right</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div [innerHTML]="currentNoti.content"></div>
           </div>
         </div>
       </div>

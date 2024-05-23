@@ -17,6 +17,6 @@ namespace StaffManagmentNET.ViewModels
         public string Password { get; set; } = "";
         public string ManagerID { get; set; } = "";
         public string DivisionID { get; set; } = "";
-        public List<string> Roles = new List<string>();
+        public string Roles { get; set; } = "";
     }
 }

@@ -33,10 +33,9 @@ namespace StaffManagmentNET.Services
             {
                 Id = await AutoID(),
                 Email = register.PersonalEmail,
+                UserName = Guid.NewGuid().ToString(),
                 PhoneNumber = register.Phone,
             };
-
-            await _userManager.CreateAsync(user, register.Password);
 
             if (!await _roleManager.RoleExistsAsync(AppRole.Admin))
             {
@@ -87,11 +86,6 @@ namespace StaffManagmentNET.Services
                 );
             }
 
-            foreach (var role in register.Roles)
-            {
-                await _userManager.AddToRoleAsync(user, role);
-            }
-
             var staff = new Staff
             {
                 StaffID = user.Id,
@@ -105,12 +99,20 @@ namespace StaffManagmentNET.Services
                 PersonalEmail = register.PersonalEmail,
                 ManagerID = register.ManagerID,
                 DivisionID = register.DivisionID,
+                AvatarURL = "https://static.vecteezy.com/system/resources/previews/009/292/244/original/default-avatar-icon-of-social-media-user-vector.jpg"
             };
 
-            staff.Manager = await _context.Staffs.FindAsync(staff.ManagerID);
             staff.Division = await _context.Divisions.FindAsync(staff.DivisionID);
 
             _context.Staffs.Add(staff);
+
+            await _userManager.CreateAsync(user, register.Password);
+
+            foreach (var role in register.Roles.Split("_", StringSplitOptions.TrimEntries))
+            {
+                await _userManager.AddToRoleAsync(user, role);
+            }
+
             await _context.SaveChangesAsync();
 
             return staff;

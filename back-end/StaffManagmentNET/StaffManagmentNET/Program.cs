@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using StaffManagmentNET.Models;
 using StaffManagmentNET.Repositories;
+using StaffManagmentNET.Services;
 using StaffManagmentNET.StaticServices;
 using System.Text;
 
@@ -31,7 +32,7 @@ namespace StaffManagmentNET
             builder.Services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.
-                options.Password.RequireDigit = true;
+                options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
@@ -40,6 +41,10 @@ namespace StaffManagmentNET
                 options.User.RequireUniqueEmail = true;
             });
 
+            builder.Services.AddScoped<IAccountRepo, AccountService>();
+            builder.Services.AddScoped<ITimeSheetRepo, TimeSheetService>();
+            builder.Services.AddScoped<IDivisionRepo, DivisionService>();
+            builder.Services.AddScoped<INotification, NotificationService>();
             builder.Services.AddSingleton<JWTManager>();
 
             builder.Services.AddAuthentication(options =>
@@ -75,6 +80,17 @@ namespace StaffManagmentNET
                 };
             });
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200") 
+                           .AllowAnyMethod()
+                           .AllowAnyHeader()
+                           .AllowCredentials();
+                });
+            });
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -91,8 +107,9 @@ namespace StaffManagmentNET
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.UseCors("CorsPolicy");
 
+            app.UseAuthorization();
 
             app.MapControllers();
 

@@ -45,8 +45,8 @@
             </div>
             <div class="col-6 col-md-6">
               <div>
-                <p class="txt">8.0hrs</p>
-                <p class="txt">8.5hrs
+                <p class="txt">{{total}}</p>
+                <p class="txt">{{avg}}
                 <p>
               </div>
             </div>
@@ -58,8 +58,8 @@
           <div class="box" style="height: 490px; overflow: auto;">
             <p class="txt" style="margin-bottom: 10px;">New Notifications</p>
             <hr style="margin-bottom: 10px;">
-            <div class="noti-box" *ngFor="let noti of notifications" (click)="onSelect(noti)">
-              <p class="noti-name">{{noti.name}}</p>
+            <div class="noti-box" *ngFor="let noti of notifications" [routerLink]="['/notifications']">
+              <p class="noti-name">{{noti.notiName}}</p>
               <div class="row">
                 <div class="col-md-6">
                   <div [ngSwitch]="noti.level">
@@ -133,27 +133,27 @@
                 </div>
               </div>
               <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="feature-box row" [routerLink]="['/userinfos']">
+                <div class="feature-box row" [routerLink]="['/usertask']">
                   <div class="icon-box">
                     <i class="fa-solid fa-list-check feature-icon"></i>
                   </div>
                   <h5 class="feature-name">UsersTasks</h5>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="feature-box row" [routerLink]="['/userinfos']">
+              <!-- <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/structure']">
                   <div class="icon-box">
                     <i class="fa-solid fa-network-wired feature-icon"></i>
                   </div>
                   <h5 class="feature-name">Structure</h5>
                 </div>
-              </div>
+              </div> -->
               <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="feature-box row" [routerLink]="['/userinfos']">
+                <div class="feature-box row" [routerLink]="['/salary']">
                   <div class="icon-box">
-                    <i class="fa-regular fa-flag feature-icon"></i>
+                    <i class="fa-solid fa-money-bill-wave feature-icon"></i>
                   </div>
-                  <h5 class="feature-name">DailyReport</h5>
+                  <h5 class="feature-name">CalcSalary</h5>
                 </div>
               </div>
             </div>

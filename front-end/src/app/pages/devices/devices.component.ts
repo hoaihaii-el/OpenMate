@@ -16,4 +16,9 @@ export class DevicesComponent {
     closeModal() {
         this.showModal = false;
     }
+
+    editDevice() {
+        this.modalTitle = "Sửa thông tin";
+        this.showModal = true;
+    }
 }

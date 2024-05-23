@@ -8,9 +8,11 @@ import { FooterModule } from './shared/footer/footer.module';
 import { NavbarModule } from './shared/navbar/navbar.module';
 import { FixedPluginModule } from './shared/fixedplugin/fixedplugin.module';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
+import { HttpClientModule } from '@angular/common/http';
 
 import { LoginComponent } from "./layouts/login/login.component";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
@@ -26,6 +28,11 @@ import { DevicesComponent } from './pages/devices/devices.component';
 import { NewPostComponent } from './pages/newpost/newpost.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { MessagesComponent } from "./pages/messages/messages.component";
+import { RequestDetailComponent } from "./pages/requestdetail/requestdetail.component";
+import { UserTaskComponent } from "./pages/usertask/usertask.component";
+import { SalaryComponent } from "./pages/salary/salary.component";
+import { StructureComponent } from "./pages/structure/structure.component";
+import { FormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -44,7 +51,11 @@ import { MessagesComponent } from "./pages/messages/messages.component";
     DevicesComponent,
     NewPostComponent,
     RequestsComponent,
-    MessagesComponent
+    MessagesComponent,
+    RequestDetailComponent,
+    UserTaskComponent,
+    SalaryComponent,
+    StructureComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -56,7 +67,10 @@ import { MessagesComponent } from "./pages/messages/messages.component";
     ToastrModule.forRoot(),
     FooterModule,
     FixedPluginModule,
-    CKEditorModule
+    CKEditorModule,
+    HttpClientModule,
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

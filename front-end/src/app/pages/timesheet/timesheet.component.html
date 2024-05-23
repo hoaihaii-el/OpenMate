@@ -7,243 +7,230 @@
         <div class="content">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-12 col-md-12">
-                                    <div class="numbers">
-                                        <p class="card-title">Working days</p>
-                                        <p class="card-category">20 days
-                                        <p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="box">
+                        <p class="txt">Working days</p>
+                        <p class="txt">{{workDays}} days</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-12 col-md-12">
-                                    <div class="numbers">
-                                        <p class="card-title">WFH</p>
-                                        <p class="card-category">2 days
-                                        <p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="box">
+                        <p class="txt">Total WFH</p>
+                        <p class="txt">{{wfh}} days</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-12 col-md-12">
-                                    <div class="numbers">
-                                        <p class="card-title">Total time</p>
-                                        <p class="card-category">100.0hrs
-                                        <p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="box">
+                        <p class="txt">Total</p>
+                        <p class="txt">{{total}}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-12 col-md-12">
-                                    <div class="numbers">
-                                        <p class="card-title">Average</p>
-                                        <p class="card-category">8.0hrs
-                                        <p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="box">
+                        <p class="txt">Average</p>
+                        <p class="txt">{{avg}}</p>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
-                    <div class="card" style="padding: 15px; height: fit-content;">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead class="text-primary">
-                                        <th>Date</th>
-                                        <th>Check in - out</th>
-                                        <th>Lunch break</th>
-                                        <th>Hours</th>
-                                        <th>Working type</th>
-                                        <th>OFF?</th>
-                                        <th></th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>01-MON</td>
-                                            <td>8:00 - 17:00</td>
-                                            <td>1hr</td>
-                                            <td>8hrs</td>
-                                            <td>Office</td>
-                                            <td>NO</td>
-                                            <td>
-                                                <a style="cursor: pointer;">
-                                                    <i class="nc-icon nc-tap-01 text-warning"
-                                                        style="font-size: 20px;"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>02-TUE</td>
-                                            <td>8:00 - 17:00</td>
-                                            <td>1hr</td>
-                                            <td>8hrs</td>
-                                            <td>Office</td>
-                                            <td>NO</td>
-                                            <td>
-                                                <a style="cursor: pointer;">
-                                                    <i class="nc-icon nc-tap-01 text-warning"
-                                                        style="font-size: 20px;"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>03-WED</td>
-                                            <td>8:00 - 17:00</td>
-                                            <td>1hr</td>
-                                            <td>8hrs</td>
-                                            <td>Office</td>
-                                            <td>NO</td>
-                                            <td>
-                                                <a style="cursor: pointer;">
-                                                    <i class="nc-icon nc-tap-01 text-warning"
-                                                        style="font-size: 20px;"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>04-THU</td>
-                                            <td>8:00 - 17:00</td>
-                                            <td>1hr</td>
-                                            <td>8hrs</td>
-                                            <td>Office</td>
-                                            <td>NO</td>
-                                            <td>
-                                                <a style="cursor: pointer;">
-                                                    <i class="nc-icon nc-tap-01 text-warning"
-                                                        style="font-size: 20px;"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>05-FRI</td>
-                                            <td>8:00 - 17:00</td>
-                                            <td>1hr</td>
-                                            <td>8hrs</td>
-                                            <td>Office</td>
-                                            <td>NO</td>
-                                            <td>
-                                                <a style="cursor: pointer;">
-                                                    <i class="nc-icon nc-tap-01 text-warning"
-                                                        style="font-size: 20px;"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>06-SAT</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>07-SUN</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>08-MON</td>
-                                            <td>8:00 - 17:00</td>
-                                            <td>1hr</td>
-                                            <td>8hrs</td>
-                                            <td>Office</td>
-                                            <td>NO</td>
-                                            <td>
-                                                <a style="cursor: pointer;">
-                                                    <i class="nc-icon nc-tap-01 text-warning"
-                                                        style="font-size: 20px;"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-TUE</td>
-                                            <td>8:00 - 17:00</td>
-                                            <td>1hr</td>
-                                            <td>8hrs</td>
-                                            <td>Office</td>
-                                            <td>NO</td>
-                                            <td>
-                                                <a style="cursor: pointer;">
-                                                    <i class="nc-icon nc-tap-01 text-warning"
-                                                        style="font-size: 20px;"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>10-WED</td>
-                                            <td>No data yet</td>
-                                            <td>No data yet</td>
-                                            <td>No data yet</td>
-                                            <td>No data yet</td>
-                                            <td>No data yet</td>
-                                            <td>
-                                                <a style="cursor: pointer;">
-                                                    <i class="nc-icon nc-tap-01 text-warning"
-                                                        style="font-size: 20px;"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>11-THU</td>
-                                            <td>No data yet</td>
-                                            <td>No data yet</td>
-                                            <td>No data yet</td>
-                                            <td>No data yet</td>
-                                            <td>No data yet</td>
-                                            <td>
-                                                <a style="cursor: pointer;">
-                                                    <i class="nc-icon nc-tap-01 text-warning"
-                                                        style="font-size: 20px;"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>12-FRI</td>
-                                            <td>No data yet</td>
-                                            <td>No data yet</td>
-                                            <td>No data yet</td>
-                                            <td>No data yet</td>
-                                            <td>No data yet</td>
-                                            <td>
-                                                <a style="cursor: pointer;">
-                                                    <i class="nc-icon nc-tap-01 text-warning"
-                                                        style="font-size: 20px;"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                <div class="col-9">
+                    <div class="box" style="padding-top: 15px; padding-bottom: 15px;">
+                        <div style="display: flex;">
+                            <div class="icon-box" (click)="lastMonth()">
+                                <i class="fa-solid fa-arrow-left"></i>
                             </div>
+                            <div class="txt" style="width: 100px;">{{currentMonth}}/{{currentYear}}</div>
+                            <div class="icon-box" (click)="nextMonth()">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </div>
+                        </div>
+                        <div style=" height: 460px; overflow: auto; background-color: white; margin-left: 10px;">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <th>Date</th>
+                                    <th>Check in - out</th>
+                                    <th>Lunch break</th>
+                                    <th>Hours</th>
+                                    <th>Working type</th>
+                                    <th>OFF?</th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let sheet of sheets"
+                                        [ngClass]="{'highlight': sheet.today == 1,'dayoff': sheet.isDayOff}">
+                                        <td>{{sheet.date}}</td>
+                                        <td>{{sheet.checkIn}} {{sheet.checkOut}}</td>
+                                        <td>{{sheet.lunchBreak}}</td>
+                                        <td>{{sheet.total}}</td>
+                                        <td *ngIf="sheet.today < 2 || sheet.isDayOff">{{sheet.workingType}}</td>
+                                        <td *ngIf="sheet.today == 2 && !sheet.isDayOff">
+                                            <div *ngIf="sheet.workingType=='' || sheet.workingType == 'OFFICE'">
+                                                <button class="btn btn-primary off-btn"
+                                                    (click)="setWFH('WFH', sheet.key)">WFH</button>
+                                            </div>
+                                            <div *ngIf="sheet.workingType == 'WFH'">
+                                                <button class="btn btn-primary off-btn off"
+                                                    (click)="setWFH('OFFICE', sheet.key)">WFH</button>
+                                            </div>
+                                        </td>
+                                        <td *ngIf="sheet.today < 2 || sheet.isDayOff">{{sheet.off}}</td>
+                                        <td *ngIf="sheet.today == 2 && !sheet.isDayOff">
+                                            <div *ngIf="sheet.off==''">
+                                                <button class="btn btn-primary off-btn"
+                                                    (click)="setDayOff('ALL', sheet.key)">ALL</button>
+                                                <button class="btn btn-primary off-btn"
+                                                    (click)="setDayOff('AM-OFF', sheet.key)">AM</button>
+                                                <button class="btn btn-primary off-btn"
+                                                    (click)="setDayOff('PM-OFF', sheet.key)">PM</button>
+                                            </div>
+                                            <div *ngIf="sheet.off != ''">
+                                                <button *ngIf="sheet.off == 'ALL'" class="btn btn-primary off-btn off"
+                                                    (click)="setDayOff('', sheet.key)">ALL</button>
+                                                <button *ngIf="sheet.off == 'AM-OFF'"
+                                                    class="btn btn-primary off-btn off"
+                                                    (click)="setDayOff('', sheet.key)">AM</button>
+                                                <button *ngIf="sheet.off == 'PM-OFF'"
+                                                    class="btn btn-primary off-btn off"
+                                                    (click)="setDayOff('', sheet.key)">PM</button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a *ngIf="sheet.today == 0" style="cursor: pointer;"
+                                                (click)="openModal(sheet)">
+                                                <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal"
+                style="display: block; z-index: 1050; opacity: 100; top: 100px; overflow: visible;"
+                aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="showModal">
+                <div class="modal-dialog"
+                    style="padding: 20px;background-color: white;border-radius: 5px;margin-left: 500px;border: 2px solid #C7B7A3;">
+                    <div class="modal-content" style="border: 0; background-color: white;">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                (click)="closeModal()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row" style="margin: 10px 0;">
+                                <div class="col-12">
+                                    <div class="row" style="margin-bottom: 15px;">
+                                        <div class="col-6">
+                                            <label class="hour-title">Check-In</label>
+                                        </div>
+                                        <div class="col-2">
+                                            <div>
+                                                <label class="hour-box">{{h1}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-1">
+                                            <div>
+                                                <i class="fa-solid fa-angle-up" style="cursor: pointer;"
+                                                    (click)="updateCheckIn(1)"></i>
+                                            </div>
+                                            <div>
+                                                <i class="fa-solid fa-angle-down" style="cursor: pointer;"
+                                                    (click)="updateCheckIn(2)"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div>
+                                                <label class="hour-box">{{m1}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-1">
+                                            <div>
+                                                <i class="fa-solid fa-angle-up" style="cursor: pointer;"
+                                                    (click)="updateCheckIn(3)"></i>
+                                            </div>
+                                            <div>
+                                                <i class="fa-solid fa-angle-down" style="cursor: pointer;"
+                                                    (click)="updateCheckIn(4)"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row" style="margin-bottom: 15px;">
+                                        <div class="col-6">
+                                            <label class="hour-title">Check-Out</label>
+                                        </div>
+                                        <div class="col-2">
+                                            <div>
+                                                <label class="hour-box">{{h2}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-1">
+                                            <div>
+                                                <i class="fa-solid fa-angle-up" style="cursor: pointer;"
+                                                    (click)="updateCheckOut(1)"></i>
+                                            </div>
+                                            <div>
+                                                <i class="fa-solid fa-angle-down" style="cursor: pointer;"
+                                                    (click)="updateCheckOut(2)"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div>
+                                                <label class="hour-box">{{m2}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-1">
+                                            <div>
+                                                <i class="fa-solid fa-angle-up" style="cursor: pointer;"
+                                                    (click)="updateCheckOut(3)"></i>
+                                            </div>
+                                            <div>
+                                                <i class="fa-solid fa-angle-down" style="cursor: pointer;"
+                                                    (click)="updateCheckOut(4)"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row" style="margin-bottom: 15px;">
+                                        <div class="col-6">
+                                            <label class="hour-title">Working Type</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <div>
+                                                <select class="custom-select" [(ngModel)]="wrkType">
+                                                    <option value="1">Office</option>
+                                                    <option value="2">WFH</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row" style="margin-bottom: 15px;">
+                                        <div class="col-6">
+                                            <label class="hour-title">OFF?</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <div>
+                                                <select class="custom-select" [(ngModel)]="off">
+                                                    <option value="1">DAY-OFF</option>
+                                                    <option value="2">AM-OFF</option>
+                                                    <option value="3">PM-OFF</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary update-btn"
+                                (click)="changeTime()">Update</button>
                         </div>
                     </div>
                 </div>

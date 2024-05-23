@@ -1,6 +1,6 @@
-export interface Notification{
-  id: number;
-  name: string;
+export interface Notification {
+  notiID: string;
+  notiName: string;
   level: string;
   date: string;
   content: string;

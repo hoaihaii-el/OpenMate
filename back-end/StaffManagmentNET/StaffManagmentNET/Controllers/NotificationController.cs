@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StaffManagmentNET.Models;
+using StaffManagmentNET.Repositories;
+using StaffManagmentNET.ViewModels;
 
 namespace StaffManagmentNET.Controllers
 {
@@ -8,21 +10,22 @@ namespace StaffManagmentNET.Controllers
     [ApiController]
     public class NotificationController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetAllNoti()
+        private readonly INotification _service;
+        public NotificationController(INotification service) 
         {
-            return Ok();
+            _service = service;
         }
 
-        [HttpGet("detail/{notiID}")]
-        public IActionResult GetStringStaff(string notiID)
+        [HttpGet("get-all")]
+        public async Task<IActionResult> GetAllNoti()
         {
-            return Ok();
+            return Ok(await _service.GetAllNoti());
         }
 
         [HttpPost("new-noti")]
-        public IActionResult AddNewComer(Notification noti)
+        public async Task<IActionResult> NewNoti(NotificationVM vm)
         {
+            await _service.NewNotification(vm);
             return Ok();
         }
     }
