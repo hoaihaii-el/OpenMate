@@ -6,158 +6,187 @@
     <navbar-cmp></navbar-cmp>
     <div class="content">
       <div class="row">
-        <div class="col-md-4">
-          <div class="card card-user">
-            <div class="card-body">
-              <div class="author">
-                <a>
-                  <img class="avatar border-gray" style="margin-top: 80px;" src="assets/img/angular.png">
-                  <h5 class="title">Lê Hoài Hải</h5>
-                </a>
-                <p class="description">
-                  Team Leader - Senior
-                </p>
+        <div class="col-3">
+          <div class="box" style="padding-top: 15px; padding-bottom: 15px;">
+            <div style=" height: 250px; overflow: auto; background-color: white;">
+              <img class="avatar" src="assets/img/angular.png">
+              <h5 class="title">Lê Hoài Hải</h5>
+              <p class="txt">Team Lead - Senior</p>
+              <p class="txt">ID: 24001</p>
+            </div>
+          </div>
+          <div class="box" style="padding-top: 15px; padding-bottom: 15px;">
+            <div style=" height: 300px; overflow: auto; background-color: white;">
+              <h5 class="title">Đổi mật khẩu</h5>
+              <div class="form-group intput-box1">
+                <label>Mật khẩu cũ</label>
+                <input type="password" class="form-control" placeholder="Mật khẩu cũ">
+              </div>
+              <div class="form-group input-box1">
+                <label>Mật khẩu mới</label>
+                <input type="password" class="form-control" placeholder="Mật khẩu mới">
+              </div>
+              <div class="form-group input-box1">
+                <label>Xác nhận mật khẩu mới</label>
+                <input type="password" class="form-control" placeholder="Xác nhận mật khẩu mới">
+              </div>
+              <div style="display: flex; justify-content: center;">
+                <button type="button" class="btn btn-primary update-btn">CHANGE</button>
               </div>
             </div>
           </div>
-          <div class="card">
-            <div class="card-header">
-              <h4 class="card-title">Thông tin cơ bản</h4>
-            </div>
-            <div class="card-body">
-              <form>
-                <div class="row">
-                  <div class="col-12">
-                    <div class="form-group">
-                      <label>Mật khẩu cũ</label>
-                      <input type="password" class="form-control" placeholder="Mật khẩu cũ">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12">
-                    <div class="form-group">
-                      <label>Mật khẩu mới</label>
-                      <input type="password" class="form-control" placeholder="Mật khẩu mới">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12">
-                    <div class="form-group">
-                      <label>Xác nhận mật khẩu mới</label>
-                      <input type="password" class="form-control" placeholder="Xác nhận mật khẩu mới">
-                    </div>
-                  </div>
-                </div>
-              </form>
+          <div class="box" style="padding-top: 15px; padding-bottom: 15px;">
+            <div style=" height: 300px; overflow: auto; background-color: white;">
+              <h5 class="title">Người liên hệ</h5>
+              <div class="form-group intput-box1">
+                <label>Họ và tên</label>
+                <input type="text" class="form-control" placeholder="Họ và tên">
+              </div>
+              <div class="form-group input-box1">
+                <label>Số điện thoại</label>
+                <input type="text" class="form-control" placeholder="Số điện thoại">
+              </div>
+              <div class="form-group input-box1">
+                <label>Mối quan hệ</label>
+                <input type="text" class="form-control" placeholder="Mối quan hệ">
+              </div>
+              <div style="display: flex; justify-content: center;">
+                <button type="button" class="btn btn-primary update-btn">UPDATE</button>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-md-8">
-          <div class="card card-user">
-            <div class="card-header">
-              <h5 class="card-title">Chỉnh sửa thông tin cá nhân</h5>
-            </div>
-            <div class="card-body">
-              <form>
-                <div class="row">
-                  <div class="col-md-5 pr-1">
-                    <div class="form-group">
-                      <label>Họ tên</label>
-                      <input type="text" class="form-control" placeholder="Họ tên" value="Lê Hoài Hải">
-                    </div>
-                  </div>
-                  <div class="col-md-3 px-1">
-                    <div class="form-group">
-                      <label>Ngày sinh</label>
-                      <input type="text" class="form-control" placeholder="Ngày sinh" value="21/05/2003">
-                    </div>
-                  </div>
-                  <div class="col-md-4 pl-1">
-                    <div class="form-group">
-                      <label>Giới tính</label>
-                      <input type="text" class="form-control" placeholder="Email" value="Nam">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 pr-1">
-                    <div class="form-group">
-                      <label>Phòng ban</label>
-                      <input type="text" class="form-control" placeholder="Phòng ban" value="Solution">
-                    </div>
-                  </div>
-                  <div class="col-md-6 pl-1">
-                    <div class="form-group">
-                      <label>Ngày vào làm</label>
-                      <input type="text" class="form-control" placeholder="Ngày vào làm" value="01/01/2024">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label>Địa chỉ liên hệ</label>
-                      <input type="text" class="form-control" placeholder="Địa chỉ" value="Bình An, Dĩ An, Bình Dương">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-4 pr-1">
-                    <div class="form-group">
-                      <label>CCCD</label>
-                      <input type="text" class="form-control" disabled="" placeholder="CCCD" value="0123456789">
-                    </div>
-                  </div>
-                  <div class="col-md-4 px-1">
-                    <div class="form-group">
-                      <label>Ngày cấp</label>
-                      <input type="text" class="form-control" disabled="" placeholder="Ngày cấp" value="09/09/2021">
-                    </div>
-                  </div>
-                  <div class="col-md-4 pl-1">
-                    <div class="form-group">
-                      <label>Nơi cấp</label>
-                      <input type="text" class="form-control" disabled="" placeholder="Nơi cấp" value="Quảng Trị">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="update ml-auto mr-auto">
-                    <button type="submit" class="btn btn-primary btn-round">Update Profile</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div class="card-header">
-              <h5 class="card-title">Người liên hệ khẩn cấp</h5>
-            </div>
-            <div class="card-body" style="height: fit-content;">
-              <div class="row">
-                <div class="col-md-4 pr-1">
+        <div class="col-9">
+          <div class="box" style="padding-top: 15px; padding-bottom: 15px;">
+            <div style=" height: 930px; overflow: auto; background-color: white;">
+              <h5 class="title">Thông tin nhân viên</h5>
+              <div class="row input-box">
+                <div class="col-md-6 pr-1">
                   <div class="form-group">
                     <label>Họ tên</label>
-                    <input type="text" class="form-control" placeholder="Họ tên" value="LHH">
+                    <input type="text" class="form-control" placeholder="Họ tên" value="Lê Hoài Hải">
+                  </div>
+                </div>
+                <div class="col-md-3 px-1">
+                  <div class="form-group">
+                    <label>Ngày sinh</label>
+                    <input type="text" class="form-control" placeholder="Ngày sinh" value="21/05/2003">
+                  </div>
+                </div>
+                <div class="col-md-3 pl-1">
+                  <div class="form-group">
+                    <label>Giới tính</label>
+                    <select class="custom-select">
+                      <option value="Nam">Nam</option>
+                      <option value="Nữ">Nữ</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row input-box">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Phòng ban</label>
+                    <input type="text" class="form-control" placeholder="Phòng ban" value="Solution">
+                  </div>
+                </div>
+                <div class="col-md-3 px-1">
+                  <div class="form-group">
+                    <label>Ngày vào làm</label>
+                    <input type="text" class="form-control" placeholder="Ngày vào làm" value="01/01/2024">
+                  </div>
+                </div>
+                <div class="col-md-3 pl-1">
+                  <div class="form-group">
+                    <label>Ngày fulltime</label>
+                    <input type="text" class="form-control" placeholder="Ngày vào làm" value="01/01/2024">
+                  </div>
+                </div>
+              </div>
+              <div class="row input-box">
+                <div class="col-md-7 pr-1">
+                  <div class="form-group">
+                    <label>Địa chỉ liên hệ</label>
+                    <input type="text" class="form-control" placeholder="Địa chỉ" value="Bình An, Dĩ An, Bình Dương">
+                  </div>
+                </div>
+                <div class="col-md-5 pl-1">
+                  <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="text" class="form-control" placeholder="Số điện thoại">
+                  </div>
+                </div>
+              </div>
+              <div class="row input-box">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Email cá nhân</label>
+                    <input type="text" class="form-control" placeholder="Email cá nhân">
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Email công ty</label>
+                    <input type="text" class="form-control" placeholder="Email công ty">
+                  </div>
+                </div>
+              </div>
+              <div class="row input-box">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Thông tin tài khoản nhận lương</label>
+                    <input type="text" class="form-control" placeholder="Số tài khoản">
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Ngân hàng</label>
+                    <input type="text" class="form-control" placeholder="Ngân hàng">
+                  </div>
+                </div>
+              </div>
+              <div class="row input-box">
+                <div class="col-md-4 pr-1">
+                  <div class="form-group">
+                    <label>CCCD</label>
+                    <input type="text" class="form-control" disabled="" placeholder="CCCD" value="0123456789">
                   </div>
                 </div>
                 <div class="col-md-4 px-1">
                   <div class="form-group">
-                    <label>Số điện thoại</label>
-                    <input type="text" class="form-control" placeholder="Số điện thoại" value="0987654321">
+                    <label>Ngày cấp</label>
+                    <input type="text" class="form-control" disabled="" placeholder="Ngày cấp" value="09/09/2021">
                   </div>
                 </div>
                 <div class="col-md-4 pl-1">
                   <div class="form-group">
-                    <label>Mối quan hệ</label>
-                    <input type="text" class="form-control" placeholder="Mối quan hệ" value="Anh/Chị">
+                    <label>Nơi cấp</label>
+                    <input type="text" class="form-control" disabled="" placeholder="Nơi cấp" value="Quảng Trị">
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="update ml-auto mr-auto">
-                  <button type="submit" class="btn btn-primary btn-round">Update</button>
+              <div class="row input-box">
+                <div class="col-md-4 pr-1">
+                  <div class="form-group">
+                    <label>Mã số thuế</label>
+                    <input type="text" class="form-control" disabled="" placeholder="CCCD" value="0123456789">
+                  </div>
                 </div>
+                <div class="col-md-4 px-1">
+                  <div class="form-group">
+                    <label>Số HĐLĐ</label>
+                    <input type="text" class="form-control" disabled="" placeholder="Ngày cấp" value="09/09/2021">
+                  </div>
+                </div>
+                <div class="col-md-4 pl-1">
+                  <div class="form-group">
+                    <label>Số BHXH</label>
+                    <input type="text" class="form-control" disabled="" placeholder="Nơi cấp" value="Quảng Trị">
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: center;">
+                <button type="button" class="btn btn-primary update-btn">UPDATE</button>
               </div>
             </div>
           </div>
@@ -165,5 +194,4 @@
       </div>
     </div>
   </div>
-</div>
-<fixedplugin-cmp></fixedplugin-cmp>
+  <fixedplugin-cmp></fixedplugin-cmp>

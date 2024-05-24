@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StaffManagmentNET.Models;
+using StaffManagmentNET.Repositories;
+using StaffManagmentNET.ViewModels;
 
 namespace StaffManagmentNET.Controllers
 {
@@ -7,28 +9,45 @@ namespace StaffManagmentNET.Controllers
     [ApiController]
     public class DeviceController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetAllDevice()
+        private readonly IDeviceRepo _service;
+
+        public DeviceController(IDeviceRepo service)
         {
-            return Ok();
+            _service = service;
         }
 
-        [HttpGet("detail/{deviceID}")]
-        public IActionResult GetDevice(string deviceID)
+        [HttpGet("get-all")]
+        public async Task<IActionResult> GetAllDevice()
         {
-            return Ok();
+            return Ok(await _service.GetAll());
         }
 
         [HttpPost("new-device")]
-        public IActionResult AddNewComer(Device device)
+        public async Task<IActionResult> NewDevice(DeviceVM vm)
         {
-            return Ok();
+            try
+            {
+                await _service.NewDevice(vm);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        [HttpPut("update/{deviceID}")]
-        public IActionResult UpdateInfo(string deviceID, Device device)
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateInfo(DeviceVM device)
         {
-            return Ok();
+            try
+            {
+                await _service.UpdateDevice(device);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

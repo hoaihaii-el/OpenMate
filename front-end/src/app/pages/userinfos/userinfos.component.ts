@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'userinfos-cmp',
     moduleId: module.id,
-    templateUrl: 'userinfos.component.html'
+    templateUrl: 'userinfos.component.html',
+    styleUrls: ['userinfos.component.scss']
 })
 
 export class UserInfosComponent {

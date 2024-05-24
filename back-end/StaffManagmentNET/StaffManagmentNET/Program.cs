@@ -45,6 +45,8 @@ namespace StaffManagmentNET
             builder.Services.AddScoped<ITimeSheetRepo, TimeSheetService>();
             builder.Services.AddScoped<IDivisionRepo, DivisionService>();
             builder.Services.AddScoped<INotification, NotificationService>();
+            builder.Services.AddScoped<IDeviceRepo, DeviceService>();
+
             builder.Services.AddSingleton<JWTManager>();
 
             builder.Services.AddAuthentication(options =>

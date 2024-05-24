@@ -43,7 +43,7 @@
                                 <i class="fa-solid fa-arrow-right"></i>
                             </div>
                         </div>
-                        <div style=" height: 460px; overflow: auto; background-color: white; margin-left: 10px;">
+                        <div style=" height: 460px; overflow: auto; background-color: white;">
                             <table class="table">
                                 <thead class="text-primary">
                                     <th>Date</th>
@@ -113,7 +113,8 @@
                     style="padding: 20px;background-color: white;border-radius: 5px;margin-left: 500px;border: 2px solid #C7B7A3;">
                     <div class="modal-content" style="border: 0; background-color: white;">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+                            <h5 class="modal-title" id="exampleModalLabel" style="margin-bottom: 10px;">{{modalTitle}}
+                            </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"
                                 (click)="closeModal()">
                                 <span aria-hidden="true">&times;</span>
@@ -203,7 +204,7 @@
                                         <div class="col-6">
                                             <div>
                                                 <select class="custom-select" [(ngModel)]="wrkType">
-                                                    <option value="1">Office</option>
+                                                    <option value="1">OFFICE</option>
                                                     <option value="2">WFH</option>
                                                 </select>
                                             </div>

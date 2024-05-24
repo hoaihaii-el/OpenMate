@@ -9,6 +9,7 @@
       "projectType": "application",
       "architect": {
         "build": {
+          "defaultConfiguration": "development",
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist",
@@ -51,7 +52,7 @@
             "development": {
               "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
+              "sourceMap": false,
               "namedChunks": true,
               "buildOptimizer": false,
               "optimization": {

@@ -265,7 +265,7 @@ export class TimeSheetComponent {
                         timeOut: 4000,
                         closeButton: true,
                         enableHtml: true,
-                        toastClass: "alert alert-info alert-with-icon",
+                        toastClass: "alert alert-success alert-with-icon",
                         positionClass: "toast-" + 'top' + "-" + 'left'
                     }
                 );
