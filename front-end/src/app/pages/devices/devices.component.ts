@@ -83,11 +83,6 @@ export class DevicesComponent {
             return;
         }
 
-        if (!this.startsWithNumber(this.currentDevice.deviceID)) {
-            this.showAlert('Device ID must start with a number', 'info');
-            return;
-        }
-
         const url = `http://localhost:5299/api/Device/new-device`;
         this.httpClient.post(url, {
             deviceID: this.currentDevice.deviceID,
@@ -155,22 +150,13 @@ export class DevicesComponent {
             if (this.search === '') {
                 return true;
             }
-            if (this.startsWithNumber(this.search)) {
-                return device.deviceID.toLowerCase().includes(this.search.toLowerCase());
-            }
-            else {
-                return device.deviceName.toLowerCase().includes(this.search.toLowerCase());
-            }
+            return device.deviceName.toLowerCase().includes(this.search.toLowerCase())
+                || device.deviceType.toLowerCase().includes(this.search.toLowerCase())
+                || device.deviceID.toLowerCase().includes(this.search.toLowerCase())
+                || device.staffName.toLowerCase().includes(this.search.toLowerCase())
         });
         console.log(this.srcDevices);
         console.log(this.devices);
-    }
-
-    startsWithNumber(input: String): boolean {
-        return input.startsWith('0') || input.startsWith('1') || input.startsWith('2') ||
-            input.startsWith('3') || input.startsWith('4') || input.startsWith('5') ||
-            input.startsWith('6') || input.startsWith('7') || input.startsWith('8') ||
-            input.startsWith('9');
     }
 
     showAlert(content: string, type: string): void {

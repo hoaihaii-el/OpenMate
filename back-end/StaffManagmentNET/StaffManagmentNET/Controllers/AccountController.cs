@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using StaffManagmentNET.Models;
 using StaffManagmentNET.Repositories;
 using StaffManagmentNET.ViewModels;
 
@@ -48,10 +50,7 @@ namespace StaffManagmentNET.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new
-                {
-                    message = ex.Message,
-                });
+                return BadRequest(ex.Message);
             }
         }
 

@@ -1,60 +1,51 @@
 <div class="fixed-plugin">
     <div class="show-dropdown" ngbDropdown>
         <a href="javascript:void(0)" ngbDropdownToggle id="dropdownConfig">
-            <p style="color: white; font-size: 25px; padding-top: 10px;">{{tasks.length}}</p>
+            <p class="count">{{tasks.length}}</p>
         </a>
-        <div class="card" ngbDropdownMenu style="width: 750px">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item" style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
-                    <div class="row">
-                        <div class="col-8" style="text-align: center;">TaskName</div>
-                        <div class="col-2" style="text-align: center;">Start</div>
-                        <div class="col-2" style="text-align: center;">Done?</div>
-                    </div>
-                </li>
-                <li *ngFor="let task of tasks" class="list-group-item"
-                    style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
-                    <div class="row">
-                        <div class="col-8">{{task.name}}</div>
-                        <div class="col-2" style="text-align: center;">{{task.time}}</div>
-                        <div class="col-2" style="text-align: center;">
-                            <input type="checkbox" [(ngModel)]="task.done">
-                        </div>
-                    </div>
-                </li>
-                <!-- <li class="list-group-item" style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
-                    <div class="row">
-                        <div class="col-8">Task2</div>
-                        <div class="col-2" style="text-align: center;">14:00</div>
-                        <div class="col-2" style="text-align: center;">
-                            <input type="checkbox">
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item" style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
-                    <div class="row">
-                        <div class="col-8">Task3</div>
-                        <div class="col-2" style="text-align: center;">15:00</div>
-                        <div class="col-2" style="text-align: center;">
-                            <input type="checkbox">
-                        </div>
-                    </div>
-                </li> -->
-                <li class="list-group-item" style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
-                    <div class="row">
-                        <div class="col-8">
-                            <input type="text" class="form-control" placeholder="New task" #taskInput>
-                        </div>
-                        <div class="col-2">
-                            <input type="text" class="form-control" placeholder="Start" #startInput>
-                        </div>
-                        <div class="col-2" style="text-align: center;">
-                            <input type="button" class="form-control text-success"
-                                (click)="addNewTask(taskInput, startInput)" value="Add task">
-                        </div>
-                    </div>
-                </li>
-            </ul>
+        <div class="card" ngbDropdownMenu style="width: auto">
+            <table class="table" style="width: 900px">
+                <thead class="text-primary">
+                    <th style="width: 300px;text-align: center;">Task Name</th>
+                    <th style="width: 140px;text-align: center;">Status</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Estimate</th>
+                    <th style="width: 250px; text-align: center;">Note</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let task of tasks">
+                        <td>{{task.taskName}}</td>
+                        <td>
+                            <input *ngIf="task.status == 'Done'" type="text" class="form-control" disabled=""
+                                [(ngModel)]="task.status">
+                            <select *ngIf="task.status != 'Done'" class="custom-select"
+                                (change)="updateTask(task, true)" [(ngModel)]="task.status">
+                                <option value="In Progress">In Progress</option>
+                                <option value="Done">Done</option>
+                            </select>
+                        </td>
+                        <td>{{task.startTime}}</td>
+                        <td>{{task.endTime}}</td>
+                        <td style="text-align: center;">{{task.estimate}}h</td>
+                        <td>
+                            <input type="text" class="form-control" (change)="updateTask(task, false)"
+                                [(ngModel)]="task.note" placeholder="Note here">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="display: flex;">
+                <div class="input-group" style="width: 550px;">
+                    <input type="text" class="form-control" placeholder="New task" [(ngModel)]="newTask.taskName">
+                </div>
+                <div class="input-group" style="width: 110px;">
+                    <input type="text" class="form-control" placeholder="Estimate" [(ngModel)]="newTask.estimate">
+                </div>
+                <div class="input-group" style="width: 240px; text-align: center;">
+                    <input type="button" class="form-control text-primary" (click)="addNewTask()" value="Start">
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -28,7 +28,7 @@ namespace StaffManagmentNET.Services
                     NotiID = noti.NotiID,
                     Content = noti.Content,
                     Level = noti.Level,
-                    Date = noti.Date.ToShortDateString()
+                    Date = noti.Date.ToString("dd/MM/yyyy")
                 });
             }
 

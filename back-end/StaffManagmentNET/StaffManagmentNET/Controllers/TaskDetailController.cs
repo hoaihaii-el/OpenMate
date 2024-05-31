@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using StaffManagmentNET.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using StaffManagmentNET.Repositories;
+using StaffManagmentNET.ViewModels;
 
 namespace StaffManagmentNET.Controllers
 {
@@ -8,22 +8,30 @@ namespace StaffManagmentNET.Controllers
     [ApiController]
     public class TaskDetailController : ControllerBase
     {
-        [HttpGet("get-by-day/{date}")]
-        public IActionResult GetByDay(string date)
+        private readonly ITaskRepo _service;
+
+        public TaskDetailController(ITaskRepo service)
         {
-            return Ok();
+            _service = service;
+        }
+
+        [HttpGet("user-get")]
+        public async Task<IActionResult> GetByDay(string date, string staffID)
+        {
+            return Ok(await _service.GetUserTask(date, staffID));
         }
 
         [HttpPost("new-task")]
-        public IActionResult NewTask(TaskDetail task)
+        public async Task<IActionResult> NewTask(TaskVM task)
         {
+            await _service.UpdateTask(task);
             return Ok();
         }
 
-        [HttpPost("update-task")]
-        public IActionResult UpdateTask(TaskDetail task)
+        [HttpGet("manager-get")]
+        public async Task<IActionResult> UpdateTask(string date, string managerID)
         {
-            return Ok();
+            return Ok(await _service.GetUserTaskForManager(date, managerID));
         }
     }
 }

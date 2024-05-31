@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using StaffManagmentNET.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using StaffManagmentNET.Repositories;
+using StaffManagmentNET.ViewModels;
 
 namespace StaffManagmentNET.Controllers
 {
@@ -8,27 +8,43 @@ namespace StaffManagmentNET.Controllers
     [ApiController]
     public class StaffController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetAllStaff()
+        private readonly IStaffRepo _service;
+
+        public StaffController(IStaffRepo service)
         {
+            _service = service;
+        }
+
+        [HttpGet("get-all")]
+        public async Task<IActionResult> GetAllStaff()
+        {
+            return Ok(await _service.GetAll());
+        }
+
+        [HttpGet("detail")]
+        public async Task<IActionResult> GetDetail(string staffID)
+        {
+            try
+            {
+                return Ok(await _service.GetUserInfo(staffID));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("hr-update")]
+        public async Task<IActionResult> HRUpdate(HRUpdateVM vm)
+        {
+            await _service.HRUpdateInfo(vm);
             return Ok();
         }
 
-        [HttpGet("detail/{staffID}")]
-        public IActionResult GetStaff(string staffID)
+        [HttpPut("user-update")]
+        public async Task<IActionResult> UserUpdate(UserUpdateInfoVM vm)
         {
-            return Ok();
-        }
-
-        [HttpPost("new-comer")]
-        public IActionResult AddNewComer(Staff staff)
-        {
-            return Ok();
-        }
-
-        [HttpPut("update-info/{staffID}")]
-        public IActionResult UpdateInfo(string staffID, Staff staff)
-        {
+            await _service.UpdatePersonalInfo(vm);
             return Ok();
         }
     }

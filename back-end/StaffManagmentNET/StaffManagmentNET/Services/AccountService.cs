@@ -31,10 +31,9 @@ namespace StaffManagmentNET.Services
         {
             var user = new AppUser
             {
-                Id = await AutoID(),
-                Email = register.PersonalEmail,
+                Id = register.StaffID,
                 UserName = Guid.NewGuid().ToString(),
-                PhoneNumber = register.Phone,
+                Email = Guid.NewGuid().ToString() + "@gmail.com"
             };
 
             if (!await _roleManager.RoleExistsAsync(AppRole.Admin))
@@ -89,15 +88,14 @@ namespace StaffManagmentNET.Services
             var staff = new Staff
             {
                 StaffID = user.Id,
-                StaffName = register.FullName,
+                StaffName = register.StaffName,
                 Title = register.Title,
                 Level = register.Level,
-                Phone = register.Phone,
                 Male = register.Male,
                 Address = register.Address,
-                DateBirth = register.DateBirth,
-                PersonalEmail = register.PersonalEmail,
-                ManagerID = register.ManagerID,
+                DateBirth = DateTime.Parse(register.DateBirth),
+                StartWork = DateTime.Parse(register.StartWork),
+                ManagerID = register.ManagerID == "Empty" ? "" : register.ManagerID,
                 DivisionID = register.DivisionID,
                 AvatarURL = "https://static.vecteezy.com/system/resources/previews/009/292/244/original/default-avatar-icon-of-social-media-user-vector.jpg"
             };
@@ -105,14 +103,12 @@ namespace StaffManagmentNET.Services
             staff.Division = await _context.Divisions.FindAsync(staff.DivisionID);
 
             _context.Staffs.Add(staff);
-
             await _userManager.CreateAsync(user, register.Password);
 
             foreach (var role in register.Roles.Split("_", StringSplitOptions.TrimEntries))
             {
                 await _userManager.AddToRoleAsync(user, role);
             }
-
             await _context.SaveChangesAsync();
 
             return staff;
@@ -167,39 +163,6 @@ namespace StaffManagmentNET.Services
             {
                 throw new Exception("Changed password failed!");
             }
-        }
-
-        private async Task<string> AutoID()
-        {
-            var ID = DateTime.Now.Year.ToString().Substring(2, 2) + "001";
-
-            var maxID = await _context.Staffs
-                .OrderByDescending(s => s.StaffID)
-                .Select(v => v.StaffID)
-                .FirstOrDefaultAsync();
-
-            if (string.IsNullOrEmpty(maxID))
-            {
-                return ID;
-            }
-
-            var numeric = Regex.Match(maxID, @"\d+").Value;
-
-            if (string.IsNullOrEmpty(numeric))
-            {
-                return ID;
-            }
-
-            ID = DateTime.Now.Year.ToString().Substring(2, 2);
-
-            numeric = (int.Parse(numeric) + 1).ToString();
-
-            while (ID.Length + numeric.Length < 6)
-            {
-                ID += '0';
-            }
-
-            return ID + numeric;
         }
     }
 }

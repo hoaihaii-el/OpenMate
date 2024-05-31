@@ -37,8 +37,7 @@ namespace StaffManagmentNET
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 4;
-
-                options.User.RequireUniqueEmail = true;
+                options.User.RequireUniqueEmail = false;
             });
 
             builder.Services.AddScoped<IAccountRepo, AccountService>();
@@ -46,6 +45,8 @@ namespace StaffManagmentNET
             builder.Services.AddScoped<IDivisionRepo, DivisionService>();
             builder.Services.AddScoped<INotification, NotificationService>();
             builder.Services.AddScoped<IDeviceRepo, DeviceService>();
+            builder.Services.AddScoped<IStaffRepo, StaffService>();
+            builder.Services.AddScoped<ITaskRepo, TaskService>();
 
             builder.Services.AddSingleton<JWTManager>();
 

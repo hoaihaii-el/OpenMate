@@ -1,8 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using StaffManagmentNET.Models;
+﻿using StaffManagmentNET.Models;
 using StaffManagmentNET.Repositories;
-using System.Numerics;
-using System.Text.RegularExpressions;
 
 namespace StaffManagmentNET.Services
 {
@@ -19,7 +16,7 @@ namespace StaffManagmentNET.Services
         {
             var division = new Division()
             {
-                DivisionID = await AutoID(),
+                DivisionID = divisionName.ToUpper(),
                 DivisionName = divisionName,
                 ManagerID = managerID
             };
@@ -59,39 +56,6 @@ namespace StaffManagmentNET.Services
             _context.Divisions.Update(division);
             await _context.SaveChangesAsync();
             return division;
-        }
-
-        private async Task<string> AutoID()
-        {
-            var ID = "DV" + "001";
-
-            var maxID = await _context.Staffs
-                .OrderByDescending(s => s.StaffID)
-                .Select(v => v.StaffID)
-                .FirstOrDefaultAsync();
-
-            if (string.IsNullOrEmpty(maxID))
-            {
-                return ID;
-            }
-
-            var numeric = Regex.Match(maxID, @"\d+").Value;
-
-            if (string.IsNullOrEmpty(numeric))
-            {
-                return ID;
-            }
-
-            ID = "DV";
-
-            numeric = (int.Parse(numeric) + 1).ToString();
-
-            while (ID.Length + numeric.Length < 6)
-            {
-                ID += '0';
-            }
-
-            return ID + numeric;
         }
     }
 }

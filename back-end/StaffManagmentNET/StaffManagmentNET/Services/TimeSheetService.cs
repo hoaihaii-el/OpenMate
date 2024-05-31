@@ -18,7 +18,7 @@ namespace StaffManagmentNET.Services
 
         public async Task CheckIn(string staffID)
         {
-            var timeSheet = await _context.TimeSheets.FindAsync(DateTime.Now.ToShortDateString(), staffID);
+            var timeSheet = await _context.TimeSheets.FindAsync(DateTime.Now.ToString("dd/MM/yyyy"), staffID);
 
             if (timeSheet != null)
             {
@@ -34,7 +34,7 @@ namespace StaffManagmentNET.Services
 
             _context.TimeSheets.Add(new TimeSheet
             {
-                Date = DateTime.Now.ToShortDateString(),
+                Date = DateTime.Now.ToString("dd/MM/yyyy"),
                 StaffID = staffID,
                 CheckIn = DateTime.Now
             });
@@ -44,7 +44,7 @@ namespace StaffManagmentNET.Services
 
         public async Task CheckOut(string staffID)
         {
-            var timeSheet = await _context.TimeSheets.FindAsync(DateTime.Now.ToShortDateString(), staffID);
+            var timeSheet = await _context.TimeSheets.FindAsync(DateTime.Now.ToString("dd/MM/yyyy"), staffID);
 
             if (timeSheet == null)  
             {
@@ -225,14 +225,14 @@ namespace StaffManagmentNET.Services
                 var timeSheet = new TimeSheetResponse()
                 {
                     Date = $"{date.Day}-{date.DayOfWeek.ToString().Substring(0, 3).ToUpper()}",
-                    Key = date.ToShortDateString(),
+                    Key = date.ToString("dd/MM/yyyy"),
                     Today = date.Date == DateTime.Now.Date ? 1 : date.Date < DateTime.Now.Date ? 0 : 2,
                 };
 
                 if (timeSheet.Date.Length < 6) timeSheet.Date = "0" + timeSheet.Date;
 
                 timeSheet.CheckIn = timeSheet.CheckOut = "__:__";
-                if (IsVietNameseHoliday(date.ToShortDateString()))
+                if (IsVietNameseHoliday(date.ToString("dd/MM/yyyy")))
                 {
                     timeSheet.Off = "";
                     timeSheet.WorkingType = "Holiday";
@@ -249,7 +249,7 @@ namespace StaffManagmentNET.Services
 
                 foreach (var sheet in sheets)
                 {
-                    if (sheet.Date == date.Date.ToShortDateString())
+                    if (sheet.Date == date.Date.ToString("dd/MM/yyyy"))
                     {
                         if (sheet.CheckIn.Date == date.Date)
                         {
@@ -285,7 +285,7 @@ namespace StaffManagmentNET.Services
             var startDate = new DateTime(year, month, 1);
             for (DateTime date = startDate; date.Month == startDate.Month; date = date.AddDays(1)) 
             {
-                if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday || IsVietNameseHoliday(date.ToShortDateString()))
+                if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday || IsVietNameseHoliday(date.ToString("dd/MM/yyyy")))
                 {
                     workdays--;
                 }
@@ -325,7 +325,7 @@ namespace StaffManagmentNET.Services
 
         bool IsVietNameseHoliday(string input)
         {
-            var date = DateTime.Parse(input);
+            var date = DateTime.ParseExact(input, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             List<DateTime> holidays = new List<DateTime>
             {

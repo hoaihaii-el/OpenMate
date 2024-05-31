@@ -73,7 +73,10 @@
 .check-box-role {
     margin-left: 7px;
     margin-right: 7px;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
+    height: 18px;
+    vertical-align: middle;
+    position: relative;
 }
 
 .my-select {
@@ -92,6 +95,11 @@
 select {
     padding-left: 10px;
     font-size: 14px;
+    height: 38.5px;
+}
+
+input {
+    height: 38.5px;
 }
 
 select>option {

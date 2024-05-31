@@ -12,8 +12,8 @@
                             <div class="col-10">
                                 <form>
                                     <div class="input-group no-border" style="margin-left: 10px;">
-                                        <input type="text" value="" class="form-control"
-                                            placeholder="Search by ID or name...">
+                                        <input type="text" value="" class="form-control" [(ngModel)]="filter"
+                                            (input)="filterStaff()" placeholder="Search by ID or name...">
                                         <div class="input-group-append">
                                             <div class="input-group-text">
                                                 <i class="nc-icon nc-zoom-split"></i>
@@ -37,23 +37,26 @@
                                     <th>Title</th>
                                     <th>Level</th>
                                     <th>Division</th>
+                                    <th>Manager</th>
                                     <th></th>
                                     <th></th>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>2401</td>
-                                        <td>Le Hoai Hai</td>
-                                        <td>Team Leader</td>
-                                        <td>Senior</td>
-                                        <td>Shark1</td>
+                                    <tr *ngFor="let staff of staffs">
+                                        <td>{{staff.staffID}}</td>
+                                        <td>{{staff.staffName}}</td>
+                                        <td>{{staff.title}}</td>
+                                        <td>{{staff.level}}</td>
+                                        <td>{{staff.divisionID}}</td>
+                                        <td>{{staff.managerName}}</td>
                                         <td>
-                                            <a style="cursor: pointer;">
-                                                <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
+                                            <a style="cursor: pointer;" *ngIf="hasRole(staff, 'CEO') == false">
+                                                <i class="nc-icon nc-tap-01 text-warning" (click)="editUser(staff)"
+                                                    style="font-size: 20px;"></i>
                                             </a>
                                         </td>
                                         <td>
-                                            <a style="cursor: pointer;">
+                                            <a style="cursor: pointer;" *ngIf="hasRole(staff, 'CEO') == false">
                                                 <i class="nc-icon nc-simple-remove text-danger"
                                                     style="font-size: 20px;"></i>
                                             </a>
@@ -79,28 +82,44 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <div *ngIf="modalTitle == 'Thêm nhân viên'">
                                 <div class="row input-box">
-                                    <div class="col-md-5 pr-1">
+                                    <div class="col-md-4 pr-1">
+                                        <div class="form-group">
+                                            <label>ID</label>
+                                            <input type="text" class="form-control" disabled=""
+                                                [(ngModel)]="currentStaff.staffID">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 pl-1">
                                         <div class="form-group">
                                             <label>Họ tên</label>
                                             <input type="text" class="form-control" placeholder="Họ tên"
-                                                value="Lê Hoài Hải">
+                                                [(ngModel)]="currentStaff.staffName">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row input-box">
+                                    <div class="col-md-6 pr-1">
+                                        <div class="form-group">
+                                            <label>Địa chỉ</label>
+                                            <input type="text" class="form-control" placeholder="Địa chỉ"
+                                                [(ngModel)]="currentStaff.address">
                                         </div>
                                     </div>
                                     <div class="col-md-3 px-1">
                                         <div class="form-group">
                                             <label>Ngày sinh</label>
-                                            <input type="text" class="form-control" placeholder="Ngày sinh"
-                                                value="21/05/2003">
+                                            <input type="date" class="form-control" placeholder="Ngày sinh"
+                                                [(ngModel)]="currentStaff.dateBirth">
                                         </div>
                                     </div>
-                                    <div class="col-md-4 pl-1">
+                                    <div class="col-md-3 pl-1">
                                         <div class="form-group">
                                             <label>Giới tính</label>
-                                            <select class="custom-select">
-                                                <option value="1">Nam</option>
-                                                <option value="2">Nữ</option>
+                                            <select class="custom-select" [(ngModel)]="currentStaff.gender">
+                                                <option value="Nam">Nam</option>
+                                                <option value="Nữ">Nữ</option>
                                             </select>
                                         </div>
                                     </div>
@@ -109,15 +128,17 @@
                                     <div class="col-md-8 pr-1">
                                         <div class="form-group">
                                             <label>Phòng ban</label>
-                                            <input type="text" class="form-control" placeholder="Phòng ban"
-                                                value="Solution">
+                                            <select class="custom-select" [(ngModel)]="currentStaff.divisionID">
+                                                <option *ngFor="let division of allDivisions" [value]="division">
+                                                    {{division}}</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4 pl-1">
                                         <div class="form-group">
                                             <label>Ngày vào làm</label>
-                                            <input type="text" class="form-control" placeholder="Ngày vào làm"
-                                                value="01/01/2024">
+                                            <input type="date" class="form-control" placeholder="Ngày vào làm"
+                                                [(ngModel)]="currentStaff.startWork">
                                         </div>
                                     </div>
                                 </div>
@@ -125,53 +146,52 @@
                                     <div class="col-md-4 pr-1">
                                         <div class="form-group">
                                             <label>Title</label>
-                                            <select class="custom-select">
-                                                <option value="1">Staff</option>
-                                                <option value="2">Team Lead</option>
-                                                <option value="3">Project Manager</option>
-                                                <option value="4">Division Manager</option>
-                                                <option value="5">CTO</option>
-                                                <option value="6">CEO</option>
+                                            <select class="custom-select" [(ngModel)]="currentStaff.title">
+                                                <option value="Staff">Staff</option>
+                                                <option value="Team Lead">Team Lead</option>
+                                                <option value="HR Staff">HR Staff</option>
+                                                <option value="Accountant">Accountant</option>
+                                                <option value="BO Manager">BO Manager</option>
+                                                <option value="Project Manager">Project Manager</option>
+                                                <option value="Division Manager">Division Manager</option>
+                                                <option value="CTO">CTO</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4 px-1">
                                         <div class="form-group">
                                             <label>Level</label>
-                                            <select class="custom-select">
-                                                <option value="1">Intern</option>
-                                                <option value="2">Part-time</option>
-                                                <option value="3">Fresher</option>
-                                                <option value="4">Junior</option>
-                                                <option value="5">Middle</option>
-                                                <option value="6">Senior</option>
+                                            <select class="custom-select" [(ngModel)]="currentStaff.level">
+                                                <option value="Intern">Intern</option>
+                                                <option value="Part-time">Part-time</option>
+                                                <option value="Fresher">Fresher</option>
+                                                <option value="Junior">Junior</option>
+                                                <option value="Middle">Middle</option>
+                                                <option value="Senior">Senior</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4 pl-1">
                                         <div class="form-group">
                                             <label>Mã người quản lý</label>
-                                            <input type="text" class="form-control" placeholder="Mã người quản lý">
+                                            <input type="text" class="form-control" placeholder="Mã người quản lý"
+                                                [(ngModel)]="currentStaff.managerID">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row input-box">
                                     <div class="col-md-6 pr-1">
                                         <div class="form-group">
-                                            <label>Địa chỉ</label>
-                                            <input type="text" class="form-control" placeholder="Địa chỉ">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 px-1">
-                                        <div class="form-group">
                                             <label>Tài khoản</label>
-                                            <input type="text" class="form-control" placeholder="Tài khoản">
+                                            <input type="text" class="form-control" disabled=""
+                                                [(ngModel)]="lastestStaffID">
                                         </div>
                                     </div>
-                                    <div class="col-md-3 pl-1">
+                                    <div class="col-md-6 pl-1">
                                         <div class="form-group">
                                             <label>Mật khẩu</label>
-                                            <input type="password" class="form-control" placeholder="Mật khẩu">
+                                            <input type="password" class="form-control" placeholder="Mật khẩu"
+                                                [(ngModel)]="pw">
                                         </div>
                                     </div>
                                 </div>
@@ -182,31 +202,211 @@
                                         <span class="checkmark"></span>Staff
                                     </label>
                                     <label class="col-4 container">
-                                        <input class="check-box-role" type="checkbox" checked="checked">
+                                        <input class="check-box-role" type="checkbox"
+                                            (change)="onCheckboxChange($event.target.checked, 'HumanResourcesStaff')">
                                         <span class="checkmark"></span>HR Staff
                                     </label>
                                     <label class="col-4 container">
-                                        <input class="check-box-role" type="checkbox" checked="checked">
-                                        <span class="checkmark"></span>HR Manager
-                                    </label>
-                                    <label class="col-4 container">
-                                        <input class="check-box-role" type="checkbox" checked="checked">
+                                        <input class="check-box-role" type="checkbox"
+                                            (change)="onCheckboxChange($event.target.checked, 'Accountant')">
                                         <span class="checkmark"></span>Accountant
                                     </label>
                                     <label class="col-4 container">
-                                        <input class="check-box-role" type="checkbox" checked="checked">
+                                        <input class="check-box-role" type="checkbox"
+                                            (change)="onCheckboxChange($event.target.checked, 'HumanResourcesManager')">
+                                        <span class="checkmark"></span>HR Manager
+                                    </label>
+                                    <label class="col-4 container">
+                                        <input class="check-box-role" type="checkbox"
+                                            (change)="onCheckboxChange($event.target.checked, 'DivisionManager')">
                                         <span class="checkmark"></span>Division Manager
                                     </label>
                                     <label class="col-4 container">
-                                        <input class="check-box-role" type="checkbox" checked="checked">
-                                        <span class="checkmark"></span>CEO
+                                        <input class="check-box-role" type="checkbox"
+                                            (change)="onCheckboxChange($event.target.checked, 'CTO')">
+                                        <span class="checkmark"></span>CTO
                                     </label>
                                 </div>
-                            </form>
+                            </div>
+                            <div *ngIf="modalTitle == 'Sửa thông tin nhân viên'">
+                                <div class="row input-box">
+                                    <div class="col-md-6 pr-1">
+                                        <div class="form-group">
+                                            <label>Họ tên</label>
+                                            <input type="text" class="form-control" placeholder="Họ tên"
+                                                [(ngModel)]="currentStaff.staffName">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 px-1">
+                                        <div class="form-group">
+                                            <label>Ngày sinh</label>
+                                            <input type="text" class="form-control" disabled=""
+                                                [(ngModel)]="currentStaff.dateBirth">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 pl-1">
+                                        <div class="form-group">
+                                            <label>Giới tính</label>
+                                            <input type="text" class="form-control" disabled=""
+                                                [(ngModel)]="currentStaff.gender">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row input-box">
+                                    <div class="col-md-6 pr-1">
+                                        <div class="form-group">
+                                            <label>Địa chỉ</label>
+                                            <input type="text" class="form-control" disabled=""
+                                                [(ngModel)]="currentStaff.address">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 pl-1">
+                                        <div class="form-group">
+                                            <label>Số điện thoại</label>
+                                            <input type="text" class="form-control" disabled=""
+                                                [(ngModel)]="currentStaff.phone">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row input-box">
+                                    <div class="col-md-4 pr-1">
+                                        <div class="form-group">
+                                            <label>Phòng ban</label>
+                                            <select class="custom-select" [(ngModel)]="currentStaff.divisionID">
+                                                <option *ngFor="let division of allDivisions" [value]="division">
+                                                    {{division}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 px-1">
+                                        <div class="form-group">
+                                            <label>Ngày vào làm</label>
+                                            <input type="text" class="form-control" disabled=""
+                                                [(ngModel)]="currentStaff.startWork">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 pl-1">
+                                        <div class="form-group">
+                                            <label>Ngày full-time</label>
+                                            <input type="text" class="form-control" disabled=""
+                                                *ngIf="currentStaff.startFullTime != ''"
+                                                [(ngModel)]="currentStaff.startFullTime">
+                                            <input type="date" class="form-control"
+                                                *ngIf="currentStaff.startFullTime == ''"
+                                                [(ngModel)]="currentStaff.startFullTime">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row input-box">
+                                    <div class="col-md-4 pr-1">
+                                        <div class="form-group">
+                                            <label>Title</label>
+                                            <select class="custom-select" [(ngModel)]="currentStaff.title">
+                                                <option value="Staff">Staff</option>
+                                                <option value="Team Lead">Team Lead</option>
+                                                <option value="HR Staff">HR Staff</option>
+                                                <option value="Accountant">Accountant</option>
+                                                <option value="BO Manager">BO Manager</option>
+                                                <option value="Project Manager">Project Manager</option>
+                                                <option value="Division Manager">Division Manager</option>
+                                                <option value="CTO">CTO</option>
+                                                <option value="CEO">CEO</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 px-1">
+                                        <div class="form-group">
+                                            <label>Level</label>
+                                            <select class="custom-select" [(ngModel)]="currentStaff.level">
+                                                <option value="Intern">Intern</option>
+                                                <option value="Part-time">Part-time</option>
+                                                <option value="Fresher">Fresher</option>
+                                                <option value="Junior">Junior</option>
+                                                <option value="Middle">Middle</option>
+                                                <option value="Senior">Senior</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 pl-1">
+                                        <div class="form-group">
+                                            <label>Mã người quản lý</label>
+                                            <input type="text" class="form-control" placeholder="Mã người quản lý"
+                                                [(ngModel)]="currentStaff.managerID">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row input-box">
+                                    <div class="col-md-4 pr-1">
+                                        <div class="form-group">
+                                            <label>Số bảo hiểm xã hội</label>
+                                            <input type="text" class="form-control" placeholder="Số bảo hiểm xã hội"
+                                                [(ngModel)]="currentStaff.bhxh">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 px-1">
+                                        <div class="form-group">
+                                            <label>Số bảo hiểm y tế</label>
+                                            <input type="text" class="form-control" placeholder="Số bảo hiểm y tế"
+                                                [(ngModel)]="currentStaff.bhyt">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 pl-1">
+                                        <div class="form-group">
+                                            <label>Số bảo hiểm tai nạn</label>
+                                            <input type="text" class="form-control" placeholder="Số bảo hiểm tai nạn"
+                                                [(ngModel)]="currentStaff.bhtn">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row input-box">
+                                    <div class="col-md-4 pr-1">
+                                        <div class="form-group">
+                                            <label>Mã số thuế</label>
+                                            <input type="text" class="form-control" placeholder="Mã số thuế"
+                                                [(ngModel)]="currentStaff.maSoThue">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 px-1">
+                                        <div class="form-group">
+                                            <label>Hợp đồng lao động</label>
+                                            <input type="text" class="form-control" placeholder="Hợp đồng lao động"
+                                                [(ngModel)]="currentStaff.hdld">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 pl-1">
+                                        <div class="form-group">
+                                            <label>Số hợp đồng lao động</label>
+                                            <input type="text" class="form-control" placeholder="Số hợp đồng lao động"
+                                                [(ngModel)]="currentStaff.soHDLD">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row input-box">
+                                    <label class="col-12">Roles</label>
+                                    <label class="col-4 container">
+                                        <input class="check-box-role" type="checkbox"
+                                            [checked]="hasRole(currentStaff, 'HumanResourcesManager')"
+                                            (change)="onCheckboxChange($event.target.checked, 'HumanResourcesManager')">
+                                        <span class="checkmark"></span>HR Manager
+                                    </label>
+                                    <label class="col-4 container">
+                                        <input class="check-box-role" type="checkbox"
+                                            [checked]="hasRole(currentStaff, 'DivisionManager')"
+                                            (change)="onCheckboxChange($event.target.checked, 'DivisionManager')">
+                                        <span class="checkmark"></span>Division Manager
+                                    </label>
+                                    <label class="col-4 container">
+                                        <input class="check-box-role" type="checkbox"
+                                            [checked]="hasRole(currentStaff, 'CTO')"
+                                            (change)="onCheckboxChange($event.target.checked, 'CTO')">
+                                        <span class="checkmark"></span>CTO
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary update-btn"
-                                (click)="changeTime()">Process</button>
+                                (click)="process()">Process</button>
                         </div>
                     </div>
                 </div>

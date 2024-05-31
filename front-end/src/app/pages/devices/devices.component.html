@@ -9,12 +9,12 @@
                 <div class="col-9">
                     <div class="box" style="padding-top: 15px; padding-bottom: 15px;">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-7">
                                 <form>
                                     <div class="input-group no-border" style="margin-left: 10px;">
                                         <input type="text" value="" class="form-control"
-                                            placeholder="Search by ID or name..." [(ngModel)]="search"
-                                            (input)="getFilterDevice()">
+                                            placeholder="Search by ID, deviceName, deviceType or ownerName..."
+                                            [(ngModel)]="search" (input)="getFilterDevice()">
                                         <div class="input-group-append">
                                             <div class="input-group-text">
                                                 <i class="nc-icon nc-zoom-split"></i>
@@ -23,7 +23,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
                                 <select class="custom-select my-select" [(ngModel)]="filterType"
                                     (change)="getFilterDevice()">
                                     <option value="All">All</option>

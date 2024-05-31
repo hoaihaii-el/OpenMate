@@ -6,7 +6,7 @@ namespace StaffManagmentNET.Models
     public class TimeSheet
     {
         [Key, MaxLength(50)]
-        public string Date { get; set; } = DateTime.Now.ToShortDateString();
+        public string Date { get; set; } = DateTime.Now.ToString("dd/MM/yyyy");
         [Key, MaxLength(10)]
         public string StaffID { get; set; } = "";
         public DateTime CheckIn { get; set; }

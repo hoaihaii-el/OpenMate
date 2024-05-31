@@ -10,11 +10,11 @@
                     <div class="box" style="padding-top: 15px; padding-bottom: 15px;">
                         <div style="display: flex;">
                             <div class="icon-box">
-                                <i class="fa-solid fa-arrow-left"></i>
+                                <i class="fa-solid fa-arrow-left" (click)="previousDay()"></i>
                             </div>
-                            <div class="txt" style="width: 100px;">18/5/2024</div>
+                            <div class="txt" style="width: 100px;">{{currentDate}}</div>
                             <div class="icon-box">
-                                <i class="fa-solid fa-arrow-right"></i>
+                                <i class="fa-solid fa-arrow-right" (click)="nextDay()"></i>
                             </div>
                         </div>
                         <div style=" height: 540px; overflow: auto; background-color: white; margin-left: 10px;">

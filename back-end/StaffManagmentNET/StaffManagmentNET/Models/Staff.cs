@@ -26,6 +26,14 @@ namespace StaffManagmentNET.Models
         [MaxLength(20)]
         public string PersonalEmail { get; set; } = "";
         public string AvatarURL { get; set; } = "";
+        public string BHXH { get; set; } = "";
+        public string BHYT { get; set; } = "";
+        public string BHTN { get; set; } = "";
+        public string MaSoThue { get; set; } = "";
+        public string HDLD { get; set; } = "";
+        public string SoHDLD { get; set; } = "";
+        public string BankAccount { get; set; } = "";
+        public string BankName { get; set; } = "";
 
 
         [MaxLength(10)]
