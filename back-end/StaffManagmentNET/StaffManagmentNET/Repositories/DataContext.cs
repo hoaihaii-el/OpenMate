@@ -31,7 +31,7 @@ namespace StaffManagmentNET.Repositories
             builder.Entity<TimeSheet>().HasKey(t => new { t.Date, t.StaffID });
             builder.Entity<TaskDetail>().HasKey(t => new { t.Date, t.StaffID, t.Order });
             builder.Entity<ChatRoomDetail>().HasKey(r => new { r.StaffID, r.RoomID });
-            builder.Entity<RequestAcceptDetail>().HasKey(r => new { r.DetailID, r.ManagerID });
+            builder.Entity<RequestAcceptDetail>().HasKey(r => new { r.CreateID, r.ManagerID });
 
             base.OnModelCreating(builder);
         }

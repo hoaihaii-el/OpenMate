@@ -18,7 +18,7 @@ namespace StaffManagmentNET.Services
         {
             var notis = new List<NotificationResponse>();
 
-            var notisFromDB = await _context.Notifications.ToListAsync();
+            var notisFromDB = await _context.Notifications.OrderByDescending(n => n.Date).ToListAsync();
 
             foreach (var noti in notisFromDB)
             {
@@ -37,23 +37,16 @@ namespace StaffManagmentNET.Services
 
         public async Task NewNotification(NotificationVM vm)
         {
-            try
+            _context.Notifications.Add(new Notification
             {
-                _context.Notifications.Add(new Notification
-                {
-                    NotiID = Guid.NewGuid().ToString(),
-                    NotiName = vm.NotiName,
-                    Content = vm.Content,
-                    Level = vm.Level,
-                    Date = DateTime.Now
-                });
+                NotiID = Guid.NewGuid().ToString(),
+                NotiName = vm.NotiName,
+                Content = vm.Content,
+                Level = vm.Level,
+                Date = DateTime.Now
+            });
 
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-
-            }
+            await _context.SaveChangesAsync();
         }
     }
 }

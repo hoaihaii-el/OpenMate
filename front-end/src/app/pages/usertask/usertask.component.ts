@@ -13,37 +13,59 @@ export class UserTaskComponent {
     public showModal: Boolean = false;
     public tasks: Task[] = [];
     public currentDate: string;
+    public currentStaffID: string = "24001";
 
     constructor(private httpClient: HttpClient) {
         this.currentDate = this.dateToString(new Date());
+        this.getStaffsTasks();
     }
 
-    openModal(): void {
-        this.showModal = true;
+    getStaffsTasks() {
+        var date = this.currentDate.replace('/', '%2F');
+        date = date.replace('/', '%2F');
+        this.httpClient.get(`http://localhost:5299/api/TaskDetail/manager-get?date=${date}&managerID=24001`)
+            .subscribe({
+                next: (res: any) => {
+                    console.log(res);
+                    this.tasks = res;
+                },
+                error: (error: any) => {
+                    console.log(error)
+                }
+            });
     }
 
-    closeModal(): void {
-        this.showModal = false;
+    updateTask(task: Task) {
+        this.httpClient.post(`http://localhost:5299/api/TaskDetail/new-task`, {
+            date: task.date,
+            staffID: task.staffID,
+            staffName: task.staffName,
+            order: Number(task.order),
+            taskName: task.taskName,
+            status: task.status,
+            estimate: Number(task.estimate),
+            note: task.note,
+            evaluate: Number(task.evaluate),
+            feedback: task.feedback,
+            startTime: task.startTime,
+            endTime: task.endTime
+        })
+            .subscribe({
+                next: (res: any) => {
+                    console.log(res);
+                },
+                error: (error: any) => {
+                    console.log(error)
+                }
+            });
+        this.getStaffsTasks();
     }
-
-    getUserTasks() {
-        var date = this.dateToString(new Date());
-        this.httpClient.get(`http://localhost:5299/api/TaskDetail/user-get?date=${date}&staffID=24002`)
-          .subscribe({
-            next: (res: any) => {
-              console.log(res);
-              this.tasks = res;
-            },
-            error: (error: any) => {
-              console.log(error)
-            }
-          });
-      }
 
     previousDay() {
         var date = this.stringToDate(this.currentDate);
         date.setDate(date.getDate() - 1);
         this.currentDate = this.dateToString(date);
+        this.getStaffsTasks();
     }
 
     nextDay() {
@@ -54,6 +76,7 @@ export class UserTaskComponent {
         }
         date.setDate(date.getDate() + 1);
         this.currentDate = this.dateToString(date);
+        this.getStaffsTasks();
     }
 
     dateToString(date: Date): string {

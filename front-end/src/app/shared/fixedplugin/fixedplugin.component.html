@@ -23,13 +23,14 @@
                                 (change)="updateTask(task, true)" [(ngModel)]="task.status">
                                 <option value="In Progress">In Progress</option>
                                 <option value="Done">Done</option>
+                                <option value="Pending">Pending</option>
                             </select>
                         </td>
                         <td>{{task.startTime}}</td>
                         <td>{{task.endTime}}</td>
                         <td style="text-align: center;">{{task.estimate}}h</td>
                         <td>
-                            <input type="text" class="form-control" (change)="updateTask(task, false)"
+                            <input type="text" class="form-control" (blur)="updateTask(task, false)"
                                 [(ngModel)]="task.note" placeholder="Note here">
                         </td>
                     </tr>

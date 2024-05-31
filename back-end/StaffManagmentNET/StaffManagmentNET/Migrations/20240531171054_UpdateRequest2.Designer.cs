@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StaffManagmentNET.Repositories;
 
@@ -11,9 +12,10 @@ using StaffManagmentNET.Repositories;
 namespace StaffManagmentNET.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240531171054_UpdateRequest2")]
+    partial class UpdateRequest2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -405,18 +407,6 @@ namespace StaffManagmentNET.Migrations
                     b.Property<int>("AcceptLevel")
                         .HasColumnType("int");
 
-                    b.Property<string>("Answer1Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Answer2Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Answer3Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ExternalAcceptID")
                         .IsRequired()
                         .HasMaxLength(10)
@@ -427,10 +417,6 @@ namespace StaffManagmentNET.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RequestType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Rules")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

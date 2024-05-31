@@ -60,17 +60,36 @@ namespace StaffManagmentNET.Services
 
             var result = new List<TaskResponse>();
             var tasks = await GetUserTask(date, staffID) as List<TaskResponse>;
+            var manager = await _context.Staffs.FindAsync(staffID);
+
             if (tasks!.Count > 0) 
             {
-                var staff = await _context.Staffs.FindAsync(staffID);
-                tasks[0].StaffName = staff!.StaffName;
+                tasks[0].StaffName = manager!.StaffName;
                 result.AddRange(tasks);
+            }
+            else
+            {
+                result.Add(new TaskResponse
+                {
+                    StaffID = staffID,
+                    StaffName = manager!.StaffName,
+                    TaskName = "No task yet!"
+                });
             }
 
             foreach (var staff in staffs)
             {
                 var list = await GetUserTask(date, staff.StaffID) as List<TaskResponse>;
-                if (list!.Count == 0) continue;
+                if (list!.Count == 0)
+                {
+                    result.Add(new TaskResponse
+                    {
+                        StaffID = staff.StaffID,
+                        StaffName = staff.StaffName,
+                        TaskName = "No task yet!"
+                    });
+                    continue;
+                }
 
                 list[0].StaffName  = staff.StaffName;
                 result.AddRange(list);

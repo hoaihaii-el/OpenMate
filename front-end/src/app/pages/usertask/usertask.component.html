@@ -17,92 +17,43 @@
                                 <i class="fa-solid fa-arrow-right" (click)="nextDay()"></i>
                             </div>
                         </div>
-                        <div style=" height: 540px; overflow: auto; background-color: white; margin-left: 10px;">
-                            <table class="table">
-                                <thead class="text-primary">
-                                    <th>#Code</th>
-                                    <th>Full Name</th>
-                                    <th>Current Task</th>
-                                    <th>Status</th>
-                                    <th></th>
+                        <div style="height: 540px; overflow: auto; background-color: white; margin-left: 10px;">
+                            <table class="table" style="width: 1400px;">
+                                <thead class="text-primary" style="text-align: center;">
+                                    <th style="width: 180px;">Staff Name</th>
+                                    <th style="width: 250px;">Task Name</th>
+                                    <th style="width: 100px;">Status</th>
+                                    <th style="width: 100px;">Estimate</th>
+                                    <th style="width: 100px;">Start</th>
+                                    <th style="width: 100px;">End</th>
+                                    <th style="width: 200px;">Note</th>
+                                    <th style="width: 120px;">Evaluate (%)</th>
+                                    <th style="width: 250px;">Feedback</th>
                                 </thead>
                                 <tbody>
-                                    <tr (click)="openModal()">
-                                        <td>24002</td>
-                                        <td>Hoai Nhan</td>
-                                        <td>Load data for Salary page</td>
-                                        <td>50%</td>
-                                    </tr>
-                                    <tr (click)="openModal()">
-                                        <td>24003</td>
-                                        <td>Hong Nhung</td>
-                                        <td>Implement API create new post</td>
-                                        <td>50%</td>
-                                    </tr>
-                                    <tr (click)="openModal()">
-                                        <td>24004</td>
-                                        <td>Hoai Hai</td>
-                                        <td>Change logic feature time sheet</td>
-                                        <td>50%</td>
+                                    <tr *ngFor="let task of tasks">
+                                        <td>{{task.staffName}}</td>
+                                        <td>{{task.taskName}}</td>
+                                        <td style="text-align: center;">{{task.status}}</td>
+                                        <td style="text-align: center;">{{task.estimate}}</td>
+                                        <td style="text-align: center;">{{task.startTime}}</td>
+                                        <td style="text-align: center;">{{task.endTime}}</td>
+                                        <td>{{task.note}}</td>
+                                        <td>
+                                            <input
+                                                *ngIf="task.taskName != 'No task yet!' && task.staffID != currentStaffID"
+                                                input type="text" class="form-control" (blur)="updateTask(task)"
+                                                [(ngModel)]="task.evaluate" placeholder="Evaluate">
+                                        </td>
+                                        <td>
+                                            <input
+                                                *ngIf="task.taskName != 'No task yet!' && task.staffID != currentStaffID"
+                                                type="text" class="form-control" (blur)="updateTask(task)"
+                                                [(ngModel)]="task.feedback" placeholder="Feedback">
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="exampleModal"
-                style="display: block; z-index: 1050; opacity: 100; top: 100px; overflow: visible;"
-                aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="showModal">
-                <div class="modal-dialog"
-                    style="padding: 20px;background-color: white;border-radius: 5px;margin-left: 500px;border: 1px; border-color: #f0f0f0;">
-                    <div class="modal-content" style="border: 0;">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Chi tiết công việc</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                                (click)="closeModal()">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row" style="margin: 10px 0;">
-                                <div class="col-12">
-                                    <div class="row" style="margin-bottom: 15px;">
-                                        <div class="col-9">
-                                            <label class="hour-title">Task name 1</label>
-                                        </div>
-                                        <div class="col-3">
-                                            <div>
-                                                <input type="checkbox">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="row" style="margin-bottom: 15px;">
-                                        <div class="col-9">
-                                            <label class="hour-title">Task name 2</label>
-                                        </div>
-                                        <div class="col-3">
-                                            <div>
-                                                <input type="checkbox">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="row" style="margin-bottom: 15px;">
-                                        <div class="col-9">
-                                            <label class="hour-title">Task name 3</label>
-                                        </div>
-                                        <div class="col-3">
-                                            <div>
-                                                <input type="checkbox">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
