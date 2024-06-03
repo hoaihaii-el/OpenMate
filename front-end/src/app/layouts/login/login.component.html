@@ -1,29 +1,24 @@
-<div class="container-fluid">
-    <form class="form-box">
-        <div class="form-group">
-            <label style="margin-bottom: 15px;">Tên đăng nhập</label>
-            <input type="text" class="form-control" placeholder="Tên đăng nhập">
-        </div>
-        <div class="form-group">
-            <label style="margin: 15px 0;">Mật khẩu</label>
-            <input type="password" class="form-control" placeholder="Mật khẩu">
-        </div>
-        <div class="form-group forgot-box">
-            <div class="row">
-                <div class="col-3">
-                    <input style="align-items: center;" type="checkbox" class="form-control">
-                </div>
-                <div class="col-9">
-                    <label style="text-align: left;">Lưu mật khẩu</label>
-                </div>
+<div class="row" style="height: 100vh;">
+    <div class="col-8">
+        <img src="assets/img/work.jpg" style="width: 100%; height: 100%;" alt="">
+    </div>
+    <div class="col-4" style="display: flex; align-items: center; background-color: #fefffe;">
+        <div class="form-box">
+            <div class="form-group">
+                <label style="margin-bottom: 10px;">Tên đăng nhập</label>
+                <input type="text" class="form-control" placeholder="Tên đăng nhập" [(ngModel)]="userName">
+            </div>
+            <div class="form-group">
+                <label style="margin: 10px 0;">Mật khẩu</label>
+                <input type="password" class="form-control" placeholder="Mật khẩu" [(ngModel)]="password">
+            </div>
+            <div style="margin-top: 10px;" class="form-group">
+                <a style="color: #7AB2B2; cursor: pointer;">Quên mật khẩu</a>
+            </div>
+            <div class="btn-submit">
+                <button type="submit" style="padding: 10px 15px;" (click)="checkLogin()" class="btn btn-primary">Đăng
+                    nhập</button>
             </div>
         </div>
-        <div class="form-group">
-            <a style="color: #7AB2B2; cursor: pointer;">Quên mật khẩu</a>
-        </div>
-        <div class="btn-submit">
-            <button type="submit" style="padding: 15px;" (click)="checkLogin()" class="btn btn-primary btn-round">Đăng
-                nhập</button>
-        </div>
-    </form>
+    </div>
 </div>

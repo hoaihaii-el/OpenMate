@@ -17,7 +17,7 @@ export class TimeSheetComponent {
     public wfh: number = 0;
     public total: String = "__";
     public avg: String = "__";
-    public staffID: String = "24001";
+    public staffID: String;
     public sheets: TimeSheet[];
     public modalTitle: String = 'Chỉnh sửa';
     public showModal: Boolean = false;
@@ -33,6 +33,7 @@ export class TimeSheetComponent {
         const now = new Date();
         this.currentMonth = now.getMonth() + 1;
         this.currentYear = now.getFullYear();
+        this.staffID = localStorage.getItem('userID');
 
         this.getData();
         this.updateTable();

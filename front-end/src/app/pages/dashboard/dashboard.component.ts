@@ -12,16 +12,18 @@ import { TimeSheet } from 'app/models/timesheet.model';
 })
 
 export class DashboardComponent {
-  public staffID: String = "24001";
+  public staffID: String;
   public checkIn: String = "__:__";
   public checkOut: String = "__:__";
   public total: String = "__";
   public avg: String = "__";
+  public roles: String = localStorage.getItem('roles');
   public notifications: Notification[];
 
   constructor(private httpClient: HttpClient, private toastr: ToastrService) {
     this.checkIn = "__:__";
     this.checkOut = "__:__"
+    this.staffID = localStorage.getItem('userID');
     const now = new Date();
     const apiUrl = `http://localhost:5299/api/TimeSheet/get-sheet-by-day?staffID=${this.staffID}&day=${now.getDate()}&month=${now.getMonth() + 1}&year=${now.getFullYear()}`;
     this.httpClient.get(apiUrl)

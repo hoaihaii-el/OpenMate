@@ -135,8 +135,8 @@ namespace StaffManagmentNET.Services
             return new SignInResponse
             {
                 AccessToken = _JWTManager.GenerateToken(user.Id, (List<string>)userRoles),
-                Roles = (List<string>)userRoles,
-                Staff = await _context.Staffs.FindAsync(user.Id),
+                Roles = string.Join('_', userRoles),
+                StaffID = user.Id
             };
         }
 

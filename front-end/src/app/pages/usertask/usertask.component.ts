@@ -13,9 +13,10 @@ export class UserTaskComponent {
     public showModal: Boolean = false;
     public tasks: Task[] = [];
     public currentDate: string;
-    public currentStaffID: string = "24001";
+    public currentStaffID: string;
 
     constructor(private httpClient: HttpClient) {
+        this.currentStaffID = localStorage.getItem('userID');
         this.currentDate = this.dateToString(new Date());
         this.getStaffsTasks();
     }
@@ -23,7 +24,7 @@ export class UserTaskComponent {
     getStaffsTasks() {
         var date = this.currentDate.replace('/', '%2F');
         date = date.replace('/', '%2F');
-        this.httpClient.get(`http://localhost:5299/api/TaskDetail/manager-get?date=${date}&managerID=24001`)
+        this.httpClient.get(`http://localhost:5299/api/TaskDetail/manager-get?date=${date}&managerID=${this.currentStaffID}`)
             .subscribe({
                 next: (res: any) => {
                     console.log(res);

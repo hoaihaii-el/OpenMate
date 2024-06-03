@@ -15,9 +15,11 @@ export class RequestsComponent {
     public requestsType: RequestType[] = [];
     public yourRequests: RequestCreate[] = [];
     public needToAcceptRequests: RequestCreate[] = [];
+    public staffID: string;
 
     constructor(private httpClient: HttpClient) {
         this.currentAction = 'All';
+        this.staffID = localStorage.getItem('userID');
         this.getRequestsType();
         this.getYourRequests();
         this.getNeedToAcceptRequests();
@@ -41,7 +43,7 @@ export class RequestsComponent {
     }
 
     getYourRequests() {
-        this.httpClient.get(`http://localhost:5299/api/Requests/get-your-request?staffID=24002`)
+        this.httpClient.get(`http://localhost:5299/api/Requests/get-your-request?staffID=${this.staffID}`)
             .subscribe({
                 next: (res: any) => {
                     console.log(res);
@@ -54,7 +56,7 @@ export class RequestsComponent {
     }
 
     getNeedToAcceptRequests() {
-        this.httpClient.get(`http://localhost:5299/api/Requests/get-need-to-accept-request?managerID=24001`)
+        this.httpClient.get(`http://localhost:5299/api/Requests/get-need-to-accept-request?managerID=${this.staffID}`)
             .subscribe({
                 next: (res: any) => {
                     console.log(res);

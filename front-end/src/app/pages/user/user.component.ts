@@ -12,12 +12,14 @@ import { ToastrService } from 'ngx-toastr';
 
 export class UserComponent {
     public staff: Staff;
+    public staffID: string;
     constructor(private httpClient: HttpClient, private toastr: ToastrService) {
+        this.staffID = localStorage.getItem('userID');
         this.getStaffInfo();
     }
 
     getStaffInfo() {
-        const apiUrl = `http://localhost:5299/api/Staff/detail?staffID=24002`;
+        const apiUrl = `http://localhost:5299/api/Staff/detail?staffID=${this.staffID}`;
         this.httpClient.get(apiUrl)
             .subscribe({
                 next: (res: any) => {

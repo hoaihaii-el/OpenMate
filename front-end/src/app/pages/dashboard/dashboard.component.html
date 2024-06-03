@@ -108,7 +108,7 @@
                   <h5 class="feature-name">OtherUser</h5>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-4 col-sm-6">
+              <div *ngIf="roles.includes('HumanResources') || roles.includes('CEO')" class="col-lg-4 col-md-4 col-sm-6">
                 <div class="feature-box row" [routerLink]="['/devices']">
                   <div class="icon-box">
                     <i class="fa-solid fa-computer feature-icon"></i>
@@ -116,7 +116,8 @@
                   <h5 class="feature-name">Devices</h5>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-4 col-sm-6">
+              <div *ngIf="roles.includes('HumanResources') || roles.includes('CEO') || roles.includes('Accountant')"
+                class="col-lg-4 col-md-4 col-sm-6">
                 <div class="feature-box row" [routerLink]="['/newpost']">
                   <div class="icon-box">
                     <i class="fa-regular fa-paper-plane feature-icon"></i>
@@ -124,7 +125,7 @@
                   <h5 class="feature-name">NewPost</h5>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-4 col-sm-6">
+              <div *ngIf="roles.includes('HumanResources') || roles.includes('CEO')" class="col-lg-4 col-md-4 col-sm-6">
                 <div class="feature-box row" [routerLink]="['/userinfos']">
                   <div class="icon-box">
                     <i class="fa-regular fa-user feature-icon"></i>
@@ -140,15 +141,7 @@
                   <h5 class="feature-name">UsersTasks</h5>
                 </div>
               </div>
-              <!-- <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="feature-box row" [routerLink]="['/structure']">
-                  <div class="icon-box">
-                    <i class="fa-solid fa-network-wired feature-icon"></i>
-                  </div>
-                  <h5 class="feature-name">Structure</h5>
-                </div>
-              </div> -->
-              <div class="col-lg-4 col-md-4 col-sm-6">
+              <div *ngIf="roles.includes('Accountant') || roles.includes('CEO')" class="col-lg-4 col-md-4 col-sm-6">
                 <div class="feature-box row" [routerLink]="['/salary']">
                   <div class="icon-box">
                     <i class="fa-solid fa-money-bill-wave feature-icon"></i>
@@ -160,84 +153,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="row">
-        <div class="col-md-6">
-          <div class="card" style="min-height: 530px;">
-            <div class="card-header ">
-              <h5 class="card-title">Features</h5>
-              <hr>
-            </div>
-            <div class="row">
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div style="display: flex; justify-content: center;">
-                  <button style="border: none; background: none; outline: none; padding-top: 15px; margin-bottom: 20px;"
-                    [routerLink]="['/timesheet']">
-                    <div class="icon-big text-center">
-                      <i class="nc-icon nc-time-alarm text-success" style="font-size: 40px;"></i>
-                    </div>
-                    <h5 style="font-size: 20px;">TimeSheets</h5>
-                  </button>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div style="display: flex; justify-content: center;">
-                  <button style="border: none; background: none; outline: none; padding-top: 15px; margin-bottom: 20px;"
-                    [routerLink]="['/requests']">
-                    <div class="icon-big text-center">
-                      <i class="nc-icon nc-paper text-success" style="font-size: 40px;"></i>
-                    </div>
-                    <h5 style="font-size: 20px;">Requests</h5>
-                  </button>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div style="display: flex; justify-content: center;">
-                  <button style="border: none; background: none; outline: none; padding-top: 15px; margin-bottom: 20px;"
-                    [routerLink]="['/otheruser']">
-                    <div class="icon-big text-center">
-                      <i class="nc-icon nc-app text-success" style="font-size: 40px;"></i>
-                    </div>
-                    <h5 style="font-size: 20px;">OtherUser</h5>
-                  </button>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div style="display: flex; justify-content: center;">
-                  <button style="border: none; background: none; outline: none; padding-top: 15px; margin-bottom: 20px;"
-                    [routerLink]="['/devices']">
-                    <div class="icon-big text-center">
-                      <i class="nc-icon nc-laptop text-success" style="font-size: 40px;"></i>
-                    </div>
-                    <h5 style="font-size: 20px;">Devices</h5>
-                  </button>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div style="display: flex; justify-content: center;">
-                  <button style="border: none; background: none; outline: none; padding-top: 15px; margin-bottom: 20px;"
-                    [routerLink]="['/newpost']">
-                    <div class="icon-big text-center">
-                      <i class="nc-icon nc-single-copy-04 text-success" style="font-size: 40px;"></i>
-                    </div>
-                    <h5 style="font-size: 20px;">NewPost</h5>
-                  </button>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6">
-                <div style="display: flex; justify-content: center;">
-                  <button style="border: none; background: none; outline: none; padding-top: 15px; margin-bottom: 20px;"
-                    [routerLink]="['/userinfos']">
-                    <div class="icon-big text-center">
-                      <i class="nc-icon nc-alert-circle-i text-success" style="font-size: 40px;"></i>
-                    </div>
-                    <h5 style="font-size: 20px;">UsersInfo</h5>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>

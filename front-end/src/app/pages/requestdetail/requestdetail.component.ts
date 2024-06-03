@@ -30,7 +30,8 @@ export class RequestDetailComponent {
     }
 
     getRequestDetail() {
-        this.httpClient.get(`http://localhost:5299/api/Requests/get-request-detail?requestID=${this.requestID}&staffID=24002`)
+        const staffID = localStorage.getItem('userID');
+        this.httpClient.get(`http://localhost:5299/api/Requests/get-request-detail?requestID=${this.requestID}&staffID=${staffID}`)
             .subscribe({
                 next: (res: any) => {
                     console.log(res);

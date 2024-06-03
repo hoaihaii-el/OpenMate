@@ -19,7 +19,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="collapseExample" [ngbCollapse]="isCollapsed">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link btn-rotate" style="cursor: pointer;" [routerLink]="['/login']">
+          <a class="nav-link btn-rotate" style="cursor: pointer;" (click)="logout()">
             <i class="nc-icon nc-minimal-right" style="font-size: 24px;"></i>
             <p>
               <span class="d-lg-none d-md-block">Log out</span>

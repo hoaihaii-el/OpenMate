@@ -14,16 +14,16 @@ namespace StaffManagmentNET.StaticServices
             _config = config;
         }
 
-        public string GenerateToken(string email, List<string> roles)
+        public string GenerateToken(string userID, List<string> roles)
         {
-            if (string.IsNullOrEmpty(email))
+            if (string.IsNullOrEmpty(userID))
             {
                 return string.Empty;
             }
 
             var authClaims = new List<Claim>
             {
-                new Claim(ClaimTypes.Email, email),
+                new Claim("userID", userID + userID + userID),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 

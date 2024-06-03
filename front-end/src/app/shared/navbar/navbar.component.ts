@@ -33,6 +33,14 @@ export class NavbarComponent implements OnInit {
       this.sidebarClose();
     });
   }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userID');
+    localStorage.removeItem('roles');
+    this.router.navigate(['/login']);
+  }
+
   getTitle() {
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if (titlee.charAt(0) === '#') {

@@ -22,18 +22,11 @@ namespace StaffManagmentNET.Controllers
         {
             try
             {
-                return Ok(new
-                {
-                    message = "Success",
-                    data = await _service.SignIn(signIn)
-                });
+                return Ok(await _service.SignIn(signIn));
             }
             catch (Exception ex)
             {
-                return BadRequest(new
-                {
-                    message = ex.Message,
-                });
+                return BadRequest(ex.Message);
             }
         }
 

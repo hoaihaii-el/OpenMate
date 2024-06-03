@@ -18,25 +18,27 @@ import { RequestDetailComponent } from './pages/requestdetail/requestdetail.comp
 import { UserTaskComponent } from './pages/usertask/usertask.component';
 import { SalaryComponent } from './pages/salary/salary.component';
 import { StructureComponent } from './pages/structure/structure.component';
+import { LoginGuard } from './guards/login.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 export const AppRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'user', component: UserComponent },
-  { path: 'table', component: TableComponent },
-  { path: 'typography', component: TypographyComponent },
-  { path: 'icons', component: IconsComponent },
-  { path: 'notifications', component: NotificationsComponent },
-  { path: 'timesheet', component: TimeSheetComponent },
-  { path: 'otheruser', component: OtherUserComponent },
-  { path: 'userinfos', component: UserInfosComponent },
-  { path: 'devices', component: DevicesComponent },
-  { path: 'newpost', component: NewPostComponent },
-  { path: 'requests', component: RequestsComponent },
-  { path: 'messages', component: MessagesComponent },
-  { path: 'requestdetail/:requestID', component: RequestDetailComponent },
-  { path: 'usertask', component: UserTaskComponent },
-  { path: 'salary', component: SalaryComponent },
-  { path: 'structure', component: StructureComponent }
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
+  { path: 'table', component: TableComponent, canActivate: [AuthGuard] },
+  { path: 'typography', component: TypographyComponent, canActivate: [AuthGuard] },
+  { path: 'icons', component: IconsComponent, canActivate: [AuthGuard] },
+  { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard] },
+  { path: 'timesheet', component: TimeSheetComponent, canActivate: [AuthGuard] },
+  { path: 'otheruser', component: OtherUserComponent, canActivate: [AuthGuard] },
+  { path: 'userinfos', component: UserInfosComponent, canActivate: [AuthGuard] },
+  { path: 'devices', component: DevicesComponent, canActivate: [AuthGuard] },
+  { path: 'newpost', component: NewPostComponent, canActivate: [AuthGuard] },
+  { path: 'requests', component: RequestsComponent, canActivate: [AuthGuard] },
+  { path: 'messages', component: MessagesComponent, canActivate: [AuthGuard] },
+  { path: 'requestdetail/:requestID', component: RequestDetailComponent, canActivate: [AuthGuard] },
+  { path: 'usertask', component: UserTaskComponent, canActivate: [AuthGuard] },
+  { path: 'salary', component: SalaryComponent, canActivate: [AuthGuard] },
+  { path: 'structure', component: StructureComponent, canActivate: [AuthGuard] }
 ]
