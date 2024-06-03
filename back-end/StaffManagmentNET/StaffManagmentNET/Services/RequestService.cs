@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using StaffManagmentNET.Models;
 using StaffManagmentNET.Repositories;
 using StaffManagmentNET.Responses;
@@ -43,7 +44,8 @@ namespace StaffManagmentNET.Services
                     continue;
                 }
 
-
+                var activities = await GetActivities(req, request);
+                var lastActivity = activities.Split("_").LastOrDefault();
 
                 result.Add(new RequestCreate
                 {
@@ -53,15 +55,123 @@ namespace StaffManagmentNET.Services
                     CreateTime = req.CreateTime.ToString(),
                     Status = req.Status,
                     StaffID = req.StaffID,
+                    LastActivity = lastActivity!
                 });
             }
 
             return result;
         }
 
-        public Task<IEnumerable<RequestCreate>> GetNeedToAcceptRequest(string managerID)
+        public async Task<IEnumerable<RequestCreate>> GetNeedToAcceptRequest(string managerID)
         {
-            throw new NotImplementedException();
+            var needToAcpt = await _context.RequestAcceptDetails
+                .Where(r => r.ManagerID == managerID)
+                .ToListAsync();
+            var manager = await _context.Staffs.FindAsync(managerID);
+            var result = new List<RequestCreate>();
+
+            foreach (var nTA in needToAcpt)
+            {
+                var reqCreate = await _context.RequestCreateDetails.FindAsync(nTA.CreateID);
+                var request = await _context.Requests.FindAsync(reqCreate!.RequestID);
+                var staff = await _context.Staffs.FindAsync(reqCreate!.StaffID);
+
+                result.Add(new RequestCreate
+                {
+                    CreateID = nTA.CreateID,
+                    RequestID = reqCreate.RequestID,
+                    RequestName = request!.RequestName,
+                    CreateTime = reqCreate.CreateTime.ToString(),
+                    Status = reqCreate.Status,
+                    StaffID = reqCreate.StaffID,
+                    StaffName = staff!.StaffName,
+                    LastActivity = nTA.Action == "Accept" ? "You have accepted this request!" 
+                    : nTA.Action == "" ? "No action yet!" : "You have rejected this request!"
+                });
+            }
+
+            return result;
+        }
+
+        public async Task<RequestDetailResponse> GetRequestDetail(string requestID, string staffID)
+        {
+            var request = await _context.Requests.FindAsync(requestID);
+            var staff = await _context.Staffs.FindAsync(staffID);
+
+            var accepters = "";
+            if (request!.AcceptLevel == 1)
+            {
+                var accepter = await _context.Staffs.FindAsync(staff!.ManagerID);
+                if (accepter != null)
+                {
+                    accepters += accepter.StaffName + " will consider your request.";
+                }
+
+                if (!string.IsNullOrEmpty(request.ExternalAcceptID))
+                {
+                    var external = await _context.Staffs.FindAsync(request.ExternalAcceptID);
+                    accepters += "_" + external!.StaffName + " will take responsibility for this request.";
+                }
+            }
+            else 
+            if (request!.AcceptLevel == 2)
+            {
+                var managerID = staff!.ManagerID;
+                var accepter = await _context.Staffs.FindAsync(managerID);
+                while (accepter != null)
+                {
+                    accepters += accepter.StaffName + " will consider your request._";
+                    if (string.IsNullOrEmpty(accepter.ManagerID)) break;
+                    managerID = accepter.ManagerID;
+                    accepter = await _context.Staffs.FindAsync(managerID);
+                }
+
+                if (!string.IsNullOrEmpty(request.ExternalAcceptID))
+                {
+                    var external = await _context.Staffs.FindAsync(request.ExternalAcceptID);
+                    accepters += external!.StaffName + " will take responsibility for this request.";
+                }
+                else
+                {
+                    if (accepters.EndsWith('_')) accepters = accepters.Remove(accepters.Length - 1);
+                }
+            }
+            else
+            if (request.AcceptLevel == 0)
+            {
+                if (!string.IsNullOrEmpty(request.ExternalAcceptID))
+                {
+                    var external = await _context.Staffs.FindAsync(request.ExternalAcceptID);
+                    accepters += external!.StaffName + " will take responsibility for this request.";
+                }
+            }
+            else 
+            if (request.AcceptLevel == -1)
+            {
+                var ceo = await _context.Staffs.FindAsync("24001");
+                accepters += ceo!.StaffName + " will consider your request.";
+                if (!string.IsNullOrEmpty(request.ExternalAcceptID))
+                {
+                    var external = await _context.Staffs.FindAsync(request.ExternalAcceptID);
+                    accepters += "_" + external!.StaffName + " will take responsibility for this request.";
+                }
+            }
+
+            return new RequestDetailResponse
+            {
+                RequestID = requestID,
+                RequestName = request.RequestName,
+                Rules = request.Rules,
+                Title1 = request.Title1,
+                Title2 = request.Title2,
+                Title3 = request.Title3,
+                Answer1Type = request.Answer1Type,
+                Answer2Type = request.Answer2Type,
+                Answer3Type = request.Answer3Type,
+                AcceptLevel = request.AcceptLevel,
+                FallbackID = request.ExternalAcceptID,
+                Accepters = accepters
+            };
         }
 
         public async Task<string> GetActivities(RequestCreateDetail reqCreate, Request request)

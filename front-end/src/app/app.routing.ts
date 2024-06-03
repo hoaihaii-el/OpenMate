@@ -35,7 +35,7 @@ export const AppRoutes: Routes = [
   { path: 'newpost', component: NewPostComponent },
   { path: 'requests', component: RequestsComponent },
   { path: 'messages', component: MessagesComponent },
-  { path: 'requestdetail', component: RequestDetailComponent },
+  { path: 'requestdetail/:requestID', component: RequestDetailComponent },
   { path: 'usertask', component: UserTaskComponent },
   { path: 'salary', component: SalaryComponent },
   { path: 'structure', component: StructureComponent }

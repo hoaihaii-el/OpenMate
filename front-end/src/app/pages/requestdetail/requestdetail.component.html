@@ -5,82 +5,65 @@
     <div class="main-panel">
         <navbar-cmp></navbar-cmp>
         <div class="content">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title">Request: Xin nghỉ phép không lương</h5>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <h6 style="text-align: center;">Hoai Nhan</h6>
-                    </div>
-                    <div class="col-8">
-                        <h6>Has accepted your request</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <h6 style="text-align: center;">Hong Nhung</h6>
-                    </div>
-                    <div class="col-8">
-                        <h6>Has accepted your request</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <h6 style="text-align: center;">Hoai Hai</h6>
-                    </div>
-                    <div class="col-8">
-                        <h6>Is considering your request</h6>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form>
-                        <div class="row">
+            <div class="row">
+                <div class="col-12">
+                    <div class="box" style="padding: 15px; height: 590px; overflow: auto;">
+                        <div>
+                            <h5>{{requestDetail.requestName}}</h5>
+                        </div>
+                        <div class="row input-box" *ngIf="requestDetail.rules != ''">
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Các quy định khi submit request này</label>
-                                    <div>
-                                        <label style="margin-left: 20px;">Quy định 1</label>
-                                    </div>
-                                    <div>
-                                        <label style="margin-left: 20px;">Quy định 2</label>
-                                    </div>
-                                    <div>
-                                        <label style="margin-left: 20px;">Quy định 3</label>
-                                    </div>
+                                <div style="margin-left: 20px;" [innerHTML]="sanitizerHtml">
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="accepters">
+                            <div *ngFor="let accepter of accepters">
+                                <h6 style="margin-top: 10px;">{{accepter}}</h6>
+                            </div>
+                        </div>
+                        <div class="row input-box">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Bạn muốn xin nghỉ những ngày nào?</label>
-                                    <textarea style="width: 100%;"></textarea>
+                                    <label>{{requestDetail.title1}}</label>
+                                    <input *ngIf="requestDetail.answer1Type != 'Editor'" type="text"
+                                        class="form-control">
+                                    <ckeditor *ngIf="requestDetail.answer1Type == 'Editor'" [editor]="Editor"
+                                        [(ngModel)]="model1.editorData">
+                                    </ckeditor>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row input-box">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Lý do</label>
-                                    <textarea style="width: 100%;"></textarea>
+                                    <label>{{requestDetail.title2}}</label>
+                                    <input *ngIf="requestDetail.answer2Type != 'Editor'" type="text"
+                                        class="form-control">
+                                    <ckeditor *ngIf="requestDetail.answer2Type == 'Editor'" [editor]="Editor"
+                                        [(ngModel)]="model1.editorData">
+                                    </ckeditor>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row input-box">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Minh chứng (nếu có)</label>
-                                    <input type="text" class="form-control" placeholder="Minh chứng">
+                                    <label>{{requestDetail.title3}}</label>
+                                    <input *ngIf="requestDetail.answer3Type != 'Editor'" type="text"
+                                        class="form-control">
+                                    <ckeditor *ngIf="requestDetail.answer3Type == 'Editor'" [editor]="Editor"
+                                        [(ngModel)]="model1.editorData">
+                                    </ckeditor>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="update ml-auto mr-auto">
-                                <button type="submit" class="btn btn-primary btn-round">Create</button>
+                                <button type="submit" class="btn btn-primary process-btn">Process</button>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

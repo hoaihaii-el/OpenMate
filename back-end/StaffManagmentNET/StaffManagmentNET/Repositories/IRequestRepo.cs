@@ -7,5 +7,6 @@ namespace StaffManagmentNET.Repositories
         Task<IEnumerable<RequestType>> GetAllRqst();
         Task<IEnumerable<RequestCreate>> GetYourRequest(string staffID);
         Task<IEnumerable<RequestCreate>> GetNeedToAcceptRequest(string managerID);
+        Task<RequestDetailResponse> GetRequestDetail(string requestID, string staffID);
     }
 }

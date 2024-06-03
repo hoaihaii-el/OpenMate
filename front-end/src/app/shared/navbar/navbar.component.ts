@@ -51,6 +51,7 @@ export class NavbarComponent implements OnInit {
     if (titlee.includes('info')) return 'Users Info';
     if (titlee.includes('task')) return 'User Task';
     if (titlee.includes('salary')) return 'Salary';
+    if (titlee.includes('detail')) return 'Request Detail';
 
     return titlee;
   }
