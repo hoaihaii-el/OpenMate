@@ -131,12 +131,14 @@ namespace StaffManagmentNET.Services
             }
 
             var userRoles = await _userManager.GetRolesAsync(user);
+            var staff = await _context.Staffs.FindAsync(user.Id);
 
             return new SignInResponse
             {
                 AccessToken = _JWTManager.GenerateToken(user.Id, (List<string>)userRoles),
                 Roles = string.Join('_', userRoles),
-                StaffID = user.Id
+                StaffID = user.Id,
+                StaffName = staff!.StaffName
             };
         }
 

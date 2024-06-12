@@ -1,0 +1,61 @@
+.box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.txt {
+    font-size: 20px;
+    text-align: center;
+}
+
+.icon-box {
+    cursor: pointer;
+    width: 50px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.process-btn {
+    padding: 8px 10px;
+    margin-top: 10px;
+}
+
+.input-box {
+    margin-top: 20px;
+}
+
+.my-select {
+    margin-left: 15px;
+    padding-right: 10px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 5px;
+    border: 0;
+    background-position: right 15px top 50%;
+}
+
+select {
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+select>option {
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.accepters {
+    margin-top: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}

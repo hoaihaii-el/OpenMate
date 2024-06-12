@@ -27,7 +27,7 @@
                                 <div class="form-group">
                                     <label>{{requestDetail.title1}}</label>
                                     <input *ngIf="requestDetail.answer1Type != 'Editor'" type="text"
-                                        class="form-control">
+                                        class="form-control" [(ngModel)]="content1">
                                     <ckeditor *ngIf="requestDetail.answer1Type == 'Editor'" [editor]="Editor"
                                         [(ngModel)]="model1.editorData">
                                     </ckeditor>
@@ -39,9 +39,9 @@
                                 <div class="form-group">
                                     <label>{{requestDetail.title2}}</label>
                                     <input *ngIf="requestDetail.answer2Type != 'Editor'" type="text"
-                                        class="form-control">
+                                        class="form-control" [(ngModel)]="content2">
                                     <ckeditor *ngIf="requestDetail.answer2Type == 'Editor'" [editor]="Editor"
-                                        [(ngModel)]="model1.editorData">
+                                        [(ngModel)]="model2.editorData">
                                     </ckeditor>
                                 </div>
                             </div>
@@ -51,16 +51,17 @@
                                 <div class="form-group">
                                     <label>{{requestDetail.title3}}</label>
                                     <input *ngIf="requestDetail.answer3Type != 'Editor'" type="text"
-                                        class="form-control">
+                                        class="form-control" [(ngModel)]="content3">
                                     <ckeditor *ngIf="requestDetail.answer3Type == 'Editor'" [editor]="Editor"
-                                        [(ngModel)]="model1.editorData">
+                                        [(ngModel)]="model3.editorData">
                                     </ckeditor>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="update ml-auto mr-auto">
-                                <button type="submit" class="btn btn-primary process-btn">Process</button>
+                                <button type="submit" class="btn btn-primary process-btn"
+                                    (click)="createRequest()">Process</button>
                             </div>
                         </div>
                     </div>

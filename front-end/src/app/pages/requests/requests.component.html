@@ -75,7 +75,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let req of yourRequests" style="cursor: pointer;"
-                                        [routerLink]="['/requestdetail']">
+                                        [routerLink]="['/reqcreatedetail', req.createID, 'false']">
                                         <td>{{req.requestName}}</td>
                                         <td>{{req.createTime}}</td>
                                         <td>{{req.lastActivity}}</td>
@@ -96,7 +96,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let req of needToAcceptRequests" style="cursor: pointer;"
-                                        [routerLink]="['/requestdetail']">
+                                        [routerLink]="['/reqcreatedetail', req.createID, 'true']">
                                         <td>{{req.requestName}}</td>
                                         <td>{{req.createTime}}</td>
                                         <td>{{req.staffName}}</td>

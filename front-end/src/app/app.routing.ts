@@ -20,6 +20,7 @@ import { SalaryComponent } from './pages/salary/salary.component';
 import { StructureComponent } from './pages/structure/structure.component';
 import { LoginGuard } from './guards/login.guard';
 import { AuthGuard } from './guards/auth.guard';
+import { RequestCreateDetailComponent } from './pages/requestcreatedetail/requestcreatedetail.component';
 
 export const AppRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -38,6 +39,7 @@ export const AppRoutes: Routes = [
   { path: 'requests', component: RequestsComponent, canActivate: [AuthGuard] },
   { path: 'messages', component: MessagesComponent, canActivate: [AuthGuard] },
   { path: 'requestdetail/:requestID', component: RequestDetailComponent, canActivate: [AuthGuard] },
+  { path: 'reqcreatedetail/:createID/:isOpenByManager', component: RequestCreateDetailComponent, canActivate: [AuthGuard] },
   { path: 'usertask', component: UserTaskComponent, canActivate: [AuthGuard] },
   { path: 'salary', component: SalaryComponent, canActivate: [AuthGuard] },
   { path: 'structure', component: StructureComponent, canActivate: [AuthGuard] }

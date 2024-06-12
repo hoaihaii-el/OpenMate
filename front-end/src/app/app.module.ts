@@ -33,6 +33,7 @@ import { UserTaskComponent } from "./pages/usertask/usertask.component";
 import { SalaryComponent } from "./pages/salary/salary.component";
 import { StructureComponent } from "./pages/structure/structure.component";
 import { FormsModule } from "@angular/forms";
+import { RequestCreateDetailComponent } from "./pages/requestcreatedetail/requestcreatedetail.component";
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { FormsModule } from "@angular/forms";
     RequestDetailComponent,
     UserTaskComponent,
     SalaryComponent,
-    StructureComponent
+    StructureComponent,
+    RequestCreateDetailComponent
   ],
   imports: [
     BrowserAnimationsModule,

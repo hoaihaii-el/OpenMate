@@ -19,7 +19,11 @@ export class NavbarComponent implements OnInit {
   public isCollapsed = true;
   @ViewChild("navbar-cmp", { static: false }) button;
 
-  constructor(location: Location, private renderer: Renderer2, private element: ElementRef, private router: Router) {
+  constructor(
+    location: Location,
+    private renderer: Renderer2,
+    private element: ElementRef,
+    private router: Router) {
     this.location = location;
     this.nativeElement = element.nativeElement;
     this.sidebarVisible = false;
@@ -28,7 +32,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     var navbar: HTMLElement = this.element.nativeElement;
-    this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+    this.toggleButton = navbar
+      .getElementsByClassName('navbar-toggle')[0];
     this.router.events.subscribe((event) => {
       this.sidebarClose();
     });
@@ -73,7 +78,8 @@ export class NavbarComponent implements OnInit {
   sidebarOpen() {
     const toggleButton = this.toggleButton;
     const html = document.getElementsByTagName('html')[0];
-    const mainPanel = <HTMLElement>document.getElementsByClassName('main-panel')[0];
+    const mainPanel = <HTMLElement>document
+      .getElementsByClassName('main-panel')[0];
     setTimeout(function () {
       toggleButton.classList.add('toggled');
     }, 500);
@@ -86,7 +92,8 @@ export class NavbarComponent implements OnInit {
   };
   sidebarClose() {
     const html = document.getElementsByTagName('html')[0];
-    const mainPanel = <HTMLElement>document.getElementsByClassName('main-panel')[0];
+    const mainPanel = <HTMLElement>document
+      .getElementsByClassName('main-panel')[0];
     if (window.innerWidth < 991) {
       setTimeout(function () {
         mainPanel.style.position = '';
@@ -107,7 +114,5 @@ export class NavbarComponent implements OnInit {
       navbar.classList.add('navbar-transparent');
       navbar.classList.remove('bg-white');
     }
-
   }
-
 }

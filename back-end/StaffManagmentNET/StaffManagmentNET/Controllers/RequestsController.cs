@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StaffManagmentNET.Repositories;
+using StaffManagmentNET.ViewModels;
 
 namespace StaffManagmentNET.Controllers
 {
@@ -36,6 +37,26 @@ namespace StaffManagmentNET.Controllers
         public async Task<IActionResult> GetRequestDetail(string requestID, string staffID)
         {
             return Ok(await _service.GetRequestDetail(requestID, staffID));
+        }
+
+        [HttpGet("get-req-create-detail")]
+        public async Task<IActionResult> GetReqCreateDetail(string createID)
+        {
+            return Ok(await _service.GetReqCreateDetail(createID));
+        }
+
+        [HttpPost("create-request")]
+        public async Task<IActionResult> CreateRequest(RequestCreateVM vm)
+        {
+            await _service.CreateRequest(vm);
+            return Ok();
+        }
+
+        [HttpPost("consider-request")]
+        public async Task<IActionResult> ConsiderRequest(ConsiderRequestVM vm)
+        {
+            await _service.ConsiderRequest(vm);
+            return Ok();
         }
     }
 }
