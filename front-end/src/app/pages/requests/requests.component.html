@@ -79,7 +79,15 @@
                                         <td>{{req.requestName}}</td>
                                         <td>{{req.createTime}}</td>
                                         <td>{{req.lastActivity}}</td>
-                                        <td>{{req.status}}</td>
+                                        <td *ngIf="req.status == 'Accepted'" class="text-success">
+                                            {{req.status}}
+                                        </td>
+                                        <td *ngIf="req.status == 'Pending'" class="text-warning">
+                                            {{req.status}}
+                                        </td>
+                                        <td *ngIf="req.status == 'Rejected'" class="text-danger">
+                                            {{req.status}}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -100,7 +108,15 @@
                                         <td>{{req.requestName}}</td>
                                         <td>{{req.createTime}}</td>
                                         <td>{{req.staffName}}</td>
-                                        <td>{{req.status}}</td>
+                                        <td *ngIf="req.status == 'Accepted'" class="text-success">
+                                            {{req.status}}
+                                        </td>
+                                        <td *ngIf="req.status == 'Pending'" class="text-warning">
+                                            {{req.status}}
+                                        </td>
+                                        <td *ngIf="req.status == 'Rejected'" class="text-danger">
+                                            {{req.status}}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

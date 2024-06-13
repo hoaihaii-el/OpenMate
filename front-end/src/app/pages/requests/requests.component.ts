@@ -30,7 +30,7 @@ export class RequestsComponent {
     }
 
     getRequestsType() {
-        this.httpClient.get('http://localhost:5299/api/Requests/get-all')
+        this.httpClient.get('https://localhost:7243/api/Requests/get-all')
             .subscribe({
                 next: (res: any) => {
                     console.log(res);
@@ -43,7 +43,7 @@ export class RequestsComponent {
     }
 
     getYourRequests() {
-        this.httpClient.get(`http://localhost:5299/api/Requests/get-your-request?staffID=${this.staffID}`)
+        this.httpClient.get(`https://localhost:7243/api/Requests/get-your-request?staffID=${this.staffID}`)
             .subscribe({
                 next: (res: any) => {
                     console.log(res);
@@ -56,7 +56,7 @@ export class RequestsComponent {
     }
 
     getNeedToAcceptRequests() {
-        this.httpClient.get(`http://localhost:5299/api/Requests/get-need-to-accept-request?managerID=${this.staffID}`)
+        this.httpClient.get(`https://localhost:7243/api/Requests/get-need-to-accept-request?managerID=${this.staffID}`)
             .subscribe({
                 next: (res: any) => {
                     console.log(res);

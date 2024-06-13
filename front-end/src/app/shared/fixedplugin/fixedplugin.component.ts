@@ -34,7 +34,7 @@ export class FixedPluginComponent {
 
   getUserTasks() {
     var date = this.dateToString(new Date());
-    this.httpClient.get(`http://localhost:5299/api/TaskDetail/user-get?date=${date}&staffID=24002`)
+    this.httpClient.get(`https://localhost:7243/api/TaskDetail/user-get?date=${date}&staffID=24002`)
       .subscribe({
         next: (res: any) => {
           console.log(res);
@@ -52,7 +52,7 @@ export class FixedPluginComponent {
     }
 
     const now = new Date();
-    this.httpClient.post(`http://localhost:5299/api/TaskDetail/new-task`, {
+    this.httpClient.post(`https://localhost:7243/api/TaskDetail/new-task`, {
       date: this.newTask.date,
       staffID: this.newTask.staffID,
       staffName: this.newTask.staffName,
@@ -89,7 +89,7 @@ export class FixedPluginComponent {
   updateTask(task: Task, isTimeChanged: boolean) {
     const now = new Date();
     console.log(task);
-    this.httpClient.post(`http://localhost:5299/api/TaskDetail/new-task`, {
+    this.httpClient.post(`https://localhost:7243/api/TaskDetail/new-task`, {
       date: task.date,
       staffID: task.staffID,
       staffName: task.staffName,

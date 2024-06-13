@@ -5,4 +5,5 @@ export interface Device {
     staffID: string;
     staffName: string;
     condition: string;
+    publicIP: string;
 }

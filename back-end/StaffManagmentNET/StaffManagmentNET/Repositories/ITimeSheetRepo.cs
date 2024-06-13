@@ -1,12 +1,13 @@
 ﻿using StaffManagmentNET.Models;
 using StaffManagmentNET.Responses;
+using StaffManagmentNET.ViewModels;
 
 namespace StaffManagmentNET.Repositories
 {
     public interface ITimeSheetRepo
     {
-        Task CheckIn(string staffID);
-        Task CheckOut(string staffID);
+        Task CheckIn(CheckInVM vm);
+        Task CheckOut(CheckInVM vm);
         Task<TimeSheet> GetTimeSheetByDay(string staffID, int day, int month, int year);
         Task<IEnumerable<TimeSheetResponse>> GetTimeSheetByMonth(string staffID, int month, int year);
         Task<double> GetAvgByMonth(string staffID, int month, int year);

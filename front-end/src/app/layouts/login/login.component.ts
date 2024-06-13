@@ -20,7 +20,7 @@ export class LoginComponent {
       return;
     }
 
-    this.httpClient.post('http://localhost:5299/api/Account/login', { userID: this.userName, password: this.password })
+    this.httpClient.post('https://localhost:7243/api/Account/login', { userID: this.userName, password: this.password })
       .subscribe({
         next: (res: any) => {
           if (res) {

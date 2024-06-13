@@ -30,6 +30,7 @@ namespace StaffManagmentNET.Services
                     DeviceType = device.DeviceType,
                     Condition = device.Condition,
                     StaffID = device.StaffID,
+                    PublicIP = device.PublicIP,
                 };
 
                 if (!string.IsNullOrEmpty(device.StaffID))
@@ -72,6 +73,7 @@ namespace StaffManagmentNET.Services
                 DeviceType = vm.DeviceType,
                 StaffID = vm.StaffID == "Empty" ? "" : vm.StaffID,
                 Condition = vm.Condition,
+                PublicIP = vm.PublicIP
             });
 
             await _context.SaveChangesAsync();
@@ -99,6 +101,7 @@ namespace StaffManagmentNET.Services
             device.DeviceType = vm.DeviceType;
             device.StaffID = vm.StaffID == "Empty" ? "" : vm.StaffID;
             device.Condition = vm.Condition;
+            device.PublicIP = vm.PublicIP;
 
             _context.Devices.Update(device);
 

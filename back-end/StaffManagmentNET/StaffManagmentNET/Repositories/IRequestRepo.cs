@@ -10,7 +10,10 @@ namespace StaffManagmentNET.Repositories
         Task<IEnumerable<RequestCreate>> GetNeedToAcceptRequest(string managerID);
         Task<RequestDetailResponse> GetRequestDetail(string requestID, string staffID);
         Task CreateRequest(RequestCreateVM vm);
+        Task CreateReqChangeTime(ChangeTimeRequestVM vm);
         Task<ReqCreateDetailReponse> GetReqCreateDetail(string createID);
         Task ConsiderRequest(ConsiderRequestVM vm);
+        Task<IEnumerable<ChangeTimeResponse>> GetChangeTimeRequest(string staffID, int month, int year);
+        Task<IEnumerable<RequestCreate>> GetDeviceRequest();
     }
 }

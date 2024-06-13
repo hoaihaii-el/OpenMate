@@ -19,7 +19,7 @@ export class UserComponent {
     }
 
     getStaffInfo() {
-        const apiUrl = `http://localhost:5299/api/Staff/detail?staffID=${this.staffID}`;
+        const apiUrl = `https://localhost:7243/api/Staff/detail?staffID=${this.staffID}`;
         this.httpClient.get(apiUrl)
             .subscribe({
                 next: (res: any) => {
@@ -37,7 +37,7 @@ export class UserComponent {
     }
 
     updateInfo() {
-        const apiUrl = `http://localhost:5299/api/Staff/user-update`;
+        const apiUrl = `https://localhost:7243/api/Staff/user-update`;
         this.httpClient.put(apiUrl, {
             staffID: this.staff.staffID,
             staffName: this.staff.staffName,

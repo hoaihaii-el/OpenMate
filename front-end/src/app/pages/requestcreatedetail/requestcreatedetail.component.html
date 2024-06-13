@@ -44,8 +44,13 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="text-warning">{{requestDetail.title3}}</label>
-                                    <div *ngIf="requestDetail.answer3Type != 'Editor'">{{requestDetail.content3}}</div>
+                                    <div
+                                        *ngIf="requestDetail.answer3Type != 'Editor' && requestDetail.answer3Type != 'Image'">
+                                        {{requestDetail.content3}}</div>
                                     <div *ngIf="requestDetail.answer3Type == 'Editor'" [innerHTML]="content3"></div>
+                                    <div *ngIf="requestDetail.answer3Type == 'Image'">
+                                        <img [src]="requestDetail.content3" alt="Evidence" style="width: 100%;">
+                                    </div>
                                 </div>
                             </div>
                         </div>

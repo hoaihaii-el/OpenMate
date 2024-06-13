@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from "ngx-toastr";
 import { TimeSheet } from 'app/models/timesheet.model';
+import { ChangeTimeReq } from 'app/models/changetimereq.model';
 
 @Component({
     selector: 'timesheet-cmp',
@@ -25,8 +26,12 @@ export class TimeSheetComponent {
     public h2: number = 1;
     public m1: number = 1;
     public m2: number = 1;
-    public wrkType: any = 1;
-    public off: any = 1;
+    public wrkType: string = '';
+    public off: string = '';
+    public base64Image: string = '';
+    public reason: string = '';
+    public filename: string = '';
+    public changeTimeReqs: ChangeTimeReq[] = [];
     private key: String = '';
 
     constructor(private httpClient: HttpClient, private toastr: ToastrService) {
@@ -37,10 +42,11 @@ export class TimeSheetComponent {
 
         this.getData();
         this.updateTable();
+        this.getChangeTimeReqs();
     }
 
     getData(): void {
-        const url2 = `http://localhost:5299/api/TimeSheet/get-detail?staffID=${this.staffID}&month=${this.currentMonth}&year=${this.currentYear}`;
+        const url2 = `https://localhost:7243/api/TimeSheet/get-detail?staffID=${this.staffID}&month=${this.currentMonth}&year=${this.currentYear}`;
         this.httpClient.get(url2)
             .subscribe({
                 next: (res: any) => {
@@ -49,6 +55,20 @@ export class TimeSheetComponent {
                     this.wfh = res.wfh;
                     this.total = `${res.total}hrs`;
                     this.avg = `${res.avg}hrs`;
+                },
+                error: (error: any) => {
+                    console.log(error)
+                }
+            });
+    }
+
+    getChangeTimeReqs(): void {
+        const url = `https://localhost:7243/api/Requests/get-changetime-reqs?staffID=${this.staffID}&month=${this.currentMonth}&year=${this.currentYear}`;
+        this.httpClient.get(url)
+            .subscribe({
+                next: (res: any) => {
+                    console.log(res);
+                    this.changeTimeReqs = res;
                 },
                 error: (error: any) => {
                     console.log(error)
@@ -65,6 +85,7 @@ export class TimeSheetComponent {
 
         this.getData();
         this.updateTable();
+        this.getChangeTimeReqs();
     }
 
     nextMonth(): void {
@@ -83,10 +104,11 @@ export class TimeSheetComponent {
 
         this.getData();
         this.updateTable();
+        this.getChangeTimeReqs();
     }
 
     updateTable(): void {
-        const apiUrl = `http://localhost:5299/api/TimeSheet/get-sheet-by-month?staffID=${this.staffID}&month=${this.currentMonth}&year=${this.currentYear}`;
+        const apiUrl = `https://localhost:7243/api/TimeSheet/get-sheet-by-month?staffID=${this.staffID}&month=${this.currentMonth}&year=${this.currentYear}`;
         this.httpClient.get<TimeSheet[]>(apiUrl)
             .subscribe({
                 next: (res: TimeSheet[]) => {
@@ -114,6 +136,10 @@ export class TimeSheetComponent {
         if (isNaN(this.m1)) this.m1 = 1;
         if (isNaN(this.m2)) this.m2 = 1;
 
+        this.wrkType = sheet.workingType;
+        this.off = sheet.off;
+        this.base64Image = '';
+        console.log(sheet);
         this.showModal = true;
     }
 
@@ -123,44 +149,44 @@ export class TimeSheetComponent {
 
     updateCheckIn(type: number) {
         if (type == 1) {
-            if (this.h1 == 23) return;
+            if (this.h1 == 23) this.h1 = -1;
             this.h1++;
         }
         else if (type == 2) {
-            if (this.h1 == 0) return;
+            if (this.h1 == 0) this.h1 = 24;
             this.h1--;
         }
         else if (type == 3) {
-            if (this.m1 == 59) return;
+            if (this.m1 == 59) this.m1 = -1;
             this.m1++;
         }
         else if (type == 4) {
-            if (this.m1 == 0) return;
+            if (this.m1 == 0) this.m1 = 60;
             this.m1--;
         }
     }
 
     updateCheckOut(type: number) {
         if (type == 1) {
-            if (this.h2 == 23) return;
+            if (this.h2 == 23) this.h2 = -1;
             this.h2++;
         }
         else if (type == 2) {
-            if (this.h2 == 0) return;
+            if (this.h2 == 0) this.h2 = 24;
             this.h2--;
         }
         else if (type == 3) {
-            if (this.m2 == 59) return;
+            if (this.m2 == 59) this.m2 = -1;
             this.m2++;
         }
         else if (type == 4) {
-            if (this.m2 == 0) return;
+            if (this.m2 == 0) this.m2 = 60;
             this.m2--;
         }
     }
 
     setDayOff(value: String, key: String) {
-        const apiUrl = `http://localhost:5299/api/TimeSheet/update-data`;
+        const apiUrl = `https://localhost:7243/api/TimeSheet/update-data`;
         const data = {
             staffID: this.staffID,
             date: key,
@@ -188,7 +214,7 @@ export class TimeSheetComponent {
     }
 
     setWFH(value: String, key: String) {
-        const apiUrl = `http://localhost:5299/api/TimeSheet/update-data`;
+        const apiUrl = `https://localhost:7243/api/TimeSheet/update-data`;
         const data = {
             staffID: this.staffID,
             date: key,
@@ -216,31 +242,60 @@ export class TimeSheetComponent {
     }
 
     changeTime() {
-        const apiUrl = `http://localhost:5299/api/TimeSheet/update-data`;
+        // if (this.base64Image == '') {
+        //     this.showAlert('Please provide an evidence!', 'info');
+        //     return;
+        // }
+
+        const apiUrl = `https://localhost:7243/api/Requests/create-req-changetime`;
         const data = {
             staffID: this.staffID,
             date: this.key,
-            type: 'all',
             h1: this.h1,
             m1: this.m1,
             h2: this.h2,
             m2: this.m2,
-            wrkType: this.wrkType == 1 ? 'OFFICE' : 'WFH',
-            off: this.off == 1 ? 'ALL' : this.off == 2 ? 'AM-OFF' : 'PM-OFF'
+            wrkType: this.wrkType,
+            off: this.off,
+            reason: this.reason,
+            evidence: this.base64Image
         };
-        this.httpClient.put(apiUrl, data)
+        this.httpClient.post(apiUrl, data)
             .subscribe({
                 next: (response: any) => {
                     console.log(response);
-                    this.getData();
-                    this.updateTable();
-                    this.showAlert('A request CHANGE-TIME was created! Please provide more information.', 'success');
+                    this.showAlert('A request change time was created!', 'success');
+                    this.showModal = false;
                 },
                 error: (error: any) => {
                     console.log(error);
                     this.showAlert('An error occur!', 'info');
                 }
             });
+
+        this.getChangeTimeReqs();
+    }
+
+    onFileChange(event: any) {
+        try {
+            const file = event.target.files[0];
+            if (file) {
+                this.filename = "Evidence chooosen!"
+                this.convertToBase64(file);
+            }
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+
+    convertToBase64(file: File) {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+            this.base64Image = e.target.result;
+            console.log(this.base64Image); // Here you can handle the Base64 image as needed
+        };
+        reader.readAsDataURL(file);
     }
 
     showAlert(content: string, type: string): void {

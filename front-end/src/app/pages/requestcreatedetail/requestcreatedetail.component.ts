@@ -32,7 +32,7 @@ export class RequestCreateDetailComponent {
     }
 
     getRequestDetail() {
-        this.httpClient.get(`http://localhost:5299/api/Requests/get-req-create-detail?createID=${this.createID}`)
+        this.httpClient.get(`https://localhost:7243/api/Requests/get-req-create-detail?createID=${this.createID}`)
             .subscribe({
                 next: (res: any) => {
                     console.log(res);
@@ -59,7 +59,7 @@ export class RequestCreateDetailComponent {
 
     considerRequest(action: string) {
         const managerID = localStorage.getItem('userID');
-        this.httpClient.post(`http://localhost:5299/api/Requests/consider-request`, {
+        this.httpClient.post(`https://localhost:7243/api/Requests/consider-request`, {
             createID: this.createID,
             managerID: managerID,
             action: action

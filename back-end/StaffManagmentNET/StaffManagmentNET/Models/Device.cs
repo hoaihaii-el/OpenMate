@@ -11,7 +11,7 @@ namespace StaffManagmentNET.Models
         public string DeviceType { get; set; } = "";
         [MaxLength(10)]
         public string? StaffID { get; set; }
-
         public string Condition { get; set; } = "";
+        public string PublicIP { get; set; } = "";
     }
 }

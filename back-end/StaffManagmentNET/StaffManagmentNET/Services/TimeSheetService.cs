@@ -2,6 +2,7 @@
 using StaffManagmentNET.Models;
 using StaffManagmentNET.Repositories;
 using StaffManagmentNET.Responses;
+using StaffManagmentNET.ViewModels;
 using System;
 using System.Globalization;
 
@@ -16,9 +17,18 @@ namespace StaffManagmentNET.Services
             _context = context;
         }
 
-        public async Task CheckIn(string staffID)
+        public async Task CheckIn(CheckInVM vm)
         {
-            var timeSheet = await _context.TimeSheets.FindAsync(DateTime.Now.ToString("dd/MM/yyyy"), staffID);
+            var device = await _context.Devices
+                .Where(d => d.StaffID == vm.StaffID && d.DeviceType.Contains("Laptop") || d.DeviceType.Contains("PC"))
+                .FirstOrDefaultAsync();
+
+            if (device != null && device.PublicIP != vm.PublicIP)
+            {
+                throw new Exception("Please check-in by own company device!");
+            }
+
+            var timeSheet = await _context.TimeSheets.FindAsync(DateTime.Now.ToString("dd/MM/yyyy"), vm.StaffID);
 
             if (timeSheet != null)
             {
@@ -35,16 +45,16 @@ namespace StaffManagmentNET.Services
             _context.TimeSheets.Add(new TimeSheet
             {
                 Date = DateTime.Now.ToString("dd/MM/yyyy"),
-                StaffID = staffID,
+                StaffID = vm.StaffID,
                 CheckIn = DateTime.Now
             });
 
             await _context.SaveChangesAsync();
         }
 
-        public async Task CheckOut(string staffID)
+        public async Task CheckOut(CheckInVM vm)
         {
-            var timeSheet = await _context.TimeSheets.FindAsync(DateTime.Now.ToString("dd/MM/yyyy"), staffID);
+            var timeSheet = await _context.TimeSheets.FindAsync(DateTime.Now.ToString("dd/MM/yyyy"), vm.StaffID);
 
             if (timeSheet == null)  
             {
@@ -194,12 +204,14 @@ namespace StaffManagmentNET.Services
                 .Where(t => t.StaffID == staffID && t.CheckIn.Month == month && t.CheckIn.Year == year)
                 .SumAsync(t => t.Total);
 
-            return totalThisMonth;
+            return Math.Round(totalThisMonth, 2);
         }
 
         public async Task<TimeSheet> GetTimeSheetByDay(string staffID, int day, int month, int year)
         {
-            var date = $"{month}/{day}/{year}";
+            var date = day < 10 ? $"0{day}" : day.ToString();
+            date += month < 10 ? $"/0{month}/" : $"/{month}/";
+            date += year.ToString();
             var timeSheet = await _context.TimeSheets.FindAsync(date, staffID);
 
             if (timeSheet == null)
@@ -306,9 +318,7 @@ namespace StaffManagmentNET.Services
 
         double CalcTotal(TimeSheet timeSheet)
         {
-            timeSheet.CheckOut = DateTime.Now;
-
-            var total = (timeSheet.CheckOut - timeSheet.CheckIn).TotalHours;
+            var total = (timeSheet.CheckOut - timeSheet.CheckIn).TotalHours - timeSheet.LunchBreakHour;
 
             if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday || DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
             {

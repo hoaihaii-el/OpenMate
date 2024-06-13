@@ -41,7 +41,7 @@ export class RequestDetailComponent {
 
     getRequestDetail() {
         const staffID = localStorage.getItem('userID');
-        this.httpClient.get(`http://localhost:5299/api/Requests/get-request-detail?requestID=${this.requestID}&staffID=${staffID}`)
+        this.httpClient.get(`https://localhost:7243/api/Requests/get-request-detail?requestID=${this.requestID}&staffID=${staffID}`)
             .subscribe({
                 next: (res: any) => {
                     console.log(res);
@@ -90,7 +90,7 @@ export class RequestDetailComponent {
         const answer1 = this.requestDetail.answer1Type === 'Editor' ? this.model1.editorData : this.content1;
         const answer2 = this.requestDetail.answer2Type === 'Editor' ? this.model2.editorData : this.content2;
         const answer3 = this.requestDetail.answer3Type === 'Editor' ? this.model3.editorData : this.content3;
-        const url = `http://localhost:5299/api/Requests/create-request`;
+        const url = `https://localhost:7243/api/Requests/create-request`;
         this.httpClient.post(url, {
             requestID: this.requestID,
             staffID: staffID,

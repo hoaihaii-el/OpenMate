@@ -31,7 +31,7 @@ import { MessagesComponent } from "./pages/messages/messages.component";
 import { RequestDetailComponent } from "./pages/requestdetail/requestdetail.component";
 import { UserTaskComponent } from "./pages/usertask/usertask.component";
 import { SalaryComponent } from "./pages/salary/salary.component";
-import { StructureComponent } from "./pages/structure/structure.component";
+import { SettingComponent } from "./pages/setting/setting.component";
 import { FormsModule } from "@angular/forms";
 import { RequestCreateDetailComponent } from "./pages/requestcreatedetail/requestcreatedetail.component";
 
@@ -56,7 +56,7 @@ import { RequestCreateDetailComponent } from "./pages/requestcreatedetail/reques
     RequestDetailComponent,
     UserTaskComponent,
     SalaryComponent,
-    StructureComponent,
+    SettingComponent,
     RequestCreateDetailComponent
   ],
   imports: [

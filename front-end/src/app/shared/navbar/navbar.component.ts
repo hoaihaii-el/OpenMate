@@ -6,7 +6,8 @@ import { Location } from '@angular/common';
 @Component({
   moduleId: module.id,
   selector: 'navbar-cmp',
-  templateUrl: 'navbar.component.html'
+  templateUrl: 'navbar.component.html',
+  styleUrls: ['navbar.component.scss']
 })
 
 export class NavbarComponent implements OnInit {
@@ -15,6 +16,8 @@ export class NavbarComponent implements OnInit {
   private nativeElement: Node;
   private toggleButton;
   private sidebarVisible: boolean;
+  public userName: string = localStorage.getItem('userName');
+  public isOpenNoti: boolean = false;
 
   public isCollapsed = true;
   @ViewChild("navbar-cmp", { static: false }) button;
@@ -44,6 +47,10 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('userID');
     localStorage.removeItem('roles');
     this.router.navigate(['/login']);
+  }
+
+  openNoti() {
+    this.isOpenNoti = !this.isOpenNoti;
   }
 
   getTitle() {

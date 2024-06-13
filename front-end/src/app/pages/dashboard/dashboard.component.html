@@ -146,7 +146,15 @@
                   <div class="icon-box">
                     <i class="fa-solid fa-money-bill-wave feature-icon"></i>
                   </div>
-                  <h5 class="feature-name">CalcSalary</h5>
+                  <h5 style="width: 100%;" class="feature-name">Salary</h5>
+                </div>
+              </div>
+              <div *ngIf="roles.includes('CEO')" class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/setting']">
+                  <div class="icon-box">
+                    <i class="fa-solid fa-gear feature-icon"></i>
+                  </div>
+                  <h5 style="width: 100%;" class="feature-name">Setting</h5>
                 </div>
               </div>
             </div>

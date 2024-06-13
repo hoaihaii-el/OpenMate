@@ -14,7 +14,7 @@ export class NotificationsComponent implements OnInit {
   constructor(private httpClient: HttpClient, private sanitizer: DomSanitizer) { }
 
   public currentNoti: Notification;
-  public notifications: Notification[];
+  public notifications: Notification[] = [];
   public sanitizerHtml: any;
 
   ngOnInit() {
@@ -27,7 +27,7 @@ export class NotificationsComponent implements OnInit {
   }
 
   getNotifications(): void {
-    const apiUrl = `http://localhost:5299/api/Notification/get-all`;
+    const apiUrl = `https://localhost:7243/api/Notification/get-all`;
     this.httpClient.get(apiUrl)
       .subscribe({
         next: (response: any) => {

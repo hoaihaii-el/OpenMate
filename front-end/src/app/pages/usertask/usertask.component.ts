@@ -24,7 +24,7 @@ export class UserTaskComponent {
     getStaffsTasks() {
         var date = this.currentDate.replace('/', '%2F');
         date = date.replace('/', '%2F');
-        this.httpClient.get(`http://localhost:5299/api/TaskDetail/manager-get?date=${date}&managerID=${this.currentStaffID}`)
+        this.httpClient.get(`https://localhost:7243/api/TaskDetail/manager-get?date=${date}&managerID=${this.currentStaffID}`)
             .subscribe({
                 next: (res: any) => {
                     console.log(res);
@@ -37,7 +37,7 @@ export class UserTaskComponent {
     }
 
     updateTask(task: Task) {
-        this.httpClient.post(`http://localhost:5299/api/TaskDetail/new-task`, {
+        this.httpClient.post(`https://localhost:7243/api/TaskDetail/new-task`, {
             date: task.date,
             staffID: task.staffID,
             staffName: task.staffName,

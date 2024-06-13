@@ -107,7 +107,7 @@ export class UserInfosComponent {
     }
 
     getAllStaff() {
-        this.httpClient.get('http://localhost:5299/api/Staff/get-all')
+        this.httpClient.get('https://localhost:7243/api/Staff/get-all')
             .subscribe({
                 next: (res: any) => {
                     console.log(res);
@@ -157,7 +157,7 @@ export class UserInfosComponent {
             return;
         }
 
-        this.httpClient.post('http://localhost:5299/api/Account/register', {
+        this.httpClient.post('https://localhost:7243/api/Account/register', {
             staffID: this.currentStaff.staffID,
             staffName: this.currentStaff.staffName,
             title: this.currentStaff.title,
@@ -185,7 +185,7 @@ export class UserInfosComponent {
     }
 
     updateStaff() {
-        this.httpClient.put('http://localhost:5299/api/Staff/hr-update', {
+        this.httpClient.put('https://localhost:7243/api/Staff/hr-update', {
             staffID: this.currentStaff.staffID,
             staffName: this.currentStaff.staffName,
             divisionID: this.currentStaff.divisionID,

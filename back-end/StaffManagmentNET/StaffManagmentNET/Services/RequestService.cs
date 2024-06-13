@@ -1,8 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Converters;
 using StaffManagmentNET.Models;
 using StaffManagmentNET.Repositories;
+using StaffManagmentNET.Resources;
 using StaffManagmentNET.Responses;
+using StaffManagmentNET.StaticServices;
 using StaffManagmentNET.ViewModels;
+using System.Globalization;
 
 namespace StaffManagmentNET.Services
 {
@@ -21,6 +25,8 @@ namespace StaffManagmentNET.Services
             var result = new List<RequestType>();
             foreach (var req in  request)
             {
+                if (req.RequestID == "1102") continue;
+
                 result.Add(new RequestType
                 {
                     RqstID = req.RequestID,
@@ -203,6 +209,54 @@ namespace StaffManagmentNET.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task CreateReqChangeTime(ChangeTimeRequestVM vm)
+        {
+            var oldTime = await _context.TimeSheets.FindAsync(vm.Date, vm.StaffID);
+
+            //if (oldTime == null)
+            //{
+            //    throw new Exception("Can't find timesheet!");
+            //}
+
+            var changeTimeModel = AppResources.ChangeTime;
+            changeTimeModel = changeTimeModel.Replace("date", vm.Date);
+            changeTimeModel = changeTimeModel.Replace("oldCheckIn", $"{oldTime?.CheckIn.Hour}:{oldTime?.CheckIn.Minute}");
+            changeTimeModel = changeTimeModel.Replace("newCheckIn", $"{vm.H1}:{vm.M1}");
+            changeTimeModel = changeTimeModel.Replace("oldCheckOut", $"{oldTime?.CheckOut.Hour}:{oldTime?.CheckOut.Minute}");
+            changeTimeModel = changeTimeModel.Replace("newCheckOut", $"{vm.H2}:{vm.M2}");
+            changeTimeModel = changeTimeModel.Replace("oldWorkType", $"{oldTime?.WorkingType}");
+            changeTimeModel = changeTimeModel.Replace("newWorkType", $"{vm.WrkType}");
+            changeTimeModel = changeTimeModel.Replace("oldOFF", $"{oldTime?.Off}");
+            changeTimeModel = changeTimeModel.Replace("newOFF", $"{vm.Off}");
+
+            var newCreate = new RequestCreateDetail
+            {
+                CreateID = Guid.NewGuid().ToString(),
+                RequestID = "1102",
+                StaffID = vm.StaffID!,
+                CreateTime = DateTime.Now,
+                Content1 = changeTimeModel,
+                Content2 = vm.Reason!,
+                Status = "Pending"
+            };
+            newCreate.Content3 = await UploadImage.Instance.UploadAsync(Guid.NewGuid().ToString(), vm.Evidence!);
+
+            _context.RequestCreateDetails.Add(newCreate);
+
+            await _context.SaveChangesAsync();
+
+            var request = await _context.Requests.FindAsync("1102");
+            var accepters = await GetAccepters(vm.StaffID!, request!);
+
+            _context.RequestAcceptDetails.Add(new RequestAcceptDetail
+            {
+                CreateID = newCreate.CreateID,
+                ManagerID = accepters[0]
+            });
+
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<ReqCreateDetailReponse> GetReqCreateDetail(string createID)
         {
             var reqCreate = await _context.RequestCreateDetails.FindAsync(createID);
@@ -261,9 +315,152 @@ namespace StaffManagmentNET.Services
             {
                 create.Status = vm.Action + "ed";
                 _context.RequestCreateDetails.Update(create);
+                if (vm.Action == "Accept")
+                {
+                    await HandleAfterAcceptRequest(create);
+                }
             }
 
             await _context.SaveChangesAsync();
+        }
+
+        private async Task HandleAfterAcceptRequest(RequestCreateDetail create)
+        {
+            var request = await _context.Requests.FindAsync(create.RequestID);
+            if (request == null) return;
+            if (request.RequestID != "1102" && request.RequestID != "1101") return;
+
+            if (request.RequestID == "1102")
+            {
+                var newTimeSheet = create.Content1;
+                var newCheckInIndex = newTimeSheet.IndexOf("</p>", 25);
+                newCheckInIndex--;
+                var newCheckIn = "";
+                while (newTimeSheet[newCheckInIndex] != ' ')
+                {
+                    newCheckIn = newTimeSheet[newCheckInIndex] + newCheckIn;
+                    newCheckInIndex--;
+                }
+
+                var newCheckOutIndex = newTimeSheet.IndexOf("</p>", newCheckInIndex + 10);
+                newCheckOutIndex--;
+                var newCheckOut = "";
+                while (newTimeSheet[newCheckOutIndex] != ' ')
+                {
+                    newCheckOut = newTimeSheet[newCheckOutIndex] + newCheckOut;
+                    newCheckOutIndex--;
+                }
+
+                var newWorkTypeIndex = newTimeSheet.IndexOf("</p>", newCheckOutIndex + 10);
+                newWorkTypeIndex--;
+                var newWorkType = "";
+                while (newTimeSheet[newWorkTypeIndex] != ' ')
+                {
+                    newWorkType = newTimeSheet[newWorkTypeIndex] + newWorkType;
+                    newWorkTypeIndex--;
+                }
+
+                var newOffIndex = newTimeSheet.IndexOf("</p>", newWorkTypeIndex + 10);
+                newOffIndex--;
+                var newOff = "";
+                while (newTimeSheet[newOffIndex] != ' ')
+                {
+                    newOff = newTimeSheet[newOffIndex] + newOff;
+                    newOffIndex--;
+                }
+
+                var date = "";
+                var startDateIndex = 3;
+                while (newTimeSheet[startDateIndex] != ':')
+                {
+                    date += newTimeSheet[startDateIndex++];
+                }
+
+                var timeSheet = await _context.TimeSheets.FindAsync(date, create.StaffID);
+                if (timeSheet == null)
+                {
+                    timeSheet = new TimeSheet
+                    {
+                        Date = date,
+                        StaffID = create.StaffID
+                    };
+                    _context.TimeSheets.Add(timeSheet);
+                    await _context.SaveChangesAsync();
+                }
+
+                var keys = date.Split('/');
+                var checkIn = newCheckIn.Split(':');
+                timeSheet.CheckIn = new DateTime(
+                    int.Parse(keys[2]), int.Parse(keys[1]), int.Parse(keys[0]), 
+                    int.Parse(checkIn[0]), int.Parse(checkIn[1]), 0
+                );
+
+                var checkOut = newCheckOut.Split(':');
+                timeSheet.CheckOut = new DateTime(
+                    int.Parse(keys[2]), int.Parse(keys[1]), int.Parse(keys[0]),
+                    int.Parse(checkOut[0]), int.Parse(checkOut[1]), 0
+                );
+
+                timeSheet.WorkingType = newWorkType;
+                timeSheet.Off = newOff;
+                timeSheet.Total = CalcTotal(timeSheet);
+                _context.TimeSheets.Update(timeSheet);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<IEnumerable<ChangeTimeResponse>> GetChangeTimeRequest(string staffID, int month, int year)
+        {
+            var creates = await _context.RequestCreateDetails
+                .Where(c => c.StaffID == staffID && c.RequestID == "1102" && c.CreateTime.Month == month && c.CreateTime.Year == year)
+                .OrderByDescending(c => c.CreateTime)
+                .ToListAsync();
+
+            var result = new List<ChangeTimeResponse>();
+            foreach (var cr in creates)
+            {
+                var newTimeSheet = cr.Content1;
+                var date = "";
+                var startDateIndex = 3;
+                while (newTimeSheet[startDateIndex] != ':')
+                {
+                    date += newTimeSheet[startDateIndex++];
+                }
+
+                result.Add(new ChangeTimeResponse
+                {
+                    Date = date,
+                    CreateID = cr.CreateID,
+                    Status = cr.Status
+                });
+            }
+            return result;
+        }
+
+        public async Task<IEnumerable<RequestCreate>> GetDeviceRequest()
+        {
+            var creates = await _context.RequestCreateDetails
+                .Where(c => c.RequestID == "1105")
+                .OrderByDescending(c => c.CreateTime)
+                .ToListAsync();
+
+            var request = await _context.Requests.FindAsync("1105");
+            var result = new List<RequestCreate>();
+            foreach (var cr in creates)
+            {
+                var staff = await _context.Staffs.FindAsync(cr.StaffID);
+                result.Add(new RequestCreate
+                {
+                    CreateID = cr.CreateID,
+                    RequestID = request!.RequestID,
+                    RequestName = request.RequestName,
+                    CreateTime = cr.CreateTime.ToString(),
+                    Status = cr.Status,
+                    StaffID = cr.StaffID,
+                    StaffName = staff!.StaffName
+                });
+            }
+            return result;
         }
 
         public async Task<List<string>> GetAccepters(string staffID, Request request)
@@ -327,6 +524,49 @@ namespace StaffManagmentNET.Services
             }
 
             return activities;
+        }
+
+        double CalcTotal(TimeSheet timeSheet)
+        {
+            var total = (timeSheet.CheckOut - timeSheet.CheckIn).TotalHours - timeSheet.LunchBreakHour;
+
+            if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday || DateTime.Now.DayOfWeek == DayOfWeek.Sunday)
+            {
+                return Math.Round(total * 1.5, 1);
+            }
+
+            if (IsVietNameseHoliday(timeSheet.Date))
+            {
+                return Math.Round(total * 2, 1);
+            }
+
+            return Math.Round(total, 1);
+        }
+
+        bool IsVietNameseHoliday(string input)
+        {
+            var date = DateTime.ParseExact(input, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
+            List<DateTime> holidays = new List<DateTime>
+            {
+                new DateTime(date.Year, 1, 1),    // Tết Dương lịch
+                new DateTime(date.Year, 4, 30),   // Ngày Giải phóng miền Nam
+                new DateTime(date.Year, 5, 1),    // Ngày Quốc tế Lao động
+                new DateTime(date.Year, 9, 2)     // Ngày Quốc khánh
+            };
+
+            var lunarCalendar = new ChineseLunisolarCalendar();
+            holidays.Add(lunarCalendar.ToDateTime(date.Year, 3, 10, 6, 0, 0, 0));
+            holidays.Add(lunarCalendar.ToDateTime(date.Year, 1, 1, 6, 0, 0, 0));
+            holidays.Add(lunarCalendar.ToDateTime(date.Year, 1, 2, 6, 0, 0, 0));
+            holidays.Add(lunarCalendar.ToDateTime(date.Year, 1, 3, 6, 0, 0, 0));
+
+            foreach (var holiday in holidays)
+            {
+                if (date.Date == holiday.Date) return true;
+            }
+
+            return false;
         }
     }
 }

@@ -67,3 +67,8 @@ E:\HK6\DA1\PROJECT\back-end\StaffManagmentNET\StaffManagmentNET\bin\Debug\net7.0
 E:\HK6\DA1\PROJECT\back-end\StaffManagmentNET\StaffManagmentNET\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 E:\HK6\DA1\PROJECT\back-end\StaffManagmentNET\StaffManagmentNET\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\HK6\DA1\PROJECT\back-end\StaffManagmentNET\StaffManagmentNET\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+E:\HK6\DA1\PROJECT\back-end\StaffManagmentNET\StaffManagmentNET\bin\Debug\net7.0\CloudinaryDotNet.dll
+E:\HK6\DA1\PROJECT\back-end\StaffManagmentNET\StaffManagmentNET\bin\Debug\net7.0\dotenv.net.dll
+E:\HK6\DA1\PROJECT\back-end\StaffManagmentNET\StaffManagmentNET\bin\Debug\net7.0\Newtonsoft.Json.dll
+E:\HK6\DA1\PROJECT\back-end\StaffManagmentNET\StaffManagmentNET\obj\Debug\net7.0\StaffManagmentNET.Resources.AppResources.resources
+E:\HK6\DA1\PROJECT\back-end\StaffManagmentNET\StaffManagmentNET\obj\Debug\net7.0\StaffManagmentNET.csproj.GenerateResource.cache

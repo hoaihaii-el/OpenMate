@@ -22,7 +22,7 @@ export class NewPostComponent {
     uplodaNewpost(): void {
         var levelStr = this.level == 1 ? "Must Read" : this.level == 2 ? "Important" : "Normal";
         console.log(this.model.editorData);
-        const apiUrl = `http://localhost:5299/api/Notification/new-noti`;
+        const apiUrl = `https://localhost:7243/api/Notification/new-noti`;
         const data = {
             notiName: this.title,
             content: this.model.editorData,

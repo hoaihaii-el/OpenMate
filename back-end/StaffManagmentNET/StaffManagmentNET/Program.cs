@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using StaffManagmentNET.Middleware;
 using StaffManagmentNET.Models;
 using StaffManagmentNET.Repositories;
 using StaffManagmentNET.Services;
@@ -112,6 +113,8 @@ namespace StaffManagmentNET
             app.UseHttpsRedirection();
 
             app.UseCors("CorsPolicy");
+
+            //app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.UseAuthorization();
 

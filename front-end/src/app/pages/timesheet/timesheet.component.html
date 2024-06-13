@@ -43,7 +43,7 @@
                                 <i class="fa-solid fa-arrow-right"></i>
                             </div>
                         </div>
-                        <div style=" height: 460px; overflow: auto; background-color: white;">
+                        <div style=" height: 440px; overflow: auto; background-color: white;">
                             <table class="table">
                                 <thead class="text-primary">
                                     <th>Date</th>
@@ -102,6 +102,21 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="box" style="padding: 10px 5px">
+                        <div style=" height: 480px; overflow: auto; background-color: white;">
+                            <div style="padding: 8px;" *ngFor="let req of changeTimeReqs"
+                                [routerLink]="['/reqcreatedetail', req.createID, 'false']">
+                                <label style="width: 100%; cursor: pointer;">Request change time</label>
+                                <label style="width: 100%;">{{req.date}}</label>
+                                <label *ngIf="req.status == 'Pending'" class="text-warning">{{req.status}}</label>
+                                <label *ngIf="req.status == 'Accepted'" class="text-success">{{req.status}}</label>
+                                <label *ngIf="req.status == 'Rejected'" class="text-danger">{{req.status}}</label>
+                                <hr style="margin-top: 4px;" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -204,8 +219,8 @@
                                         <div class="col-6">
                                             <div>
                                                 <select class="custom-select" [(ngModel)]="wrkType">
-                                                    <option value="1">OFFICE</option>
-                                                    <option value="2">WFH</option>
+                                                    <option value="OFFICE">OFFICE</option>
+                                                    <option value="WFH">WFH</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -219,10 +234,41 @@
                                         <div class="col-6">
                                             <div>
                                                 <select class="custom-select" [(ngModel)]="off">
-                                                    <option value="1">DAY-OFF</option>
-                                                    <option value="2">AM-OFF</option>
-                                                    <option value="3">PM-OFF</option>
+                                                    <option value="DAY-OFF">DAY-OFF</option>
+                                                    <option value="AM-OFF">AM-OFF</option>
+                                                    <option value="PM-OFF">PM-OFF</option>
+                                                    <option value="NO">NO</option>
                                                 </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row" style="margin-bottom: 15px;">
+                                        <div class="col-6">
+                                            <label class="hour-title">Reason</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Reason"
+                                                    [(ngModel)]="reason">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row" style="margin-bottom: 15px;">
+                                        <div class="col-6">
+                                            <label class="hour-title">Evidence</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <input type="file" accept=".jpg, .png" (change)="onFileChange($event)"
+                                                    #fileInput>
+                                                <button type="button" class="btn btn-primary update-btn"
+                                                    (click)="fileInput.click()"
+                                                    style="margin-right: 10px;">File</button>
+                                                <span *ngIf="filename">{{filename}}</span>
                                             </div>
                                         </div>
                                     </div>

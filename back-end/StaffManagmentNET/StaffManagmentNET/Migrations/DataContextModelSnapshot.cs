@@ -271,6 +271,10 @@ namespace StaffManagmentNET.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("PublicIP")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("StaffID")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");

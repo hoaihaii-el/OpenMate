@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Device } from 'app/models/device.model';
+import { RequestCreate } from 'app/models/requestcreate.model';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -17,10 +18,12 @@ export class DevicesComponent {
     public filterType: String = 'All';
     public search: String = '';
     public currentDevice: Device;
+    public deviceReqs: RequestCreate[] = [];
     private srcDevices: Device[] = [];
 
     constructor(private httpClient: HttpClient, private toastr: ToastrService) {
         this.getDevices();
+        this.getDeviceReqs();
     }
 
     openModal() {
@@ -32,7 +35,8 @@ export class DevicesComponent {
             deviceType: 'Screen',
             staffID: '',
             staffName: '',
-            condition: ''
+            condition: '',
+            publicIP: ''
         }
     }
 
@@ -49,12 +53,13 @@ export class DevicesComponent {
             deviceType: device.deviceType,
             staffID: device.staffID,
             staffName: device.staffName,
-            condition: device.condition
+            condition: device.condition,
+            publicIP: device.publicIP
         }
     }
 
     getDevices() {
-        const url = `http://localhost:5299/api/Device/get-all`;
+        const url = `https://localhost:7243/api/Device/get-all`;
         this.httpClient.get(url)
             .subscribe({
                 next: (res: any) => {
@@ -77,19 +82,34 @@ export class DevicesComponent {
         }
     }
 
+    getDeviceReqs() {
+        const url = `https://localhost:7243/api/Requests/get-device-reqs`;
+        this.httpClient.get(url)
+            .subscribe({
+                next: (res: any) => {
+                    console.log(res);
+                    this.deviceReqs = res;
+                },
+                error: (error: any) => {
+                    console.log(error)
+                }
+            });
+    }
+
     newDevice() {
         if (this.currentDevice.deviceID === '' || this.currentDevice.deviceName === '' || this.currentDevice.deviceType === '') {
             this.showAlert('Please fill in all required fields', 'error');
             return;
         }
 
-        const url = `http://localhost:5299/api/Device/new-device`;
+        const url = `https://localhost:7243/api/Device/new-device`;
         this.httpClient.post(url, {
             deviceID: this.currentDevice.deviceID,
             deviceName: this.currentDevice.deviceName,
             deviceType: this.currentDevice.deviceType,
             staffID: this.currentDevice.staffID === '' ? 'Empty' : this.currentDevice.staffID,
-            condition: this.currentDevice.condition === '' ? '__' : this.currentDevice.condition
+            condition: this.currentDevice.condition === '' ? '__' : this.currentDevice.condition,
+            publicIP: this.currentDevice.publicIP
         })
             .subscribe({
                 next: (res: any) => {
@@ -102,7 +122,8 @@ export class DevicesComponent {
                         deviceType: 'Screen',
                         staffID: '',
                         staffName: '',
-                        condition: ''
+                        condition: '',
+                        publicIP: ''
                     }
                 },
                 error: (error: any) => {
@@ -118,13 +139,14 @@ export class DevicesComponent {
             return;
         }
 
-        const url = `http://localhost:5299/api/Device/update`;
+        const url = `https://localhost:7243/api/Device/update`;
         this.httpClient.put(url, {
             deviceID: this.currentDevice.deviceID,
             deviceName: this.currentDevice.deviceName,
             deviceType: this.currentDevice.deviceType,
             staffID: this.currentDevice.staffID === '' ? 'Empty' : this.currentDevice.staffID,
-            condition: this.currentDevice.condition === '' ? '__' : this.currentDevice.condition
+            condition: this.currentDevice.condition === '' ? '__' : this.currentDevice.condition,
+            publicIP: this.currentDevice.publicIP
         })
             .subscribe({
                 next: (res: any) => {

@@ -8,5 +8,6 @@
         public string? StaffID { get; set; }
         public string StaffName { get; set; } = "";
         public string Condition { get; set; } = "";
+        public string PublicIP { get; set; } = "";
     }
 }

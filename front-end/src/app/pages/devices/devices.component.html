@@ -45,7 +45,8 @@
                                     <th>Device Name</th>
                                     <th>Type</th>
                                     <th>Owner</th>
-                                    <th>Current condition</th>
+                                    <th>Condition</th>
+                                    <th>PublicIP</th>
                                     <th></th>
                                 </thead>
                                 <tbody>
@@ -55,6 +56,7 @@
                                         <td>{{device.deviceType}}</td>
                                         <td>{{device.staffName}}</td>
                                         <td>{{device.condition}}</td>
+                                        <td>{{device.publicIP}}</td>
                                         <td>
                                             <a style="cursor: pointer;" (click)="editDevice(device)">
                                                 <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
@@ -69,7 +71,15 @@
                 <div class="col-3">
                     <div class="box" style="padding-top: 15px; padding-bottom: 15px;">
                         <div style=" height: 575px; overflow: auto; background-color: white; margin-left: 10px;">
-
+                            <div *ngFor="let req of deviceReqs"
+                                [routerLink]="['/reqcreatedetail', req.createID, 'true']">
+                                <label style="width: 100%; cursor: pointer;">{{req.requestName}}</label>
+                                <label style="width: 100%; cursor: pointer;">Requester: {{req.staffName}}</label>
+                                <label *ngIf="req.status == 'Pending'" class="text-warning">{{req.status}}</label>
+                                <label *ngIf="req.status == 'Accepted'" class="text-success">{{req.status}}</label>
+                                <label *ngIf="req.status == 'Rejected'" class="text-danger">{{req.status}}</label>
+                                <hr style="margin-top: 4px;" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -136,6 +146,15 @@
                                         <label>Current condition</label>
                                         <input type="text" class="form-control" [(ngModel)]="currentDevice.condition"
                                             placeholder="Condition">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row input-box">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>PublicIP</label>
+                                        <input type="text" class="form-control" [(ngModel)]="currentDevice.publicIP"
+                                            placeholder="PublicIP">
                                     </div>
                                 </div>
                             </div>

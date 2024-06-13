@@ -17,11 +17,11 @@ namespace StaffManagmentNET.Controllers
         }
 
         [HttpPost("check-in")]
-        public async Task<IActionResult> CheckIn(string staffID)
+        public async Task<IActionResult> CheckIn(CheckInVM vm)
         {
             try
             {
-                await _service.CheckIn(staffID);
+                await _service.CheckIn(vm);
                 return Ok(new
                 {
                     success = true
@@ -34,11 +34,11 @@ namespace StaffManagmentNET.Controllers
         }
 
         [HttpPost("check-out")]
-        public async Task<IActionResult> CheckOut(string staffID)
+        public async Task<IActionResult> CheckOut(CheckInVM vm)
         {
             try
             {
-                await _service.CheckOut(staffID);
+                await _service.CheckOut(vm);
                 return Ok(new
                 {
                     success = true

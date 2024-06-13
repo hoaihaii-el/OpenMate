@@ -58,5 +58,24 @@ namespace StaffManagmentNET.Controllers
             await _service.ConsiderRequest(vm);
             return Ok();
         }
+
+        [HttpPost("create-req-changetime")]
+        public async Task<IActionResult> CreateReqChangeTime(ChangeTimeRequestVM vm)
+        {
+            await _service.CreateReqChangeTime(vm);
+            return Ok();
+        }
+
+        [HttpGet("get-changetime-reqs")]
+        public async Task<IActionResult> GetChangeTimeReqs(string staffID, int month, int year)
+        {
+            return Ok(await _service.GetChangeTimeRequest(staffID, month, year));
+        }
+
+        [HttpGet("get-device-reqs")]
+        public async Task<IActionResult> GetDeviceReqs()
+        {
+            return Ok(await _service.GetDeviceRequest());
+        }
     }
 }

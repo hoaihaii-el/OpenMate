@@ -17,7 +17,7 @@ import { MessagesComponent } from './pages/messages/messages.component';
 import { RequestDetailComponent } from './pages/requestdetail/requestdetail.component';
 import { UserTaskComponent } from './pages/usertask/usertask.component';
 import { SalaryComponent } from './pages/salary/salary.component';
-import { StructureComponent } from './pages/structure/structure.component';
+import { SettingComponent } from './pages/setting/setting.component';
 import { LoginGuard } from './guards/login.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { RequestCreateDetailComponent } from './pages/requestcreatedetail/requestcreatedetail.component';
@@ -42,5 +42,5 @@ export const AppRoutes: Routes = [
   { path: 'reqcreatedetail/:createID/:isOpenByManager', component: RequestCreateDetailComponent, canActivate: [AuthGuard] },
   { path: 'usertask', component: UserTaskComponent, canActivate: [AuthGuard] },
   { path: 'salary', component: SalaryComponent, canActivate: [AuthGuard] },
-  { path: 'structure', component: StructureComponent, canActivate: [AuthGuard] }
+  { path: 'setting', component: SettingComponent, canActivate: [AuthGuard] }
 ]
