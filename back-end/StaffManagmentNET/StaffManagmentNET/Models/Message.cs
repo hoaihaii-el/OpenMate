@@ -15,10 +15,5 @@ namespace StaffManagmentNET.Models
         [MaxLength(10)]
         public string SenderID { get; set; } = "";
         public DateTime SendTime { get; set; }
-
-        [ForeignKey("RoomID")]
-        public ChatRoom? ChatRoom { get; set; }
-        [ForeignKey("SenderID")]
-        public Staff? Sender { get; set; }
     }
 }

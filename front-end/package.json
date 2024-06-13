@@ -33,6 +33,7 @@
     "@ckeditor/ckeditor5-utils": "^41.3.1",
     "@ckeditor/ckeditor5-watchdog": "^41.3.1",
     "@fortawesome/fontawesome-free": "^6.5.2",
+    "@microsoft/signalr": "^8.0.0",
     "@ng-bootstrap/ng-bootstrap": "12.0.1",
     "@ngui/map": "0.30.3",
     "@popperjs/core": "^2.11.4",

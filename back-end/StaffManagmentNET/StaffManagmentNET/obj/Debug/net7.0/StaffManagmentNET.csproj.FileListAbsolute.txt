@@ -72,3 +72,6 @@ E:\HK6\DA1\PROJECT\back-end\StaffManagmentNET\StaffManagmentNET\bin\Debug\net7.0
 E:\HK6\DA1\PROJECT\back-end\StaffManagmentNET\StaffManagmentNET\bin\Debug\net7.0\Newtonsoft.Json.dll
 E:\HK6\DA1\PROJECT\back-end\StaffManagmentNET\StaffManagmentNET\obj\Debug\net7.0\StaffManagmentNET.Resources.AppResources.resources
 E:\HK6\DA1\PROJECT\back-end\StaffManagmentNET\StaffManagmentNET\obj\Debug\net7.0\StaffManagmentNET.csproj.GenerateResource.cache
+E:\HK6\DA1\PROJECT\back-end\StaffManagmentNET\StaffManagmentNET\bin\Debug\net7.0\Microsoft.AspNetCore.Http.Connections.Client.dll
+E:\HK6\DA1\PROJECT\back-end\StaffManagmentNET\StaffManagmentNET\bin\Debug\net7.0\Microsoft.AspNetCore.SignalR.Client.dll
+E:\HK6\DA1\PROJECT\back-end\StaffManagmentNET\StaffManagmentNET\bin\Debug\net7.0\Microsoft.AspNetCore.SignalR.Client.Core.dll

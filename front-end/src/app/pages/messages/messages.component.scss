@@ -1,7 +1,7 @@
 .messages-array {
     background-color: white;
     border-radius: 10px;
-    height: 630px;
+    height: 610px;
     padding: 10px;
     margin-right: 10px;
 }
@@ -9,7 +9,7 @@
 .message-detail {
     background-color: white;
     border-radius: 10px;
-    height: 630px;
+    height: 610px;
     padding: 10px 20px;
 }
 
@@ -20,6 +20,21 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     cursor: pointer;
+}
+
+.add-box {
+    position: absolute;
+    top: 4px;
+    right: -254px;
+    background-color: white;
+    padding: 5px;
+    width: 250px;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: green;
+    overflow: auto;
+    z-index: 10;
 }
 
 .user-img {
@@ -51,7 +66,7 @@
 }
 
 .messages {
-    height: 520px;
+    height: 500px;
     overflow: auto;
     display: flex;
     flex-direction: column-reverse;

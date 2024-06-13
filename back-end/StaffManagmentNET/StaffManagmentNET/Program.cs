@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using StaffManagmentNET.Middleware;
+using StaffManagmentNET.Hubs;
 using StaffManagmentNET.Models;
 using StaffManagmentNET.Repositories;
 using StaffManagmentNET.Services;
@@ -50,6 +50,7 @@ namespace StaffManagmentNET
             builder.Services.AddScoped<ITaskRepo, TaskService>();
             builder.Services.AddScoped<IRequestRepo, RequestService>();
             builder.Services.AddScoped<ISettingRepo, SettingService>();
+            builder.Services.AddScoped<IChatRepo, ChatService>();
 
             builder.Services.AddSingleton<JWTManager>();
 
@@ -96,6 +97,7 @@ namespace StaffManagmentNET
                            .AllowCredentials();
                 });
             });
+            builder.Services.AddSignalR();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -120,6 +122,8 @@ namespace StaffManagmentNET
             app.UseAuthorization();
 
             app.MapControllers();
+
+            app.MapHub<ChatHub>("/chathub");
 
             app.Run();
         }
