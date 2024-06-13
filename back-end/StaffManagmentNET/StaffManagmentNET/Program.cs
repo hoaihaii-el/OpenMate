@@ -49,6 +49,7 @@ namespace StaffManagmentNET
             builder.Services.AddScoped<IStaffRepo, StaffService>();
             builder.Services.AddScoped<ITaskRepo, TaskService>();
             builder.Services.AddScoped<IRequestRepo, RequestService>();
+            builder.Services.AddScoped<ISettingRepo, SettingService>();
 
             builder.Services.AddSingleton<JWTManager>();
 

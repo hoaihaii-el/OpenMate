@@ -38,7 +38,24 @@
 }
 
 .input-box {
-    margin-top: 20px;
+    margin-top: 10px;
+}
+
+.update-btn {
+    padding: 8px 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+select {
+    padding-left: 10px;
+    font-size: 14px;
+    height: 38.5px;
+}
+
+select>option {
+    font-size: 14px;
+    padding-left: 10px;
 }
 
 * {

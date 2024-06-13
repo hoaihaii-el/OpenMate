@@ -42,14 +42,30 @@ namespace StaffManagmentNET.Services
                 throw new Exception("Already check-in");
             }
 
-            _context.TimeSheets.Add(new TimeSheet
+            var newTimeSheet = new TimeSheet
             {
                 Date = DateTime.Now.ToString("dd/MM/yyyy"),
                 StaffID = vm.StaffID,
                 CheckIn = DateTime.Now
-            });
+            };
+            _context.TimeSheets.Add(newTimeSheet);
 
             await _context.SaveChangesAsync();
+
+            var coreTime = await _context.Settings.FindAsync("Thời gian vào làm");
+            if (coreTime == null)
+            {
+                return;
+            }
+
+            var start = coreTime.Value.Split(':');
+            if (start.Length < 1) return;
+            var h = int.Parse(start[0]);
+            var m = int.Parse(start[1]);
+            if (h > newTimeSheet.CheckIn.Hour || (h == newTimeSheet.CheckIn.Hour && m > newTimeSheet.CheckIn.Minute))
+            {
+                throw new Exception("Checked-in after start time! You got a default.");
+            }
         }
 
         public async Task CheckOut(CheckInVM vm)
@@ -71,6 +87,21 @@ namespace StaffManagmentNET.Services
 
             _context.TimeSheets.Update(timeSheet);
             await _context.SaveChangesAsync();
+
+            var coreTime = await _context.Settings.FindAsync("Thời gian kết thúc");
+            if (coreTime == null)
+            {
+                return;
+            }
+
+            var end = coreTime.Value.Split(':');
+            if (end.Length < 1) return;
+            var h = int.Parse(end[0]);
+            var m = int.Parse(end[1]);
+            if (h < timeSheet.CheckOut.Hour || (h == timeSheet.CheckOut.Hour && m < timeSheet.CheckOut.Minute))
+            {
+                throw new Exception("Checked-out before end time! You got a default.");
+            }
         }
 
         public async Task<TimeSheet> UpdateData(string staffID, string date, int h1, int m1, int h2, int m2, string type, string wrkType, string off)

@@ -24,6 +24,7 @@ namespace StaffManagmentNET.Repositories
         public DbSet<Request> Requests { get; set; }
         public DbSet<RequestCreateDetail> RequestCreateDetails { get; set; }
         public DbSet<RequestAcceptDetail> RequestAcceptDetails { get; set; }
+        public DbSet<Setting> Settings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
