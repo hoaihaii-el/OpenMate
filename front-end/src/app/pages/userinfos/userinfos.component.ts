@@ -56,7 +56,9 @@ export class UserInfosComponent {
             hdld: '',
             soHDLD: '',
             bankAccount: '',
-            bankName: ''
+            bankName: '',
+            degree: '',
+            cert: ''
         }
         this.pw = '';
     }
@@ -90,7 +92,9 @@ export class UserInfosComponent {
             hdld: staff.hdld,
             soHDLD: staff.soHDLD,
             bankAccount: staff.bankAccount,
-            bankName: staff.bankName
+            bankName: staff.bankName,
+            degree: staff.degree,
+            cert: staff.cert
         }
     }
 
@@ -199,6 +203,8 @@ export class UserInfosComponent {
             maSoThue: this.currentStaff.maSoThue == '' ? 'Empty' : this.currentStaff.maSoThue,
             hdld: this.currentStaff.hdld == '' ? 'Empty' : this.currentStaff.hdld,
             soHDLD: this.currentStaff.soHDLD == '' ? 'Empty' : this.currentStaff.soHDLD,
+            degree: this.currentStaff.degree,
+            cert: this.currentStaff.cert,
             roles: this.currentStaff.roles
         })
             .subscribe({

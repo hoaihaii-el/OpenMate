@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StaffManagmentNET.Repositories;
 
@@ -11,9 +12,10 @@ using StaffManagmentNET.Repositories;
 namespace StaffManagmentNET.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240613213654_AddSalaryTable")]
+    partial class AddSalaryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -522,9 +524,6 @@ namespace StaffManagmentNET.Migrations
                     b.Property<string>("Key")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("StaffID")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("CertAllowance")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -541,6 +540,10 @@ namespace StaffManagmentNET.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Reward")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StaffID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -562,7 +565,7 @@ namespace StaffManagmentNET.Migrations
                     b.Property<double>("TotalHour")
                         .HasColumnType("float");
 
-                    b.HasKey("Key", "StaffID");
+                    b.HasKey("Key");
 
                     b.ToTable("Salaries");
                 });

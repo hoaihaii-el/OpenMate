@@ -55,12 +55,6 @@
                                                     style="font-size: 20px;"></i>
                                             </a>
                                         </td>
-                                        <td>
-                                            <a style="cursor: pointer;" *ngIf="hasRole(staff, 'CEO') == false">
-                                                <i class="nc-icon nc-simple-remove text-danger"
-                                                    style="font-size: 20px;"></i>
-                                            </a>
-                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -253,18 +247,30 @@
                                     </div>
                                 </div>
                                 <div class="row input-box">
-                                    <div class="col-md-6 pr-1">
+                                    <div class="col-md-3 pr-1">
                                         <div class="form-group">
                                             <label>Địa chỉ</label>
                                             <input type="text" class="form-control" disabled=""
                                                 [(ngModel)]="currentStaff.address">
                                         </div>
                                     </div>
-                                    <div class="col-md-6 pl-1">
+                                    <div class="col-md-3 px-1">
                                         <div class="form-group">
                                             <label>Số điện thoại</label>
                                             <input type="text" class="form-control" disabled=""
                                                 [(ngModel)]="currentStaff.phone">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 px-1">
+                                        <div class="form-group">
+                                            <label>Bằng cấp (cao nhất)</label>
+                                            <input type="text" class="form-control" [(ngModel)]="currentStaff.degree">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 pl-1">
+                                        <div class="form-group">
+                                            <label>Chứng chỉ (cao nhất)</label>
+                                            <input type="text" class="form-control" [(ngModel)]="currentStaff.cert">
                                         </div>
                                     </div>
                                 </div>

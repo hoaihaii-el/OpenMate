@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TaskService } from 'app/hubs/task.service';
 import { Task } from 'app/models/task.model';
 
 @Component({
@@ -9,16 +10,24 @@ import { Task } from 'app/models/task.model';
     styleUrls: ['usertask.component.scss']
 })
 
-export class UserTaskComponent {
+export class UserTaskComponent implements OnInit {
     public showModal: Boolean = false;
     public tasks: Task[] = [];
     public currentDate: string;
     public currentStaffID: string;
 
-    constructor(private httpClient: HttpClient) {
+    constructor(private httpClient: HttpClient, private taskService: TaskService) {
         this.currentStaffID = localStorage.getItem('userID');
         this.currentDate = this.dateToString(new Date());
         this.getStaffsTasks();
+    }
+
+    ngOnInit(): void {
+        this.taskService.startConnection();
+        this.taskService.addListener((message: string) => {
+            console.log(message);
+            this.getStaffsTasks();
+        });
     }
 
     getStaffsTasks() {

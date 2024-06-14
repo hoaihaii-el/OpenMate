@@ -15,6 +15,8 @@
         public string MaSoThue { get; set; } = "";
         public string HDLD { get; set; } = "";
         public string SoHDLD { get; set; } = "";
+        public string Degree { get; set; } = "";
+        public string Cert { get; set; } = "";
         public string Roles { get; set; } = "";
     }
 }

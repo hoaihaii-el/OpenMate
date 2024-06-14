@@ -146,9 +146,9 @@ namespace StaffManagmentNET.Services
             }
 
             var end = vm.EndTime.Split('h');
-            if (end.Count() > 1)
+            if (end.Count() > 1 && end[0] != "__")
             {
-                task.EndTime = new DateTime(task.EndTime.Year, task.EndTime.Month, task.EndTime.Day, int.Parse(end[0]), int.Parse(end[1]), 0);
+                 task.EndTime = new DateTime(task.EndTime.Year, task.EndTime.Month, task.EndTime.Day, int.Parse(end[0]), int.Parse(end[1]), 0);
             }
             _context.TaskDetails.Update(task);
             await _context.SaveChangesAsync();

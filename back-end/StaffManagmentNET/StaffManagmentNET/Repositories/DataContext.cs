@@ -25,6 +25,7 @@ namespace StaffManagmentNET.Repositories
         public DbSet<RequestCreateDetail> RequestCreateDetails { get; set; }
         public DbSet<RequestAcceptDetail> RequestAcceptDetails { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<Salary> Salaries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -33,6 +34,7 @@ namespace StaffManagmentNET.Repositories
             builder.Entity<TaskDetail>().HasKey(t => new { t.Date, t.StaffID, t.Order });
             builder.Entity<ChatRoomDetail>().HasKey(r => new { r.StaffID, r.RoomID });
             builder.Entity<RequestAcceptDetail>().HasKey(r => new { r.CreateID, r.ManagerID });
+            builder.Entity<Salary>().HasKey(r => new { r.Key, r.StaffID });
 
             base.OnModelCreating(builder);
         }
