@@ -1,1 +1,90 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    font-size: 18px;
+}
+
+.cs-card {
+    background-color: #fff;
+    margin: 5px 0px;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-right: 5px;
+}
+
+.icon {
+    font-size: 20px;
+    color: #16423C;
+}
+
+.col-12-6-3,
+.col-12-6-6,
+.col-12-6-4 {
+    box-sizing: border-box;
+}
+
+.txt-center {
+    text-align: center;
+}
+
+.txt-sm {
+    font-size: 15px;
+}
+
+.txt-lg {
+    font-size: 20px;
+}
+
+.succes {
+    color: #42e448;
+}
+
+.danger {
+    color: #f44336;
+}
+
+.warning {
+    color: #ff9800;
+}
+
+
+@media screen and (min-width: 1024px) {
+    .col-12-6-3 {
+        flex-basis: calc(25% - 5px);
+    }
+
+    .col-12-6-6 {
+        flex-basis: calc(50% - 5px);
+    }
+
+    .col-12-6-4 {
+        flex-basis: calc(33.3333333333% - 5px);
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .col-12-6-3 {
+        flex-basis: calc(50% - 5px);
+    }
+
+    .col-12-6-6 {
+        flex-basis: calc(50% - 5px);
+    }
+
+    .col-12-6-4 {
+        flex-basis: calc(50% - 5px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .col-12-6-3 {
+        flex-basis: 100%;
+    }
+
+    .col-12-6-6 {
+        flex-basis: 100%;
+    }
+
+    .col-12-6-4 {
+        flex-basis: 100%;
+    }
+}

@@ -1,1 +1,48 @@
-<p>layout works!</p>
+<div class="layout">
+    <div class="sidebar_pc">
+        <div class="sidebar-header">
+            <svg class="pc-logo" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="200" fill="white" />
+                <circle cx="100" cy="48" r="25" fill="white" stroke="black" stroke-width="10" />
+                <circle cx="153" cy="138" r="25" fill="white" stroke="black" stroke-width="10" />
+                <circle cx="49" cy="138" r="25" fill="white" stroke="black" stroke-width="10" />
+                <path
+                    d="M51.15 145V55.56H78.19L100.55 98.98L122.39 55.56H149.43V145H122.39V98.2L105.88 129.4H94.83L78.19 98.2V145H51.15Z"
+                    fill="#6A9C89" />
+            </svg>
+            OPEN MATE
+        </div>
+        <div class="sidebar-item selected">HOME</div>
+        <div class="sidebar-item">POSTS</div>
+        <div class="sidebar-item">REQUESTS</div>
+        <div class="sidebar-item">PROFILE</div>
+        <div class="sidebar-item">LOG OUT</div>
+    </div>
+    <div *ngIf="isMoblieMenuOpen" (click)="openMobileMenu()" class="nav-overlay"></div>
+    <div *ngIf="isMoblieMenuOpen" class="sidebar_mobile">
+        <div class="sidebar_mobile-header">
+            <svg class="mobile-icon" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="200" fill="white" />
+                <circle cx="100" cy="48" r="25" fill="white" stroke="black" stroke-width="10" />
+                <circle cx="153" cy="138" r="25" fill="white" stroke="black" stroke-width="10" />
+                <circle cx="49" cy="138" r="25" fill="white" stroke="black" stroke-width="10" />
+                <path
+                    d="M51.15 145V55.56H78.19L100.55 98.98L122.39 55.56H149.43V145H122.39V98.2L105.88 129.4H94.83L78.19 98.2V145H51.15Z"
+                    fill="#6A9C89" />
+            </svg>
+            <i class="fa-solid fa-xmark mobile-icon" (click)="openMobileMenu()"></i>
+        </div>
+        <div class="sidebar-item selected">HOME</div>
+        <div class="sidebar-item">POSTS</div>
+        <div class="sidebar-item">REQUESTS</div>
+        <div class="sidebar-item">PROFILE</div>
+        <div class="sidebar-item">LOG OUT</div>
+    </div>
+    <div class="layout-content">
+        <div class="cs-card header">
+            <i (click)="openMobileMenu()" class="fa-solid fa-bars icon bars"></i>
+            <div class="user-name">Lê Hoài Hải</div>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

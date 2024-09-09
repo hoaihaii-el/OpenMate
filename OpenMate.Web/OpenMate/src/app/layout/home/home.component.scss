@@ -1,0 +1,80 @@
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 650px;
+    overflow-y: auto;
+}
+
+.fst-section {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.fst-section-item {
+    display: flex;
+    align-items: center;
+}
+
+.check-in-icon {
+    font-size: 30px;
+    color: #16423C;
+    width: 60px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.check-in {
+    flex: 1;
+}
+
+.sec-section {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.posts,
+.features {
+    height: 540px;
+}
+
+.post-header {
+    border-bottom: #C4DAD2 1.4px solid;
+    padding-bottom: 5px;
+}
+
+.post-item {
+    border-bottom: #C4DAD2 1.4px solid;
+    padding-left: 10px;
+    padding-bottom: 15px;
+}
+
+.post-name {
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.feature-list {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+    height: 80px;
+    cursor: pointer;
+}
+
+.feature-icon {
+    font-size: 30px;
+    margin-bottom: 8px;
+    margin-top: 5px;
+    padding: 5px;
+}
