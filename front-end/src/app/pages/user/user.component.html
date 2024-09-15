@@ -1,0 +1,234 @@
+<div class="wrapper">
+  <div class="sidebar" data-color="white" data-active-color="danger">
+    <sidebar-cmp></sidebar-cmp>
+  </div>
+  <div class="main-panel">
+    <navbar-cmp></navbar-cmp>
+    <div class="content">
+      <div class="row">
+        <div class="col-3">
+          <div class="box" style="padding-top: 15px; padding-bottom: 15px;">
+            <div style=" height: 250px; overflow: auto; background-color: white;">
+              <img class="avatar" src="assets/img/angular.png">
+              <h5 class="title">{{staff.staffName}}</h5>
+              <p class="txt">{{staff.title}} - {{staff.level}}</p>
+              <p class="txt">ID: {{staff.staffID}}</p>
+            </div>
+          </div>
+          <div class="box" style="padding-top: 15px; padding-bottom: 15px;">
+            <div style=" height: 300px; overflow: auto; background-color: white;">
+              <h5 class="title">Đổi mật khẩu</h5>
+              <div class="form-group intput-box1">
+                <label>Mật khẩu cũ</label>
+                <input type="password" class="form-control" placeholder="Mật khẩu cũ">
+              </div>
+              <div class="form-group input-box1">
+                <label>Mật khẩu mới</label>
+                <input type="password" class="form-control" placeholder="Mật khẩu mới">
+              </div>
+              <div class="form-group input-box1">
+                <label>Xác nhận mật khẩu mới</label>
+                <input type="password" class="form-control" placeholder="Xác nhận mật khẩu mới">
+              </div>
+              <div style="display: flex; justify-content: center;">
+                <button type="button" class="btn btn-primary update-btn">CHANGE</button>
+              </div>
+            </div>
+          </div>
+          <div class="box" style="padding-top: 15px; padding-bottom: 15px;">
+            <div style=" height: 300px; overflow: auto; background-color: white;">
+              <h5 class="title">Người liên hệ khẩn cấp</h5>
+              <div class="form-group intput-box1">
+                <label>Họ và tên</label>
+                <input type="text" class="form-control" placeholder="Họ và tên">
+              </div>
+              <div class="form-group input-box1">
+                <label>Số điện thoại</label>
+                <input type="text" class="form-control" placeholder="Số điện thoại">
+              </div>
+              <div class="form-group input-box1">
+                <label>Mối quan hệ</label>
+                <input type="text" class="form-control" placeholder="Mối quan hệ">
+              </div>
+              <div style="display: flex; justify-content: center;">
+                <button type="button" class="btn btn-primary update-btn">UPDATE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-9">
+          <div class="box" style="padding-top: 15px; padding-bottom: 15px;">
+            <div style=" height: 930px; overflow: auto; background-color: white;">
+              <h5 class="title">Thông tin nhân viên</h5>
+              <div class="row input-box">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Họ tên</label>
+                    <input type="text" class="form-control" placeholder="Họ tên" [(ngModel)]="staff.staffName">
+                  </div>
+                </div>
+                <div class="col-md-3 px-1">
+                  <div class="form-group">
+                    <label>Ngày sinh</label>
+                    <input type="text" class="form-control" placeholder="Ngày sinh" [(ngModel)]="staff.dateBirth">
+                  </div>
+                </div>
+                <div class="col-md-3 pl-1">
+                  <div class="form-group">
+                    <label>Giới tính</label>
+                    <select class="custom-select" [(ngModel)]="staff.gender">
+                      <option value="Nam">Nam</option>
+                      <option value="Nữ">Nữ</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row input-box">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Phòng ban</label>
+                    <input type="text" class="form-control" disabled="" placeholder="Phòng ban"
+                      [(ngModel)]="staff.divisionID">
+                  </div>
+                </div>
+                <div class="col-md-3 px-1">
+                  <div class="form-group">
+                    <label>Ngày vào làm</label>
+                    <input type="text" class="form-control" disabled="" placeholder="Ngày vào làm"
+                      [(ngModel)]="staff.startWork">
+                  </div>
+                </div>
+                <div class="col-md-3 pl-1">
+                  <div class="form-group">
+                    <label>Ngày full-time</label>
+                    <input type="text" class="form-control" disabled="" placeholder="Ngày full-time"
+                      [(ngModel)]="staff.startFullTime">
+                  </div>
+                </div>
+              </div>
+              <div class="row input-box">
+                <div class="col-md-7 pr-1">
+                  <div class="form-group">
+                    <label>Địa chỉ liên hệ</label>
+                    <input type="text" class="form-control" placeholder="Địa chỉ" [(ngModel)]="staff.address">
+                  </div>
+                </div>
+                <div class="col-md-5 pl-1">
+                  <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="text" class="form-control" placeholder="Số điện thoại" [(ngModel)]="staff.phone">
+                  </div>
+                </div>
+              </div>
+              <div class="row input-box">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Email cá nhân</label>
+                    <input type="text" class="form-control" placeholder="Email cá nhân"
+                      [(ngModel)]="staff.personalEmail">
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Email công ty</label>
+                    <input type="text" class="form-control" placeholder="Email công ty"
+                      [(ngModel)]="staff.companyEmail">
+                  </div>
+                </div>
+              </div>
+              <div class="row input-box">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Thông tin tài khoản nhận lương</label>
+                    <input type="text" class="form-control" placeholder="Số tài khoản" [(ngModel)]="staff.bankAccount">
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Ngân hàng</label>
+                    <input type="text" class="form-control" placeholder="Ngân hàng" [(ngModel)]="staff.bankName">
+                  </div>
+                </div>
+              </div>
+              <div class="row input-box">
+                <div class="col-md-4 pr-1">
+                  <div class="form-group">
+                    <label>CCCD</label>
+                    <input type="text" class="form-control" disabled="" placeholder="CCCD" value="0123456789">
+                  </div>
+                </div>
+                <div class="col-md-4 px-1">
+                  <div class="form-group">
+                    <label>Ngày cấp</label>
+                    <input type="text" class="form-control" disabled="" placeholder="Ngày cấp" value="09/09/2021">
+                  </div>
+                </div>
+                <div class="col-md-4 pl-1">
+                  <div class="form-group">
+                    <label>Nơi cấp</label>
+                    <input type="text" class="form-control" disabled="" placeholder="Nơi cấp" value="Quảng Trị">
+                  </div>
+                </div>
+              </div>
+              <div class="row input-box">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Hợp đồng lao động</label>
+                    <input type="text" class="form-control" disabled="" placeholder="Hợp đồng lao động"
+                      [(ngModel)]="staff.hdld">
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Số hợp đồng lao động</label>
+                    <input type="text" class="form-control" disabled="" placeholder="Số hợp đồng lao động"
+                      [(ngModel)]="staff.soHDLD">
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: center;">
+                <button type="button" class="btn btn-primary update-btn" (click)="updateInfo()">UPDATE</button>
+              </div>
+              <h5 style="margin-top: 30px;" class="title">Thông tin khác</h5>
+              <div class="row input-box">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Mã số thuế</label>
+                    <input type="text" class="form-control" placeholder="Mã số thuế" disabled=""
+                      [(ngModel)]="staff.maSoThue">
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Số bảo hiểm xã hội</label>
+                    <input type="text" class="form-control" disabled="" placeholder="Số bảo hiểm xã hội"
+                      [(ngModel)]="staff.bhxh">
+                  </div>
+                </div>
+              </div>
+              <div class="row input-box">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Số bảo hiểm y tế</label>
+                    <input type="text" class="form-control" disabled="" placeholder="Số bảo hiểm y tế"
+                      [(ngModel)]="staff.bhyt">
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Số bảo hiểm tai nạn</label>
+                    <input type="text" class="form-control" disabled="" placeholder="Số bảo hiểm tai nạn"
+                      [(ngModel)]="staff.bhtn">
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: center;">
+                <button type="button" class="btn btn-primary update-btn">ĐĂNG KÝ TĂNG MỚI</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <fixedplugin-cmp></fixedplugin-cmp>

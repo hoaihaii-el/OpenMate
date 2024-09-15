@@ -1,0 +1,64 @@
+<div class="wrapper">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+        <sidebar-cmp></sidebar-cmp>
+    </div>
+    <div class="main-panel">
+        <navbar-cmp></navbar-cmp>
+        <div class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="box" style="padding-top: 15px; padding-bottom: 15px;">
+                        <div style="display: flex;">
+                            <div class="icon-box">
+                                <i class="fa-solid fa-arrow-left" (click)="previousDay()"></i>
+                            </div>
+                            <div class="txt" style="width: 100px;">{{currentDate}}</div>
+                            <div class="icon-box">
+                                <i class="fa-solid fa-arrow-right" (click)="nextDay()"></i>
+                            </div>
+                        </div>
+                        <div style="height: 540px; overflow: auto; background-color: white; margin-left: 10px;">
+                            <table class="table" style="width: 1400px;">
+                                <thead class="text-primary" style="text-align: center;">
+                                    <th style="width: 180px;">Staff Name</th>
+                                    <th style="width: 250px;">Task Name</th>
+                                    <th style="width: 100px;">Status</th>
+                                    <th style="width: 100px;">Estimate</th>
+                                    <th style="width: 100px;">Start</th>
+                                    <th style="width: 100px;">End</th>
+                                    <th style="width: 200px;">Note</th>
+                                    <th style="width: 120px;">Evaluate (%)</th>
+                                    <th style="width: 250px;">Feedback</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let task of tasks">
+                                        <td>{{task.staffName}}</td>
+                                        <td>{{task.taskName}}</td>
+                                        <td style="text-align: center;">{{task.status}}</td>
+                                        <td style="text-align: center;">{{task.estimate}}</td>
+                                        <td style="text-align: center;">{{task.startTime}}</td>
+                                        <td style="text-align: center;">{{task.endTime}}</td>
+                                        <td>{{task.note}}</td>
+                                        <td>
+                                            <input
+                                                *ngIf="task.taskName != 'No task yet!' && task.staffID != currentStaffID"
+                                                input type="text" class="form-control" (blur)="updateTask(task)"
+                                                [(ngModel)]="task.evaluate" placeholder="Evaluate">
+                                        </td>
+                                        <td>
+                                            <input
+                                                *ngIf="task.taskName != 'No task yet!' && task.staffID != currentStaffID"
+                                                type="text" class="form-control" (blur)="updateTask(task)"
+                                                [(ngModel)]="task.feedback" placeholder="Feedback">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<fixedplugin-cmp></fixedplugin-cmp>
