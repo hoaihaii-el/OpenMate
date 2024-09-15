@@ -1,0 +1,28 @@
+.posts {
+    //height: calc(100vh - 90px);
+}
+
+.post-content {
+    //height: calc(100vh - 90px);
+}
+
+.post-header {
+    border-bottom: #C4DAD2 1.4px solid;
+    padding-bottom: 5px;
+}
+
+.post-list {
+    height: calc(100% - 40px);
+    overflow-y: auto;
+}
+
+.post-item {
+    border-bottom: #C4DAD2 1.4px solid;
+    padding-left: 10px;
+    padding-bottom: 15px;
+}
+
+.post-name {
+    margin-top: 15px;
+    margin-bottom: 8px;
+}

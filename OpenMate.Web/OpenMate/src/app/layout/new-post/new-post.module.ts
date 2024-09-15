@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NewPostComponent } from './new-post.component';
+import { NewPostRoutingModule } from './new-post-routing.module';
 
 
 
@@ -9,7 +10,8 @@ import { NewPostComponent } from './new-post.component';
     NewPostComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NewPostRoutingModule
   ]
 })
 export class NewPostModule { }

@@ -12,10 +12,17 @@
             </svg>
             OPEN MATE
         </div>
-        <div class="sidebar-item selected">HOME</div>
-        <div class="sidebar-item">POSTS</div>
-        <div class="sidebar-item">REQUESTS</div>
-        <div class="sidebar-item">PROFILE</div>
+        <div class="sidebar-item" [ngClass]="{ 'selected': activeTab === 'home' }" (click)="active('home')"
+            [routerLink]="['home']">HOME</div>
+        <div class="sidebar-item" [ngClass]="{ 'selected': activeTab === 'posts' }" (click)="active('posts')"
+            [routerLink]="['posts']">POSTS</div>
+        <div class="sidebar-item" [ngClass]="{ 'selected': activeTab === 'requests' }" (click)="active('requests')"
+            [routerLink]="['requests']">REQUESTS</div>
+        <div class="sidebar-item" [ngClass]="{ 'selected': activeTab === 'time-sheet' }" (click)="active('time-sheet')"
+            [routerLink]="['time-sheet']">TIMESHEET</div>
+        <div class="sidebar-item" [ngClass]="{ 'selected': activeTab === 'profile' }" (click)="active('profile')"
+            [routerLink]="['profile']">PROFILE</div>
+        <div class="sidebar-item">CALENDAR</div>
         <div class="sidebar-item">LOG OUT</div>
     </div>
     <div *ngIf="isMoblieMenuOpen" (click)="openMobileMenu()" class="nav-overlay"></div>
@@ -32,10 +39,10 @@
             </svg>
             <i class="fa-solid fa-xmark mobile-icon" (click)="openMobileMenu()"></i>
         </div>
-        <div class="sidebar-item selected">HOME</div>
-        <div class="sidebar-item">POSTS</div>
-        <div class="sidebar-item">REQUESTS</div>
-        <div class="sidebar-item">PROFILE</div>
+        <div class="sidebar-item selected" [routerLink]="['/home']">HOME</div>
+        <div class="sidebar-item" [routerLink]="['/posts']">POSTS</div>
+        <div class="sidebar-item" [routerLink]="['/requests']">REQUESTS</div>
+        <div class="sidebar-item" [routerLink]="['/profile']">PROFILE</div>
         <div class="sidebar-item">LOG OUT</div>
     </div>
     <div class="layout-content">

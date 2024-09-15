@@ -1,0 +1,20 @@
+.fst-section {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.fst-section-item {
+    display: flex;
+    align-items: center;
+}
+
+.sec-section {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.sheets {
+    height: calc(100vh - 170px);
+}
