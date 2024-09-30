@@ -51,6 +51,7 @@ namespace StaffManagmentNET
             builder.Services.AddScoped<IRequestRepo, RequestService>();
             builder.Services.AddScoped<ISettingRepo, SettingService>();
             builder.Services.AddScoped<IChatRepo, ChatService>();
+            builder.Services.AddScoped<ISalaryRepo, SalaryService>();
 
             builder.Services.AddSingleton<JWTManager>();
 
@@ -124,6 +125,7 @@ namespace StaffManagmentNET
             app.MapControllers();
 
             app.MapHub<ChatHub>("/chathub");
+            app.MapHub<TaskHub>("/taskhub");
 
             app.Run();
         }

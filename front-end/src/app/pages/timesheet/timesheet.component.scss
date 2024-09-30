@@ -1,0 +1,73 @@
+.box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.txt {
+    font-size: 20px;
+    text-align: center;
+}
+
+.icon-box {
+    cursor: pointer;
+    width: 50px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.hour-box {
+    margin-left: 30px;
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+.hour-title {
+    margin-left: 20px;
+    margin-top: 6px;
+    font-size: 16px;
+}
+
+.update-btn {
+    padding: 6px 10px;
+    margin-top: 10px;
+}
+
+.highlight {
+    background-color: #CAF4FF;
+}
+
+.dayoff {
+    background-color: #F8F4E1;
+}
+
+.off-btn {
+    background-color: #77B0AA;
+    border-radius: 3px;
+    margin-right: 5px;
+    width: 40px;
+    height: 25px;
+}
+
+.off {
+    background-color: #EE4E4E;
+}
+
+select {
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+select>option {
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}

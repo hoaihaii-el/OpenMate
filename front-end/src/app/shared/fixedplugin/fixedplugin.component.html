@@ -4,12 +4,10 @@
             <p class="count">{{tasks.length}}</p>
         </a>
         <div class="card" ngbDropdownMenu style="width: auto">
-            <table class="table" style="width: 900px">
+            <table class="table" style="width: 750px">
                 <thead class="text-primary">
                     <th style="width: 300px;text-align: center;">Task Name</th>
                     <th style="width: 140px;text-align: center;">Status</th>
-                    <th>Start</th>
-                    <th>End</th>
                     <th>Estimate</th>
                     <th style="width: 250px; text-align: center;">Note</th>
                 </thead>
@@ -26,8 +24,6 @@
                                 <option value="Pending">Pending</option>
                             </select>
                         </td>
-                        <td>{{task.startTime}}</td>
-                        <td>{{task.endTime}}</td>
                         <td style="text-align: center;">{{task.estimate}}h</td>
                         <td>
                             <input type="text" class="form-control" (blur)="updateTask(task, false)"
@@ -37,7 +33,7 @@
                 </tbody>
             </table>
             <div style="display: flex;">
-                <div class="input-group" style="width: 550px;">
+                <div class="input-group" style="width: 400px;">
                     <input type="text" class="form-control" placeholder="New task" [(ngModel)]="newTask.taskName">
                 </div>
                 <div class="input-group" style="width: 110px;">

@@ -13,6 +13,7 @@ namespace StaffManagmentNET.Repositories
         Task<double> GetAvgByMonth(string staffID, int month, int year);
         Task<double> GetTotalByMonth(string staffID, int month, int year);
         Task<TimeSheetDetail> GetSheetDetail(string staffID, int month, int year);
+        Task GenerateData(string staffID);
         Task<TimeSheet> UpdateData(string staffID, string date, int h1, int m1, int h2, int m2, string type, string wrkType, string off);
     }
 }

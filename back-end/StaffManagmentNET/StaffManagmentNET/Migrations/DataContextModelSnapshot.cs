@@ -517,6 +517,56 @@ namespace StaffManagmentNET.Migrations
                     b.ToTable("RequestCreateDetails");
                 });
 
+            modelBuilder.Entity("StaffManagmentNET.Models.Salary", b =>
+                {
+                    b.Property<string>("Key")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("StaffID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CertAllowance")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DegreeAllowance")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Evaluate")
+                        .HasColumnType("float");
+
+                    b.Property<string>("GeneralAllowance")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Reward")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StaffName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleAllowance")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Total")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalHour")
+                        .HasColumnType("float");
+
+                    b.HasKey("Key", "StaffID");
+
+                    b.ToTable("Salaries");
+                });
+
             modelBuilder.Entity("StaffManagmentNET.Models.Setting", b =>
                 {
                     b.Property<string>("Key")
@@ -570,6 +620,10 @@ namespace StaffManagmentNET.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Cert")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CompanyEmail")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -577,6 +631,10 @@ namespace StaffManagmentNET.Migrations
 
                     b.Property<DateTime>("DateBirth")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Degree")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DivisionID")
                         .IsRequired()

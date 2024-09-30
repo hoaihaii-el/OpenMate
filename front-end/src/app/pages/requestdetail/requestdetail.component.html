@@ -1,0 +1,73 @@
+<div class="wrapper">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+        <sidebar-cmp></sidebar-cmp>
+    </div>
+    <div class="main-panel">
+        <navbar-cmp></navbar-cmp>
+        <div class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="box" style="padding: 15px; height: 590px; overflow: auto;">
+                        <div>
+                            <h5>{{requestDetail.requestName}}</h5>
+                        </div>
+                        <div class="row input-box" *ngIf="requestDetail.rules != ''">
+                            <div class="col-md-12">
+                                <div style="margin-left: 20px;" [innerHTML]="sanitizerHtml">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accepters">
+                            <div *ngFor="let accepter of accepters">
+                                <h6 style="margin-top: 10px;">{{accepter}}</h6>
+                            </div>
+                        </div>
+                        <div class="row input-box">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>{{requestDetail.title1}}</label>
+                                    <input *ngIf="requestDetail.answer1Type != 'Editor'" type="text"
+                                        class="form-control" [(ngModel)]="content1">
+                                    <ckeditor *ngIf="requestDetail.answer1Type == 'Editor'" [editor]="Editor"
+                                        [(ngModel)]="model1.editorData">
+                                    </ckeditor>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row input-box">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>{{requestDetail.title2}}</label>
+                                    <input *ngIf="requestDetail.answer2Type != 'Editor'" type="text"
+                                        class="form-control" [(ngModel)]="content2">
+                                    <ckeditor *ngIf="requestDetail.answer2Type == 'Editor'" [editor]="Editor"
+                                        [(ngModel)]="model2.editorData">
+                                    </ckeditor>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row input-box">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>{{requestDetail.title3}}</label>
+                                    <input *ngIf="requestDetail.answer3Type != 'Editor'" type="text"
+                                        class="form-control" [(ngModel)]="content3">
+                                    <ckeditor *ngIf="requestDetail.answer3Type == 'Editor'" [editor]="Editor"
+                                        [(ngModel)]="model3.editorData">
+                                    </ckeditor>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="update ml-auto mr-auto">
+                                <button type="submit" class="btn btn-primary process-btn"
+                                    (click)="createRequest()">Process</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<fixedplugin-cmp></fixedplugin-cmp>

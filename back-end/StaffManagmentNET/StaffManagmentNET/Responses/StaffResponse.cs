@@ -30,5 +30,7 @@ namespace StaffManagmentNET.Responses
         public string SoHDLD { get; set; } = "";
         public string BankAccount { get; set; } = "";
         public string BankName { get; set; } = "";
+        public string Degree { get; set; } = "";
+        public string Cert { get; set; } = "";
     }
 }

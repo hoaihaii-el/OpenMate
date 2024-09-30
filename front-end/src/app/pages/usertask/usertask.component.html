@@ -44,12 +44,14 @@
                                                 *ngIf="task.taskName != 'No task yet!' && task.staffID != currentStaffID"
                                                 input type="text" class="form-control" (blur)="updateTask(task)"
                                                 [(ngModel)]="task.evaluate" placeholder="Evaluate">
+                                            <label *ngIf='task.staffID == currentStaffID'>{{task.evaluate}}</label>
                                         </td>
                                         <td>
                                             <input
                                                 *ngIf="task.taskName != 'No task yet!' && task.staffID != currentStaffID"
                                                 type="text" class="form-control" (blur)="updateTask(task)"
                                                 [(ngModel)]="task.feedback" placeholder="Feedback">
+                                            <label *ngIf='task.staffID == currentStaffID'>{{task.feedback}}</label>
                                         </td>
                                     </tr>
                                 </tbody>

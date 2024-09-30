@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.EntityFrameworkCore;
 using StaffManagmentNET.Models;
 using StaffManagmentNET.Repositories;
 using StaffManagmentNET.Responses;
@@ -46,7 +47,9 @@ namespace StaffManagmentNET.Services
             {
                 Date = DateTime.Now.ToString("dd/MM/yyyy"),
                 StaffID = vm.StaffID,
-                CheckIn = DateTime.Now
+                CheckIn = DateTime.Now,
+                WorkingType = "OFFICE",
+                Off = "NO"
             };
             _context.TimeSheets.Add(newTimeSheet);
 
@@ -388,6 +391,42 @@ namespace StaffManagmentNET.Services
             }
 
             return false;
+        }
+
+        public async Task GenerateData(string staffID)
+        {
+            for (int i = 2; i <= 31; i++)
+            {
+                if ((i - 4) % 7 == 0 || (i - 5) % 7 == 0) continue;
+
+                var date = i < 10 ? "0" + i.ToString() : i.ToString();
+                date += "/05/2024";
+                var ts = await _context.TaskDetails.FindAsync(date, staffID, 1);
+                if (ts == null)
+                {
+                    ts = new TaskDetail
+                    {
+                        Date = date,
+                        StaffID = staffID,
+                        StartTime = new DateTime(2024, 5, i, 8, 55, 0),
+                        EndTime = new DateTime(2024, 5, i, 11, 01, 0),
+                        Status = "Done",
+                        Estimate = 4,
+                        Evaluate = 77,
+                        Feedback = "gudd"
+                    };
+                    _context.TaskDetails.Add(ts);
+                    continue;
+                }
+
+                ts.StartTime = new DateTime(2024, 5, i, 8, 55, 0);
+                ts.EndTime = new DateTime(2024, 5, i, 11, 01, 0);
+                ts.Evaluate = 77;
+                ts.Status = "Done";
+                ts.Feedback = "gud";
+            }
+
+            await _context.SaveChangesAsync();
         }
     }
 }

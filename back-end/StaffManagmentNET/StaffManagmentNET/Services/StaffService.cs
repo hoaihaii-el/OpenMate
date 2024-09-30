@@ -48,6 +48,8 @@ namespace StaffManagmentNET.Services
                     MaSoThue = staff.MaSoThue,
                     HDLD = staff.HDLD,
                     SoHDLD = staff.SoHDLD,
+                    Degree = staff.Degree,
+                    Cert = staff.Cert,
                 };
 
                 if (!string.IsNullOrEmpty(staff.ManagerID))
@@ -104,7 +106,9 @@ namespace StaffManagmentNET.Services
                 HDLD = staff.HDLD,
                 SoHDLD = staff.SoHDLD,
                 BankAccount = staff.BankAccount,
-                BankName = staff.BankName
+                BankName = staff.BankName,
+                Degree = staff.Degree,
+                Cert = staff.Cert
             };
 
             var user = await _userManager.FindByIdAsync(staff.StaffID);
@@ -134,6 +138,8 @@ namespace StaffManagmentNET.Services
             staff.MaSoThue = vm.MaSoThue == "Empty" ? "" : vm.MaSoThue;
             staff.HDLD = vm.HDLD == "Empty" ? "" : vm.HDLD;
             staff.SoHDLD = vm.SoHDLD == "Empty" ? "" : vm.SoHDLD;
+            staff.Degree = vm.Degree;
+            staff.Cert = vm.Cert;
 
             var user = await _userManager.FindByIdAsync(vm.StaffID);
             foreach (var role in vm.Roles.Split('_', StringSplitOptions.TrimEntries))
@@ -198,7 +204,9 @@ namespace StaffManagmentNET.Services
                 HDLD = staff.HDLD,
                 SoHDLD = staff.SoHDLD,
                 BankAccount = staff.BankAccount,
-                BankName = staff.BankName
+                BankName = staff.BankName,
+                Degree = staff.Degree,
+                Cert = staff.Cert,
             };
         }
     }

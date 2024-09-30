@@ -13,12 +13,13 @@ import { get } from 'http';
 export class FixedPluginComponent {
   public tasks: Task[] = [];
   public newTask: Task;
+  public staffID: string = localStorage.getItem('userID');
 
   constructor(private httpClient: HttpClient) {
     this.getUserTasks();
     this.newTask = {
       date: this.dateToString(new Date()).replace('%2F', '/'),
-      staffID: "24002",
+      staffID: this.staffID,
       staffName: "",
       order: 0,
       taskName: "",
@@ -34,7 +35,7 @@ export class FixedPluginComponent {
 
   getUserTasks() {
     var date = this.dateToString(new Date());
-    this.httpClient.get(`https://localhost:7243/api/TaskDetail/user-get?date=${date}&staffID=24002`)
+    this.httpClient.get(`https://localhost:7243/api/TaskDetail/user-get?date=${date}&staffID=` + this.staffID)
       .subscribe({
         next: (res: any) => {
           console.log(res);

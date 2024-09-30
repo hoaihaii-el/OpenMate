@@ -1,0 +1,43 @@
+.box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.txt {
+    font-size: 20px;
+    text-align: center;
+}
+
+.icon-box {
+    cursor: pointer;
+    width: 50px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.hour-box {
+    margin-left: 30px;
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+.hour-title {
+    margin-left: 20px;
+    margin-top: 6px;
+    font-size: 16px;
+}
+
+.update-btn {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}

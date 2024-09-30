@@ -115,5 +115,12 @@ namespace StaffManagmentNET.Controllers
         {
             return Ok(await _service.GetSheetDetail(staffID, month, year));
         }
+
+        [HttpGet("generate-data")]
+        public async Task<IActionResult> Gen(string x)
+        {
+            await _service.GenerateData(x);
+            return Ok();
+        }
     }
 }

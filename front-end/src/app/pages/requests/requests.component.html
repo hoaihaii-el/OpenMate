@@ -1,0 +1,130 @@
+<div class="wrapper">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+        <sidebar-cmp></sidebar-cmp>
+    </div>
+    <div class="main-panel">
+        <navbar-cmp></navbar-cmp>
+        <div class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="box" style="padding-top: 15px; padding-bottom: 15px;" [ngSwitch]="currentAction">
+                        <div class="row header-box" *ngSwitchCase="'All'">
+                            <div class="col-4" style="text-align: center;">
+                                <a class="text-primary" style="cursor: pointer;" (click)="changeAction('All')">All
+                                    requests</a>
+                            </div>
+                            <div class="col-4" style="text-align: center;">
+                                <a style="cursor: pointer;" (click)="changeAction('Your')">Your requests</a>
+                            </div>
+                            <div class="col-4" style="text-align: center;">
+                                <a style="cursor: pointer;" (click)="changeAction('Need')">Need to accept</a>
+                            </div>
+                        </div>
+                        <div class="row header-box" *ngSwitchCase="'Your'">
+                            <div class="col-4" style="text-align: center;">
+                                <a style="cursor: pointer;" (click)="changeAction('All')">All requests</a>
+                            </div>
+                            <div class="col-4" style="text-align: center;">
+                                <a class="text-primary" style="cursor: pointer;" (click)="changeAction('Your')">Your
+                                    requests</a>
+                            </div>
+                            <div class="col-4" style="text-align: center;">
+                                <a style="cursor: pointer;" (click)="changeAction('Need')">Need to accept</a>
+                            </div>
+                        </div>
+                        <div class="row header-box" *ngSwitchCase="'Need'">
+                            <div class="col-4" style="text-align: center;">
+                                <a style="cursor: pointer;" (click)="changeAction('All')">All requests</a>
+                            </div>
+                            <div class="col-4" style="text-align: center;">
+                                <a style="cursor: pointer;" (click)="changeAction('Your')">Your requests</a>
+                            </div>
+                            <div class="col-4" style="text-align: center;">
+                                <a class="text-primary" style="cursor: pointer;" (click)="changeAction('Need')">Need
+                                    to
+                                    accept</a>
+                            </div>
+                        </div>
+                        <div style="height: 540px; overflow: auto; background-color: white; margin-left: 10px;"
+                            *ngSwitchCase="'All'">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <th>#Code</th>
+                                    <th>Request Name</th>
+                                    <th>Request Type</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let req of requestsType" style="cursor: pointer;"
+                                        [routerLink]="['/requestdetail', req.rqstID]">
+                                        <td>#{{req.rqstID}}</td>
+                                        <td>{{req.rqstName}}</td>
+                                        <td>{{req.rqstType}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div style="height: 540px; overflow: auto; background-color: white; margin-left: 10px;"
+                            *ngSwitchCase="'Your'">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <th>Request Name</th>
+                                    <th>Create Time</th>
+                                    <th>Last Activity</th>
+                                    <th>Status</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let req of yourRequests" style="cursor: pointer;"
+                                        [routerLink]="['/reqcreatedetail', req.createID, 'false']">
+                                        <td>{{req.requestName}}</td>
+                                        <td>{{req.createTime}}</td>
+                                        <td>{{req.lastActivity}}</td>
+                                        <td *ngIf="req.status == 'Accepted'" class="text-success">
+                                            {{req.status}}
+                                        </td>
+                                        <td *ngIf="req.status == 'Pending'" class="text-warning">
+                                            {{req.status}}
+                                        </td>
+                                        <td *ngIf="req.status == 'Rejected'" class="text-danger">
+                                            {{req.status}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div style="height: 540px; overflow: auto; background-color: white; margin-left: 10px;"
+                            *ngSwitchCase="'Need'">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <th>Request Name</th>
+                                    <th>Create Time</th>
+                                    <th>Requester</th>
+                                    <th>Status</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let req of needToAcceptRequests" style="cursor: pointer;"
+                                        [routerLink]="['/reqcreatedetail', req.createID, 'true']">
+                                        <td>{{req.requestName}}</td>
+                                        <td>{{req.createTime}}</td>
+                                        <td>{{req.staffName}}</td>
+                                        <td *ngIf="req.status == 'Accepted'" class="text-success">
+                                            {{req.status}}
+                                        </td>
+                                        <td *ngIf="req.status == 'Pending'" class="text-warning">
+                                            {{req.status}}
+                                        </td>
+                                        <td *ngIf="req.status == 'Rejected'" class="text-danger">
+                                            {{req.status}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<fixedplugin-cmp></fixedplugin-cmp>

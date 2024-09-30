@@ -1,0 +1,74 @@
+<div class="wrapper">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+        <sidebar-cmp></sidebar-cmp>
+    </div>
+    <div class="main-panel">
+        <navbar-cmp></navbar-cmp>
+        <div class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="box" style="padding: 15px; height: 590px; overflow: auto;">
+                        <div>
+                            <h5>{{requestDetail.requestName}}</h5>
+                        </div>
+                        <div class="row input-box" *ngIf="requestDetail.rules != ''">
+                            <div class="col-md-12">
+                                <div style="margin-left: 20px;" [innerHTML]="rules">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accepters">
+                            <div *ngFor="let acti of activities">
+                                <h6 style="margin-top: 10px;">{{acti}}</h6>
+                            </div>
+                        </div>
+                        <div class="row input-box">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="text-warning">{{requestDetail.title1}}</label>
+                                    <div *ngIf="requestDetail.answer1Type != 'Editor'">{{requestDetail.content1}}</div>
+                                    <div *ngIf="requestDetail.answer1Type == 'Editor'" [innerHTML]="content1"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row input-box">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="text-warning">{{requestDetail.title2}}</label>
+                                    <div *ngIf="requestDetail.answer2Type != 'Editor'">{{requestDetail.content2}}</div>
+                                    <div *ngIf="requestDetail.answer2Type == 'Editor'" [innerHTML]="content2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row input-box">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="text-warning">{{requestDetail.title3}}</label>
+                                    <div
+                                        *ngIf="requestDetail.answer3Type != 'Editor' && requestDetail.answer3Type != 'Image'">
+                                        {{requestDetail.content3}}</div>
+                                    <div *ngIf="requestDetail.answer3Type == 'Editor'" [innerHTML]="content3"></div>
+                                    <div *ngIf="requestDetail.answer3Type == 'Image'">
+                                        <img [src]="requestDetail.content3" alt="Evidence" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="isOpenByManager">
+                            <div class="update ml-auto mr-auto" *ngIf="isTakeAction">
+                                You have taken action on this request.
+                            </div>
+                            <div class="update ml-auto mr-auto" *ngIf="!isTakeAction">
+                                <button type="submit" class="btn btn-success process-btn" style="margin-right: 20px;"
+                                    (click)="considerRequest('Accept')">Accept</button>
+                                <button type="submit" class="btn btn-danger process-btn"
+                                    (click)="considerRequest('Reject')">Reject</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<fixedplugin-cmp></fixedplugin-cmp>

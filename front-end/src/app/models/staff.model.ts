@@ -25,4 +25,6 @@ export interface Staff {
     soHDLD: string;
     bankAccount: string;
     bankName: string;
+    degree: string;
+    cert: string;
 }

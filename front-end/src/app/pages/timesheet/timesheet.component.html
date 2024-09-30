@@ -1,0 +1,288 @@
+<div class="wrapper">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+        <sidebar-cmp></sidebar-cmp>
+    </div>
+    <div class="main-panel">
+        <navbar-cmp></navbar-cmp>
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="box">
+                        <p class="txt">Working days</p>
+                        <p class="txt">{{workDays}} days</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="box">
+                        <p class="txt">Total WFH</p>
+                        <p class="txt">{{wfh}} days</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="box">
+                        <p class="txt">Total</p>
+                        <p class="txt">{{total}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="box">
+                        <p class="txt">Average</p>
+                        <p class="txt">{{avg}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9">
+                    <div class="box" style="padding-top: 15px; padding-bottom: 15px;">
+                        <div style="display: flex;">
+                            <div class="icon-box" (click)="lastMonth()">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </div>
+                            <div class="txt" style="width: 100px;">{{currentMonth}}/{{currentYear}}</div>
+                            <div class="icon-box" (click)="nextMonth()">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </div>
+                        </div>
+                        <div style=" height: 440px; overflow: auto; background-color: white;">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <th>Date</th>
+                                    <th>Check in - out</th>
+                                    <th>Lunch break</th>
+                                    <th>Hours</th>
+                                    <th>Working type</th>
+                                    <th>OFF?</th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let sheet of sheets"
+                                        [ngClass]="{'highlight': sheet.today == 1,'dayoff': sheet.isDayOff}">
+                                        <td>{{sheet.date}}</td>
+                                        <td>{{sheet.checkIn}} {{sheet.checkOut}}</td>
+                                        <td>{{sheet.lunchBreak}}</td>
+                                        <td>{{sheet.total}}</td>
+                                        <td *ngIf="sheet.today < 2 || sheet.isDayOff">{{sheet.workingType}}</td>
+                                        <td *ngIf="sheet.today == 2 && !sheet.isDayOff">
+                                            <div *ngIf="sheet.workingType=='' || sheet.workingType == 'OFFICE'">
+                                                <button class="btn btn-primary off-btn"
+                                                    (click)="setWFH('WFH', sheet.key)">WFH</button>
+                                            </div>
+                                            <div *ngIf="sheet.workingType == 'WFH'">
+                                                <button class="btn btn-primary off-btn off"
+                                                    (click)="setWFH('OFFICE', sheet.key)">WFH</button>
+                                            </div>
+                                        </td>
+                                        <td *ngIf="sheet.today < 2 || sheet.isDayOff">{{sheet.off}}</td>
+                                        <td *ngIf="sheet.today == 2 && !sheet.isDayOff">
+                                            <div *ngIf="sheet.off==''">
+                                                <button class="btn btn-primary off-btn"
+                                                    (click)="setDayOff('ALL', sheet.key)">ALL</button>
+                                                <button class="btn btn-primary off-btn"
+                                                    (click)="setDayOff('AM-OFF', sheet.key)">AM</button>
+                                                <button class="btn btn-primary off-btn"
+                                                    (click)="setDayOff('PM-OFF', sheet.key)">PM</button>
+                                            </div>
+                                            <div *ngIf="sheet.off != ''">
+                                                <button *ngIf="sheet.off == 'ALL'" class="btn btn-primary off-btn off"
+                                                    (click)="setDayOff('', sheet.key)">ALL</button>
+                                                <button *ngIf="sheet.off == 'AM-OFF'"
+                                                    class="btn btn-primary off-btn off"
+                                                    (click)="setDayOff('', sheet.key)">AM</button>
+                                                <button *ngIf="sheet.off == 'PM-OFF'"
+                                                    class="btn btn-primary off-btn off"
+                                                    (click)="setDayOff('', sheet.key)">PM</button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a *ngIf="sheet.today == 0" style="cursor: pointer;"
+                                                (click)="openModal(sheet)">
+                                                <i class="nc-icon nc-tap-01 text-warning" style="font-size: 20px;"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="box" style="padding: 10px 5px">
+                        <div style=" height: 480px; overflow: auto; background-color: white;">
+                            <div style="padding: 8px;" *ngFor="let req of changeTimeReqs"
+                                [routerLink]="['/reqcreatedetail', req.createID, 'false']">
+                                <label style="width: 100%; cursor: pointer;">Request change time</label>
+                                <label style="width: 100%;">{{req.date}}</label>
+                                <label *ngIf="req.status == 'Pending'" class="text-warning">{{req.status}}</label>
+                                <label *ngIf="req.status == 'Accepted'" class="text-success">{{req.status}}</label>
+                                <label *ngIf="req.status == 'Rejected'" class="text-danger">{{req.status}}</label>
+                                <hr style="margin-top: 4px;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal"
+                style="display: block; z-index: 1050; opacity: 100; top: 100px; overflow: visible;"
+                aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="showModal">
+                <div class="modal-dialog"
+                    style="padding: 20px;background-color: white;border-radius: 5px;margin-left: 500px;border: 2px solid #C7B7A3;">
+                    <div class="modal-content" style="border: 0; background-color: white;">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel" style="margin-bottom: 10px;">{{modalTitle}}
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                (click)="closeModal()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row" style="margin: 10px 0;">
+                                <div class="col-12">
+                                    <div class="row" style="margin-bottom: 15px;">
+                                        <div class="col-6">
+                                            <label class="hour-title">Check-In</label>
+                                        </div>
+                                        <div class="col-2">
+                                            <div>
+                                                <label class="hour-box">{{h1}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-1">
+                                            <div>
+                                                <i class="fa-solid fa-angle-up" style="cursor: pointer;"
+                                                    (click)="updateCheckIn(1)"></i>
+                                            </div>
+                                            <div>
+                                                <i class="fa-solid fa-angle-down" style="cursor: pointer;"
+                                                    (click)="updateCheckIn(2)"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div>
+                                                <label class="hour-box">{{m1}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-1">
+                                            <div>
+                                                <i class="fa-solid fa-angle-up" style="cursor: pointer;"
+                                                    (click)="updateCheckIn(3)"></i>
+                                            </div>
+                                            <div>
+                                                <i class="fa-solid fa-angle-down" style="cursor: pointer;"
+                                                    (click)="updateCheckIn(4)"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row" style="margin-bottom: 15px;">
+                                        <div class="col-6">
+                                            <label class="hour-title">Check-Out</label>
+                                        </div>
+                                        <div class="col-2">
+                                            <div>
+                                                <label class="hour-box">{{h2}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-1">
+                                            <div>
+                                                <i class="fa-solid fa-angle-up" style="cursor: pointer;"
+                                                    (click)="updateCheckOut(1)"></i>
+                                            </div>
+                                            <div>
+                                                <i class="fa-solid fa-angle-down" style="cursor: pointer;"
+                                                    (click)="updateCheckOut(2)"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div>
+                                                <label class="hour-box">{{m2}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-1">
+                                            <div>
+                                                <i class="fa-solid fa-angle-up" style="cursor: pointer;"
+                                                    (click)="updateCheckOut(3)"></i>
+                                            </div>
+                                            <div>
+                                                <i class="fa-solid fa-angle-down" style="cursor: pointer;"
+                                                    (click)="updateCheckOut(4)"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row" style="margin-bottom: 15px;">
+                                        <div class="col-6">
+                                            <label class="hour-title">Working Type</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <div>
+                                                <select class="custom-select" [(ngModel)]="wrkType">
+                                                    <option value="OFFICE">OFFICE</option>
+                                                    <option value="WFH">WFH</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row" style="margin-bottom: 15px;">
+                                        <div class="col-6">
+                                            <label class="hour-title">OFF?</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <div>
+                                                <select class="custom-select" [(ngModel)]="off">
+                                                    <option value="DAY-OFF">DAY-OFF</option>
+                                                    <option value="AM-OFF">AM-OFF</option>
+                                                    <option value="PM-OFF">PM-OFF</option>
+                                                    <option value="NO">NO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row" style="margin-bottom: 15px;">
+                                        <div class="col-6">
+                                            <label class="hour-title">Reason</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Reason"
+                                                    [(ngModel)]="reason">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row" style="margin-bottom: 15px;">
+                                        <div class="col-6">
+                                            <label class="hour-title">Evidence</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <input type="file" accept=".jpg, .png" (change)="onFileChange($event)"
+                                                    #fileInput>
+                                                <button type="button" class="btn btn-primary update-btn"
+                                                    (click)="fileInput.click()"
+                                                    style="margin-right: 10px;">File</button>
+                                                <span *ngIf="filename">{{filename}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary update-btn"
+                                (click)="changeTime()">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<fixedplugin-cmp></fixedplugin-cmp>

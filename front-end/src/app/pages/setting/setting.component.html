@@ -1,0 +1,84 @@
+<div class="wrapper">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+        <sidebar-cmp></sidebar-cmp>
+    </div>
+    <div class="main-panel">
+        <navbar-cmp></navbar-cmp>
+        <div class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="box" style="padding-top: 15px; padding-bottom: 15px;">
+                        <div style="display: flex; justify-content: end;">
+                            <button type="button" class="btn btn-primary update-btn" *ngIf="!isAddNewSetting"
+                                (click)="addNewSetting()">NEW FIELD</button>
+                            <button type="button" class="btn btn-danger update-btn" *ngIf="isAddNewSetting"
+                                (click)="addNewSetting()">CANCEL</button>
+                            <button type="button" class="btn btn-success update-btn"
+                                (click)="updateSetting()">UPDATE</button>
+                        </div>
+                        <div style="height: 510px; overflow: auto; background-color: white; margin: 0 80px">
+                            <div class="row input-box">
+                                <div class="col-md-4 pr-1">
+                                    <label class="text-primary">Type</label>
+                                </div>
+                                <div class="col-md-4 px-1">
+                                    <label class="text-primary">Key</label>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <label class="text-primary">Value</label>
+                                </div>
+                            </div>
+                            <div *ngIf="isAddNewSetting" class="row input-box">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <select class="custom-select" [(ngModel)]="newType">
+                                            <option value="Quy định">Quy định</option>
+                                            <option value="Trợ cấp bằng cấp">Trợ cấp bằng cấp</option>
+                                            <option value="Trợ cấp chức vụ">Trợ cấp chức vụ</option>
+                                            <option value="Trợ cấp chứng chỉ">Trợ cấp chứng chỉ</option>
+                                            <option value="Trợ cấp chung">Trợ cấp chung</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 px-1">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [(ngModel)]="newKey">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [(ngModel)]="newValue">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row input-box" *ngFor="let set of settings">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <select class="custom-select" [(ngModel)]="set.type">
+                                            <option value="Quy định">Quy định</option>
+                                            <option value="Trợ cấp bằng cấp">Trợ cấp bằng cấp</option>
+                                            <option value="Trợ cấp chức vụ">Trợ cấp chức vụ</option>
+                                            <option value="Trợ cấp chứng chỉ">Trợ cấp chứng chỉ</option>
+                                            <option value="Trợ cấp chung">Trợ cấp chung</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 px-1">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [(ngModel)]="set.key">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [(ngModel)]="set.value">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<fixedplugin-cmp></fixedplugin-cmp>

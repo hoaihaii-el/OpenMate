@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using StaffManagmentNET.Hubs;
 using StaffManagmentNET.Repositories;
 using StaffManagmentNET.ViewModels;
 
@@ -9,10 +11,12 @@ namespace StaffManagmentNET.Controllers
     public class TaskDetailController : ControllerBase
     {
         private readonly ITaskRepo _service;
+        private readonly IHubContext<TaskHub> _hub;
 
-        public TaskDetailController(ITaskRepo service)
+        public TaskDetailController(ITaskRepo service, IHubContext<TaskHub> hub)
         {
             _service = service;
+            _hub = hub;
         }
 
         [HttpGet("user-get")]
@@ -25,6 +29,7 @@ namespace StaffManagmentNET.Controllers
         public async Task<IActionResult> NewTask(TaskVM task)
         {
             await _service.UpdateTask(task);
+            await _hub.Clients.All.SendAsync("UpdateTask", "");
             return Ok();
         }
 

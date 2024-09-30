@@ -10,13 +10,12 @@
                     <div class="box" style="padding-top: 15px; padding-bottom: 15px;">
                         <div style="display: flex;">
                             <div class="icon-box">
-                                <i class="fa-solid fa-arrow-left"></i>
+                                <i class="fa-solid fa-arrow-left" (click)="previousMonth()"></i>
                             </div>
-                            <div class="txt" style="width: 100px;">5/2024</div>
+                            <div class="txt" style="width: 100px;">{{month}}/{{year}}</div>
                             <div class="icon-box">
-                                <i class="fa-solid fa-arrow-right"></i>
+                                <i class="fa-solid fa-arrow-right" (click)="nextMonth()"></i>
                             </div>
-                            <button type="button" class="btn btn-primary update-btn">Export to Excel</button>
                         </div>
                         <div style=" height: 540px; overflow: auto; background-color: white; margin-left: 10px;">
                             <table class="table">
@@ -24,34 +23,26 @@
                                     <th>#Code</th>
                                     <th>Full Name</th>
                                     <th>Total hours</th>
-                                    <th>Total day-off</th>
                                     <th>Title</th>
-                                    <th>Level</th>
+                                    <th>TitleAllowance</th>
+                                    <th>DegreeAllowance</th>
+                                    <th>CertAllowance</th>
+                                    <th>GeneralAllowance</th>
+                                    <th>Evaluate</th>
+                                    <th>Total</th>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>24002</td>
-                                        <td>Hoai Nhan</td>
-                                        <td>180hrs</td>
-                                        <td>0</td>
-                                        <td>Team Lead</td>
-                                        <td>Senior</td>
-                                    </tr>
-                                    <tr>
-                                        <td>24003</td>
-                                        <td>Hong Nhung</td>
-                                        <td>160hrs</td>
-                                        <td>2</td>
-                                        <td>Staff</td>
-                                        <td>Junior</td>
-                                    </tr>
-                                    <tr>
-                                        <td>24004</td>
-                                        <td>Hoai Hai</td>
-                                        <td>189hrs</td>
-                                        <td>0</td>
-                                        <td>Staff</td>
-                                        <td>Fresher</td>
+                                    <tr *ngFor="let sa of salary">
+                                        <td>{{sa.staffID}}</td>
+                                        <td>{{sa.staffName}}</td>
+                                        <td>{{sa.totalHour}}</td>
+                                        <td>{{sa.title}}</td>
+                                        <td>{{sa.titleAllowance}}</td>
+                                        <td>{{sa.degreeAllowance}}</td>
+                                        <td>{{sa.certAllowance}}</td>
+                                        <td>{{sa.generalAllowance}}</td>
+                                        <td>{{sa.evaluate}}</td>
+                                        <td>{{sa.total}}</td>
                                     </tr>
                                 </tbody>
                             </table>

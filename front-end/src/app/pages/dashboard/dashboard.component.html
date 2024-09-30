@@ -1,0 +1,167 @@
+<div class="wrapper">
+  <div class="sidebar" data-color="white" data-active-color="danger">
+    <sidebar-cmp></sidebar-cmp>
+  </div>
+  <div class="main-panel">
+    <navbar-cmp></navbar-cmp>
+    <div class="content">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="row box">
+            <div class="col-4" style="align-items: center; display: flex; justify-content: center;">
+              <i class="nc-icon nc-button-play text-success icon" (click)="doCheckIn()"></i>
+            </div>
+            <div class="col-8">
+              <p class="txt">Check-in</p>
+              <p class="txt">{{checkIn}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="row box">
+            <div class="col-4" style="align-items: center; display: flex; justify-content: center;">
+              <i class="nc-icon nc-button-pause text-danger icon" (click)="doCheckOut()"></i>
+            </div>
+            <div class="col-8">
+              <p class="txt">Check-out</p>
+              <p class="txt">{{checkOut}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="box">
+            <p class="txt">Working-type</p>
+            <p class="txt">Office</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="row box">
+            <div class="col-6 col-md-6">
+              <div style="text-align: left;">
+                <p class="txt">Today:</p>
+                <p class="txt">Average:
+                <p>
+              </div>
+            </div>
+            <div class="col-6 col-md-6">
+              <div>
+                <p class="txt">{{total}}</p>
+                <p class="txt">{{avg}}
+                <p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6">
+          <div class="box" style="height: 490px; overflow: auto;">
+            <p class="txt" style="margin-bottom: 10px;">New Notifications</p>
+            <hr style="margin-bottom: 10px;">
+            <div class="noti-box" *ngFor="let noti of notifications" [routerLink]="['/notifications']">
+              <p class="noti-name">{{noti.notiName}}</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <div [ngSwitch]="noti.level">
+                    <div class="noti-level text-danger" *ngSwitchCase="'Must Read'">
+                      {{noti.level}}</div>
+                    <div class="noti-level text-warning" *ngSwitchCase="'Important'">
+                      {{noti.level}}</div>
+                    <div class="noti-level text-success" *ngSwitchCase="'Normal'">
+                      {{noti.level}}</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="noti-date">{{noti.date}}</div>
+                </div>
+              </div>
+              <hr>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+          <div class="box" style="min-height: 490px;">
+            <p class="txt" style="margin-bottom: 10px; margin-left: 10px; text-align: left;">Features</p>
+            <hr style="margin-bottom: 20px;">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/timesheet']">
+                  <div class="icon-box">
+                    <i class="fa-regular fa-clock feature-icon"></i>
+                  </div>
+                  <h5 class="feature-name">TimeSheets</h5>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/requests']">
+                  <div class="icon-box">
+                    <i class="fa-regular fa-newspaper feature-icon"></i>
+                  </div>
+                  <h5 class="feature-name">Requests</h5>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/otheruser']">
+                  <div class="icon-box">
+                    <i class="fa-solid fa-users feature-icon"></i>
+                  </div>
+                  <h5 class="feature-name">OtherUser</h5>
+                </div>
+              </div>
+              <div *ngIf="roles.includes('HumanResources') || roles.includes('CEO')" class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/devices']">
+                  <div class="icon-box">
+                    <i class="fa-solid fa-computer feature-icon"></i>
+                  </div>
+                  <h5 class="feature-name">Devices</h5>
+                </div>
+              </div>
+              <div *ngIf="roles.includes('HumanResources') || roles.includes('CEO') || roles.includes('Accountant')"
+                class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/newpost']">
+                  <div class="icon-box">
+                    <i class="fa-regular fa-paper-plane feature-icon"></i>
+                  </div>
+                  <h5 class="feature-name">NewPost</h5>
+                </div>
+              </div>
+              <div *ngIf="roles.includes('HumanResources') || roles.includes('CEO')" class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/userinfos']">
+                  <div class="icon-box">
+                    <i class="fa-regular fa-user feature-icon"></i>
+                  </div>
+                  <h5 class="feature-name">UsersInfo</h5>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/usertask']">
+                  <div class="icon-box">
+                    <i class="fa-solid fa-list-check feature-icon"></i>
+                  </div>
+                  <h5 class="feature-name">UsersTasks</h5>
+                </div>
+              </div>
+              <div *ngIf="roles.includes('Accountant') || roles.includes('CEO')" class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/salary']">
+                  <div class="icon-box">
+                    <i class="fa-solid fa-money-bill-wave feature-icon"></i>
+                  </div>
+                  <h5 style="width: 100%;" class="feature-name">Salary</h5>
+                </div>
+              </div>
+              <div *ngIf="roles.includes('CEO')" class="col-lg-4 col-md-4 col-sm-6">
+                <div class="feature-box row" [routerLink]="['/setting']">
+                  <div class="icon-box">
+                    <i class="fa-solid fa-gear feature-icon"></i>
+                  </div>
+                  <h5 style="width: 100%;" class="feature-name">Setting</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<fixedplugin-cmp></fixedplugin-cmp>

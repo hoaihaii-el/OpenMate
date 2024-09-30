@@ -1,0 +1,73 @@
+.box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+}
+
+.txt {
+    font-size: 16px;
+    text-align: center;
+}
+
+.hour-box {
+    margin-left: 30px;
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+.hour-title {
+    margin-left: 20px;
+    margin-top: 6px;
+    font-size: 16px;
+}
+
+.update-btn {
+    padding: 8px 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+.input-box {
+    margin-top: 20px;
+}
+
+.input-box1 {
+    margin-top: 10px;
+}
+
+input {
+    height: 38.5px;
+}
+
+select {
+    padding-left: 10px;
+    font-size: 14px;
+    height: 38.5px;
+}
+
+select>option {
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
